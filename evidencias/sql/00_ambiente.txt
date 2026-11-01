@@ -1,0 +1,50 @@
+Ambiente do teste de execução dos scripts SQL (Etapa 15 do manual)
+
+Data e hora do teste: 2026-10-31, das 22:31:55 às 22:33 (horário do computador)
+SGBD: MariaDB 10.4.28 (Win64), o mesmo executável do XAMPP (C:\xampp\mysql\bin\mysqld.exe)
+Conjunto de caracteres do servidor: utf8mb4 / utf8mb4_general_ci (igual ao my.ini do XAMPP)
+sql_mode do servidor: NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION
+  (é o sql_mode padrão do my.ini do XAMPP, sem STRICT_TRANS_TABLES)
+  O script auditoria/02_testes_integridade.sql liga STRICT_TRANS_TABLES só na sessão dele.
+
+Como a instância vazia foi criada
+  O servidor do XAMPP da porta 3306 não foi usado. Foi criada uma instância
+  separada e vazia, numa pasta temporária, só para este teste:
+
+  1. Criar o diretório de dados vazio:
+     C:\xampp\mysql\bin\mysql_install_db.exe --datadir=<pasta temporária>\data --port=3307
+
+  2. Iniciar o servidor em segundo plano, sem ler o my.ini do XAMPP:
+     C:\xampp\mysql\bin\mysqld.exe --no-defaults --basedir=C:/xampp/mysql
+       --datadir=<pasta temporária>/data --port=3307 --bind-address=127.0.0.1
+       --sql-mode=NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION
+       --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+
+  3. Antes de rodar os scripts, a instância só tinha os bancos do sistema:
+     information_schema, mysql, performance_schema e test.
+
+  4. Conexão usada em todos os scripts (usuário root sem senha, só local):
+     mysql.exe -u root -P 3307 --protocol=TCP -h 127.0.0.1 -t --default-character-set=utf8mb4
+
+  5. No final, a instância foi desligada com
+     mysqladmin.exe -u root -P 3307 --protocol=TCP shutdown
+     e a pasta temporária de dados foi apagada.
+
+Arquivos usados: os scripts ORIGINAIS da pasta sql/, sem nenhuma alteração.
+O banco criado se chama feliguinchos (e feliguinchos_testes para o resultado dos testes),
+como está nos scripts.
+
+Ordem de execução (a mesma do sql/README.md)
+  01  sql/ddl/01_tabelas.sql
+  02  sql/ddl/02_gatilhos.sql
+  03  sql/ddl/03_views.sql
+  04  sql/dados/01_carga.sql
+      (aqui foi feita a contagem de registros "logo após a carga")
+  05  sql/consultas/01_select.sql
+  06  sql/consultas/02_join.sql
+  07  sql/consultas/03_gerenciais.sql
+  08  sql/consultas/04_update.sql
+  09  sql/consultas/05_delete.sql
+  10  sql/auditoria/01_consultas_auditoria.sql
+  11  sql/auditoria/02_testes_integridade.sql
+      (depois: contagem final, tabela de testes completa e verificação das correções)

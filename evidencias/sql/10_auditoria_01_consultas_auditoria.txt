@@ -1,0 +1,173 @@
+Script: sql/auditoria/01_consultas_auditoria.sql
+Comando: mysql -u root -P 3307 --protocol=TCP -t --default-character-set=utf8mb4 < auditoria\01_consultas_auditoria.sql
+Início: 2026-10-31 22:31:57
+----- saída -----
++--------------+----------+----------------+---------------------+---------------------+---------------+----------------------------------------------------------------+
+| historico_id | ordem_id | status         | data_hora_alteracao | alterado_por        | perfil_acesso | observacao                                                     |
++--------------+----------+----------------+---------------------+---------------------+---------------+----------------------------------------------------------------+
+|            1 |        1 | ACEITA         | 2026-09-02 08:18:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           21 |        1 | A_CAMINHO      | 2026-09-02 08:25:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           52 |        1 | NO_LOCAL       | 2026-09-02 08:45:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           83 |        1 | EM_ATENDIMENTO | 2026-09-02 08:50:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          117 |        1 | FINALIZADA     | 2026-09-02 09:20:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|            2 |        2 | ACEITA         | 2026-09-06 02:33:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           22 |        2 | A_CAMINHO      | 2026-09-06 02:45:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           53 |        2 | NO_LOCAL       | 2026-09-06 03:05:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           84 |        2 | EM_ATENDIMENTO | 2026-09-06 03:10:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          118 |        2 | FINALIZADA     | 2026-09-06 05:10:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|            3 |        3 | ACEITA         | 2026-09-07 10:03:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           23 |        3 | A_CAMINHO      | 2026-09-07 10:10:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           54 |        3 | NO_LOCAL       | 2026-09-07 10:30:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           85 |        3 | EM_ATENDIMENTO | 2026-09-07 10:35:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          119 |        3 | FINALIZADA     | 2026-09-07 10:50:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|            4 |        4 | ACEITA         | 2026-09-10 14:24:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           24 |        4 | A_CAMINHO      | 2026-09-10 14:35:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           55 |        4 | NO_LOCAL       | 2026-09-10 14:55:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           86 |        4 | EM_ATENDIMENTO | 2026-09-10 15:00:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          120 |        4 | FINALIZADA     | 2026-09-10 15:40:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|            5 |        5 | ACEITA         | 2026-09-12 16:05:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           25 |        5 | A_CAMINHO      | 2026-09-12 16:20:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           56 |        5 | NO_LOCAL       | 2026-09-12 16:40:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           87 |        5 | EM_ATENDIMENTO | 2026-09-12 16:45:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          115 |        5 | EM_ATENDIMENTO | 2026-09-12 20:30:00 | Bruno Carvalho Dias | GERENTE       | Cliente avisado do atraso: congestionamento na Rod. Anhanguera |
+|          121 |        5 | FINALIZADA     | 2026-09-12 21:45:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|            6 |        6 | ACEITA         | 2026-09-15 19:33:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           26 |        6 | A_CAMINHO      | 2026-09-15 19:45:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           57 |        6 | NO_LOCAL       | 2026-09-15 20:05:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           88 |        6 | EM_ATENDIMENTO | 2026-09-15 20:10:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          122 |        6 | FINALIZADA     | 2026-09-15 20:25:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|            7 |        7 | ACEITA         | 2026-09-18 11:04:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           27 |        7 | A_CAMINHO      | 2026-09-18 11:15:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           58 |        7 | NO_LOCAL       | 2026-09-18 11:35:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           89 |        7 | EM_ATENDIMENTO | 2026-09-18 11:40:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          123 |        7 | FINALIZADA     | 2026-09-18 11:55:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|            8 |        8 | ACEITA         | 2026-09-20 09:03:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           28 |        8 | A_CAMINHO      | 2026-09-20 09:10:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|          132 |        8 | CANCELADA      | 2026-09-20 09:35:00 | Bruno Carvalho Dias | GERENTE       | Cliente desistiu após o deslocamento                           |
+|            9 |        9 | ACEITA         | 2026-09-24 07:36:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           29 |        9 | A_CAMINHO      | 2026-09-24 07:50:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           59 |        9 | NO_LOCAL       | 2026-09-24 08:10:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           90 |        9 | EM_ATENDIMENTO | 2026-09-24 08:15:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          114 |        9 | EM_ATENDIMENTO | 2026-09-24 09:00:00 | Bruno Carvalho Dias | GERENTE       | Desconto de R$ 50,00 aprovado pelo supervisor                  |
+|          124 |        9 | FINALIZADA     | 2026-09-24 10:40:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|           10 |       10 | ACEITA         | 2026-09-28 03:15:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           30 |       10 | A_CAMINHO      | 2026-09-28 03:25:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           60 |       10 | NO_LOCAL       | 2026-09-28 03:45:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           91 |       10 | EM_ATENDIMENTO | 2026-09-28 03:50:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          125 |       10 | FINALIZADA     | 2026-09-28 04:20:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|           11 |       11 | ACEITA         | 2026-10-02 13:04:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           31 |       11 | A_CAMINHO      | 2026-10-02 13:15:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           61 |       11 | NO_LOCAL       | 2026-10-02 13:35:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           92 |       11 | EM_ATENDIMENTO | 2026-10-02 13:40:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          126 |       11 | FINALIZADA     | 2026-10-02 14:05:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|           12 |       12 | ACEITA         | 2026-10-04 10:35:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           32 |       12 | A_CAMINHO      | 2026-10-04 10:50:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           62 |       12 | NO_LOCAL       | 2026-10-04 11:10:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           93 |       12 | EM_ATENDIMENTO | 2026-10-04 11:15:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          127 |       12 | FINALIZADA     | 2026-10-04 12:40:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|           13 |       13 | ACEITA         | 2026-10-06 18:06:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           33 |       13 | A_CAMINHO      | 2026-10-06 18:20:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           63 |       13 | NO_LOCAL       | 2026-10-06 18:40:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           94 |       13 | EM_ATENDIMENTO | 2026-10-06 18:45:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          116 |       13 | EM_ATENDIMENTO | 2026-10-06 21:10:00 | Bruno Carvalho Dias | GERENTE       | Resgate exigiu equipamento adicional (cintas e cabo de aço)    |
+|          128 |       13 | FINALIZADA     | 2026-10-06 21:30:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|           14 |       14 | ACEITA         | 2026-10-09 05:26:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           34 |       14 | A_CAMINHO      | 2026-10-09 05:40:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           64 |       14 | NO_LOCAL       | 2026-10-09 06:00:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           95 |       14 | EM_ATENDIMENTO | 2026-10-09 06:05:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          129 |       14 | FINALIZADA     | 2026-10-09 07:50:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|           15 |       15 | ACEITA         | 2026-10-12 15:04:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           35 |       15 | A_CAMINHO      | 2026-10-12 15:10:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|          133 |       15 | CANCELADA      | 2026-10-12 15:40:00 | Ana Paula Ferreira  | GERENTE       | Guincho apresentou pane no trajeto                             |
+|           16 |       16 | ACEITA         | 2026-10-14 16:05:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           36 |       16 | A_CAMINHO      | 2026-10-14 16:15:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|          134 |       16 | CANCELADA      | 2026-10-14 16:30:00 | Prestador/Sistema   | NULL          | Endereço de origem informado errado                            |
+|           17 |       17 | ACEITA         | 2026-10-15 07:54:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           37 |       17 | A_CAMINHO      | 2026-10-15 08:05:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           65 |       17 | NO_LOCAL       | 2026-10-15 08:25:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           96 |       17 | EM_ATENDIMENTO | 2026-10-15 08:30:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          130 |       17 | FINALIZADA     | 2026-10-15 08:40:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|           18 |       18 | ACEITA         | 2026-10-20 21:08:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           38 |       18 | A_CAMINHO      | 2026-10-20 21:20:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           66 |       18 | NO_LOCAL       | 2026-10-20 21:40:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           97 |       18 | EM_ATENDIMENTO | 2026-10-20 21:45:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          131 |       18 | FINALIZADA     | 2026-10-21 00:15:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|           19 |       19 | ACEITA         | 2026-10-26 10:05:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           39 |       19 | A_CAMINHO      | 2026-10-26 10:15:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|           67 |       19 | NO_LOCAL       | 2026-10-26 10:35:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|           98 |       19 | EM_ATENDIMENTO | 2026-10-26 10:40:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          136 |       19 | FINALIZADA     | 2026-10-26 11:50:00 | Prestador/Sistema   | NULL          | Serviço concluído (app)                                        |
+|           20 |       20 | ACEITA         | 2026-10-27 22:19:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
+|           40 |       20 | A_CAMINHO      | 2026-10-27 22:25:00 | Prestador/Sistema   | NULL          | Prestador iniciou o deslocamento (app)                         |
+|          137 |       20 | NO_LOCAL       | 2026-10-27 22:45:00 | Prestador/Sistema   | NULL          | Prestador chegou ao local (app)                                |
+|          138 |       20 | EM_ATENDIMENTO | 2026-10-27 22:50:00 | Prestador/Sistema   | NULL          | Atendimento iniciado (app)                                     |
+|          135 |       21 | ACEITA         | 2026-10-28 08:44:00 | Prestador/Sistema   | NULL          | Aceite registrado automaticamente (R14)                        |
++--------------+----------+----------------+---------------------+---------------------+---------------+----------------------------------------------------------------+
++----------+-------------+---------------------+
+| ordem_id | valor_total | data_hora_fim       |
++----------+-------------+---------------------+
+|       11 |      185.00 | 2026-10-02 14:05:00 |
++----------+-------------+---------------------+
++----------+--------------+--------------+------------+
+| ordem_id | status_atual | valor_devido | valor_pago |
++----------+--------------+--------------+------------+
+|       11 | FINALIZADA   |       185.00 |       0.00 |
+|       13 | FINALIZADA   |       980.00 |     900.00 |
++----------+--------------+--------------+------------+
++--------------+----------+---------------------+------------+---------------------+---------------+
+| pagamento_id | ordem_id | descricao           | valor_pago | data_hora_pagamento | comprovante   |
++--------------+----------+---------------------+------------+---------------------+---------------+
+|            9 |        9 | Cartão de Crédito   |    1030.00 | 2026-09-24 10:50:00 | CC-NEG-990011 |
++--------------+----------+---------------------+------------+---------------------+---------------+
++-----------------+----------+-------------+-----------------------------------------------------------------------------------+---------------------+
+| cancelamento_id | ordem_id | responsavel | motivo                                                                            | data_hora           |
++-----------------+----------+-------------+-----------------------------------------------------------------------------------+---------------------+
+|               3 |       16 | CENTRAL     | Endereço de origem informado errado; o cliente foi orientado a abrir novo pedido  | 2026-10-14 16:30:00 |
++-----------------+----------+-------------+-----------------------------------------------------------------------------------+---------------------+
++----------+-------------------------+---------------------+---------------------+----------------+
+| ordem_id | prestador               | data_previsao       | data_hora_fim       | minutos_atraso |
++----------+-------------------------+---------------------+---------------------+----------------+
+|        5 | Ricardo Mendes Oliveira | 2026-09-12 21:00:00 | 2026-09-12 21:45:00 |             45 |
+|       13 | Ricardo Mendes Oliveira | 2026-10-06 21:00:00 | 2026-10-06 21:30:00 |             30 |
+|        2 | José Roberto Alves      | 2026-09-06 05:00:00 | 2026-09-06 05:10:00 |             10 |
++----------+-------------------------+---------------------+---------------------+----------------+
++----------+-------------+----------+--------------+------------------------------------+
+| ordem_id | valor_bruto | desconto | desconto_pct | observacao                         |
++----------+-------------+----------+--------------+------------------------------------+
+|        4 |      320.00 |    20.00 |         6.25 | Desconto para cliente PJ (frota)   |
+|        9 |     1080.00 |    50.00 |         4.63 | Desconto negociado pelo supervisor |
+|       14 |      780.00 |    30.00 |         3.85 | Adicionais: madrugada + rodovia    |
++----------+-------------+----------+--------------+------------------------------------+
++---------------------------+-----------+
+| tabela                    | registros |
++---------------------------+-----------+
+| pessoa                    |        27 |
+| pessoa_telefone           |        31 |
+| cliente                   |        11 |
+| funcionario               |         7 |
+| empresa                   |         3 |
+| prestador_servico         |        10 |
+| cidade                    |        10 |
+| cep                       |        28 |
+| modelo_veiculo            |        22 |
+| tipo_veiculo              |         6 |
+| veiculo                   |        16 |
+| tipo_guincho              |         5 |
+| veiculo_reboque           |         7 |
+| servico_reboque           |         6 |
+| tarifa                    |        13 |
+| solicitacao               |        23 |
+| ordem_servico             |        21 |
+| historico_status          |        97 |
+| notificacao_prestador     |        32 |
+| cancelamento              |         3 |
+| avaliacao                 |        13 |
+| forma_pagamento           |         5 |
+| pagamento                 |        19 |
+| prestador_veiculo_reboque |        11 |
+| guincho_tipo_veiculo      |        11 |
++---------------------------+-----------+
+----- erros (stderr) -----
+(nenhum)
+----- código de saída: 0 -----
+Fim: 2026-10-31 22:31:57

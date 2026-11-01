@@ -1,0 +1,65 @@
+Registros por tabela no banco feliguinchos (instância temporária, porta 3307)
+
+1) Logo depois de dados/01_carga.sql (antes de 04_update.sql e 05_delete.sql)
++---------------------------+-----------+
+| tabela                    | registros |
++---------------------------+-----------+
+| pessoa                    |        28 |
+| pessoa_telefone           |        33 |
+| cliente                   |        12 |
+| funcionario               |         7 |
+| empresa                   |         3 |
+| prestador_servico         |        10 |
+| cidade                    |        10 |
+| cep                       |        29 |
+| modelo_veiculo            |        22 |
+| tipo_veiculo              |         6 |
+| veiculo                   |        16 |
+| tipo_guincho              |         5 |
+| veiculo_reboque           |         7 |
+| guincho_tipo_veiculo      |        11 |
+| prestador_veiculo_reboque |        11 |
+| servico_reboque           |         6 |
+| tarifa                    |        13 |
+| solicitacao               |        23 |
+| notificacao_prestador     |        32 |
+| ordem_servico             |        20 |
+| historico_status          |        93 |
+| forma_pagamento           |         5 |
+| pagamento                 |        18 |
+| avaliacao                 |        13 |
+| cancelamento              |         3 |
+| TOTAL                     |       436 |
++---------------------------+-----------+
+
+2) Depois de todos os scripts (incluindo 04_update.sql e 05_delete.sql)
++---------------------------+-----------+
+| tabela                    | registros |
++---------------------------+-----------+
+| pessoa                    |        27 |
+| pessoa_telefone           |        31 |
+| cliente                   |        11 |
+| funcionario               |         7 |
+| empresa                   |         3 |
+| prestador_servico         |        10 |
+| cidade                    |        10 |
+| cep                       |        28 |
+| modelo_veiculo            |        22 |
+| tipo_veiculo              |         6 |
+| veiculo                   |        16 |
+| tipo_guincho              |         5 |
+| veiculo_reboque           |         7 |
+| guincho_tipo_veiculo      |        11 |
+| prestador_veiculo_reboque |        11 |
+| servico_reboque           |         6 |
+| tarifa                    |        13 |
+| solicitacao               |        23 |
+| notificacao_prestador     |        32 |
+| ordem_servico             |        21 |
+| historico_status          |        97 |
+| forma_pagamento           |         5 |
+| pagamento                 |        19 |
+| avaliacao                 |        13 |
+| cancelamento              |         3 |
+| TOTAL                     |       437 |
++---------------------------+-----------+

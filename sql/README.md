@@ -66,7 +66,7 @@ Se o root tiver senha, use `-u root -p`. Se `mysql` não for reconhecido, use `C
 
 ## Resultados esperados
 
-- **Testes de integridade:** 152 de 152 aprovados.
+- **Testes de integridade:** 152 de 152 aprovados, inclusive no XAMPP padrão (o script liga `STRICT_TRANS_TABLES` só na sessão dele).
 - **Auditoria** (casos plantados de propósito na carga):
   - D4: O.S. 11 finalizada sem pagamento aprovado
   - D5: O.S. 11 (0,00 de 185,00) e O.S. 13 (900,00 de 980,00) com valor divergente

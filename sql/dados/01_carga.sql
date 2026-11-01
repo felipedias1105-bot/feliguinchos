@@ -86,8 +86,8 @@ INSERT INTO pessoa (cpf, nome, email, senha, cnpj, data_cadastro, cep, numero, c
 ('10120230306', 'Felipe Andrade Barros', 'felipe.barros@feliguinchos.com.br',  SHA2('Felipe@2026',256),  NULL, '2025-11-03', NULL, NULL, NULL, NULL, NULL),
 ('10120230307', 'Gabriela Moura Pinto',  'gabriela.pinto@feliguinchos.com.br', SHA2('Gabi@2026',256),    NULL, '2025-12-01', NULL, NULL, NULL, NULL, NULL),
 -- prestadores
-('11223344501', 'Carlos Henrique Souza',   'carlos.souza@rapidosul.com.br',         SHA2('prest01',256), NULL, '2026-01-08', NULL, NULL, NULL, NULL, NULL),
-('11223344502', 'Marcos Vinícius Lima',    'marcos.lima@rapidosul.com.br',          SHA2('prest02',256), NULL, '2026-01-08', NULL, NULL, NULL, NULL, NULL),
+('11223344501', 'Carlos Henrique Souza',   'carlos.souza@rapidosul.com.br',         SHA2('prest01',256), NULL, '2025-02-20', NULL, NULL, NULL, NULL, NULL),
+('11223344502', 'Marcos Vinícius Lima',    'marcos.lima@rapidosul.com.br',          SHA2('prest02',256), NULL, '2025-02-20', NULL, NULL, NULL, NULL, NULL),
 ('11223344503', 'José Roberto Alves',      'jose.alves@reboqueforte.com.br',        SHA2('prest03',256), NULL, '2026-01-20', NULL, NULL, NULL, NULL, NULL),
 ('11223344504', 'Anderson Pereira Costa',  'anderson.costa@reboqueforte.com.br',    SHA2('prest04',256), NULL, '2026-01-20', NULL, NULL, NULL, NULL, NULL),
 ('11223344505', 'Ricardo Mendes Oliveira', 'ricardo.oliveira@autosocorrosp.com.br', SHA2('prest05',256), NULL, '2026-02-15', NULL, NULL, NULL, NULL, NULL),
@@ -371,7 +371,7 @@ INSERT INTO ordem_servico (ordem_id, solicitacao_id, tarifa_id, prestador_id, ve
 ( 1,  1,  1, 1, 1, '2026-09-02 08:25:00', '2026-09-02 09:30:00', '2026-09-02 09:20:00', NULL,                                         192.00,   0.00,  0.00),
 ( 2,  2,  5, 3, 3, '2026-09-06 02:45:00', '2026-09-06 05:00:00', '2026-09-06 05:10:00', 'Adicionais: madrugada + domingo + rodovia',  685.00, 230.00,  0.00),
 ( 3,  3, 10, 4, 4, '2026-09-07 10:10:00', '2026-09-07 11:00:00', '2026-09-07 10:50:00', 'Adicional de feriado (07/09)',                87.50,  30.00,  0.00),
-( 4,  4,  6, 4, 4, '2026-09-10 14:35:00', '2026-09-10 16:00:00', '2026-09-10 15:40:00', 'Desconto cliente PJ recorrente',             320.00,   0.00, 20.00),
+( 4,  4,  6, 4, 4, '2026-09-10 14:35:00', '2026-09-10 16:00:00', '2026-09-10 15:40:00', 'Desconto para cliente PJ (frota)',           320.00,   0.00, 20.00),
 ( 5,  5,  8, 5, 5, '2026-09-12 16:20:00', '2026-09-12 21:00:00', '2026-09-12 21:45:00', 'Adicional de rodovia',                      2480.00, 250.00,  0.00),
 ( 6,  6,  3, 6, 6, '2026-09-15 19:45:00', '2026-09-15 20:30:00', '2026-09-15 20:25:00', NULL,                                         120.00,   0.00,  0.00),
 ( 7,  7,  9, 2, 2, '2026-09-18 11:15:00', '2026-09-18 12:00:00', '2026-09-18 11:55:00', NULL,                                          99.00,   0.00,  0.00),
@@ -387,7 +387,7 @@ INSERT INTO ordem_servico (ordem_id, solicitacao_id, tarifa_id, prestador_id, ve
 (17, 17, 10, 7, 2, '2026-10-15 08:05:00', '2026-10-15 09:00:00', '2026-10-15 08:40:00', NULL,                                          84.50,   0.00,  0.00),
 (18, 18,  2, 1, 1, '2026-10-20 21:20:00', '2026-10-21 00:30:00', '2026-10-21 00:15:00', 'Adicional de rodovia; pagamento dividido',   680.00,  80.00,  0.00),
 (19, 20,  4, 3, 3, '2026-10-26 10:15:00', '2026-10-26 12:00:00', NULL,                  NULL,                                         263.00,   0.00,  0.00),
-(20, 21,  1, 2, 2, '2026-10-27 22:25:00', '2026-10-27 23:30:00', NULL,                  NULL,                                         181.50,   0.00,  0.00);
+(20, 21,  1, 2, 2, '2026-10-27 22:25:00', '2026-10-27 23:30:00', NULL,                  'Adicional de madrugada',                     181.50,  50.00,  0.00);
 
 -- Histórico de status, em ordem cronológica (exigência do gatilho R15)
 INSERT INTO historico_status (ordem_id, funcionario_id, status, data_hora_alteracao, observacao)
@@ -414,7 +414,7 @@ FROM ordem_servico WHERE data_hora_fim IS NOT NULL ORDER BY ordem_id;
 INSERT INTO historico_status (ordem_id, funcionario_id, status, data_hora_alteracao, observacao) VALUES
 ( 8, 2,    'CANCELADA', '2026-09-20 09:35:00', 'Cliente desistiu após o deslocamento'),
 (15, 1,    'CANCELADA', '2026-10-12 15:40:00', 'Guincho apresentou pane no trajeto'),
-(16, NULL, 'CANCELADA', '2026-10-14 16:30:00', 'Sem guincho compatível disponível na região');
+(16, NULL, 'CANCELADA', '2026-10-14 16:30:00', 'Endereço de origem informado errado');
 
 -- status_atual = último registro do histórico (R15)
 UPDATE ordem_servico os
@@ -426,7 +426,7 @@ UPDATE ordem_servico os
 INSERT INTO cancelamento (cancelamento_id, ordem_id, funcionario_id, responsavel, motivo, data_hora, valor_multa) VALUES
 (1,  8, 2,    'CLIENTE',   'Cliente desistiu após o deslocamento do guincho (veículo voltou a funcionar)', '2026-09-20 09:35:00', 50.00),
 (2, 15, 1,    'PRESTADOR', 'Guincho apresentou pane mecânica no trajeto',                                 '2026-10-12 15:40:00',  0.00),
-(3, 16, NULL, 'CENTRAL',   'Sem guincho compatível disponível na região no horário',                      '2026-10-14 16:30:00',  0.00);
+(3, 16, NULL, 'CENTRAL',   'Endereço de origem informado errado; o cliente foi orientado a abrir novo pedido', '2026-10-14 16:30:00',  0.00);
 
 -- Pagamentos
 --  O.S. 9 -> 1ª tentativa recusada | O.S. 11 -> PENDENTE (auditoria)

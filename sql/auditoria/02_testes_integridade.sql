@@ -21,6 +21,10 @@
 -- =====================================================================
 USE feliguinchos;
 
+-- Modo estrito nesta sessão: sem STRICT_TRANS_TABLES (padrão do XAMPP),
+-- gravar em coluna calculada vira só aviso e os testes 94 e 95 não bloqueiam.
+SET SESSION sql_mode = CONCAT_WS(',', NULLIF(@@SESSION.sql_mode, ''), 'STRICT_TRANS_TABLES');
+
 -- O resultado fica gravado em um banco separado (feliguinchos_testes),
 -- para não alterar as 25 tabelas do banco principal.
 CREATE DATABASE IF NOT EXISTS feliguinchos_testes CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

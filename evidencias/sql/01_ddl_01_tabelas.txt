@@ -1,0 +1,8 @@
+Script: sql/ddl/01_tabelas.sql
+Comando: mysql -u root -P 3307 --protocol=TCP -t --default-character-set=utf8mb4 < ddl\01_tabelas.sql
+Início: 2026-10-31 22:31:55
+----- saída -----
+----- erros (stderr) -----
+(nenhum)
+----- código de saída: 0 -----
+Fim: 2026-10-31 22:31:55

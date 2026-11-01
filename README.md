@@ -262,7 +262,7 @@ Algumas decisões que tomamos no modelo:
 
 ## 7. Modelo lógico
 
-Documento completo: [docs/documentacao/MODELO LOGICO.docx](docs/documentacao/MODELO%20LOGICO.docx).
+Documento: [docs/documentacao/MODELO LOGICO.docx](docs/documentacao/MODELO%20LOGICO.docx). Ele é a versão pré-normalização, com 21 tabelas, e está marcado assim no início. A estrutura final, com 25 tabelas, está abaixo e no [Modelo Físico](docs/documentacao/Modelo_Fisico_Feliguinchos.pdf).
 
 Regras que usamos para passar do DER para tabelas:
 
@@ -323,22 +323,145 @@ Durante a conversão, comparamos o texto da primeira entrega com o DER e corrigi
 
 Documento completo: [docs/normalizacao/Modelo de tabelas normalizado (1FN, 2FN e 3FN).pdf](docs/normalizacao/Modelo%20de%20tabelas%20normalizado%20%281FN%2C%202FN%20e%203FN%29%20%283%29.pdf). Responsável: Gabriel da Silva.
 
-Partimos das 21 tabelas do modelo lógico e chegamos a 25: 4 tabelas novas, 8 alteradas e 13 que não mudaram.
+Partimos das 21 tabelas do modelo lógico e chegamos a 25: 4 tabelas novas (Pessoa, Cidade, CEP e Modelo_Veiculo), 8 alteradas e 13 que não mudaram. Abaixo estão as situações do projeto que levaram a essas mudanças, no formato estrutura analisada, dependências funcionais, problema e correção. Na notação, `X → Y` quer dizer "X determina Y".
+
+### 8.1 Verificação das formas normais
 
 | Forma normal | O que verificamos |
 |---|---|
-| 1FN | Todos os atributos são atômicos. O telefone foi para uma tabela própria e o endereço foi dividido em colunas. |
-| 2FN | Nas tabelas com chave composta, os atributos dependem da chave inteira (vínculo prestador-guincho, compatibilidade e notificação). |
-| 3FN | Não sobrou dependência transitiva entre atributos que não são chave. As mudanças abaixo foram feitas para isso. |
+| 1FN | Nenhum campo guarda mais de um valor. O telefone já estava em tabela própria para o cliente, mas o prestador tinha uma coluna `telefone` só. Agora todos os telefones ficam em Pessoa_Telefone. O endereço foi dividido em colunas. |
+| 2FN | Nas quatro tabelas com chave composta, os atributos dependem da chave inteira: `(prestador_id, veiculo_reboque_id, data_inicio) → data_fim, status`, `(tipo_guincho_id, tipo_veiculo_id) → observacao` e `(solicitacao_id, prestador_id) → data_hora_envio, data_hora_resposta, resposta`. Pessoa_Telefone não tem atributo fora da chave. Nenhuma dessas tabelas guarda dado que dependa de só uma parte da chave, como o nome do prestador. |
+| 3FN | Procuramos atributos que dependiam de outro atributo, e não da chave. Os casos encontrados estão em 8.2 (endereço) e 8.5 (tarifa). Os casos 8.3 e 8.4 não eram violação de 3FN dentro de uma tabela, mas eram redundâncias entre tabelas, e foram corrigidos na mesma etapa. |
 
-| Mudança | Por que foi feita |
-|---|---|
-| Nova tabela Pessoa, com cpf, nome, e-mail, senha e endereço. Cliente, Funcionario e Prestador_Servico passam a apontar para ela pelo CPF | Esses dados se repetiam nas três tabelas, e quem tinha dois papéis era cadastrado duas vezes |
-| Cliente_Telefone virou Pessoa_Telefone | Funcionários e prestadores também têm telefone |
-| Novas tabelas Cidade e CEP | O CEP já determina logradouro, bairro e cidade. Agora a pessoa e a solicitação guardam só CEP, número e complemento. Em cidades com CEP único (CEP genérico), o logradouro e o bairro são digitados |
-| Origem e destino da Solicitação passam a usar CEP | Antes eram texto livre, sem padrão |
-| Nova tabela Modelo_Veiculo, usada por Veiculo e Veiculo_Reboque | A marca depende do modelo, e isso se repetia nas duas tabelas |
-| Tarifa perdeu a coluna status | O status já dá para saber pela data de vigência |
+### 8.2 Endereço: CEP e Cidade
+
+Antes:
+
+```
+CLIENTE(cliente_id, nome, cpf, email, senha, data_cadastro, status,
+        logradouro, numero, complemento, bairro, cidade, uf, cep)
+SOLICITACAO(solicitacao_id, ..., endereco_origem, endereco_destino, ...)
+```
+
+Dependências funcionais:
+
+```
+cliente_id → cep, numero, complemento
+cep        → logradouro, bairro, cidade, uf
+```
+
+Problema: dependência transitiva. O logradouro, o bairro e a cidade não dependem do cliente, e sim do CEP (`cliente_id → cep → logradouro, bairro, cidade, uf`). Esses dados se repetiam em cada pessoa do mesmo CEP, e nada impedia que fossem digitados de jeitos diferentes, como "Vila Mariana" e "V. Mariana". Na massa de dados, a cliente Juliana e a funcionária Ana Paula moram no mesmo CEP (04101300). Na solicitação, origem e destino eram texto livre, então não dava para saber a cidade de um chamado.
+
+Há uma exceção: em cidades com um único CEP (CEP genérico, como Juquitiba), vale só `cep → cidade, uf`. O logradouro e o bairro dependem da pessoa ou do chamado, e não do CEP, então ficaram na própria tabela como `logradouro_informado` e `bairro_informado`, preenchidos só nesse caso. O CHECK `ck_cep_generico` e o gatilho de endereço garantem isso.
+
+A tabela Cidade não resolve uma transitiva: `cidade → uf` não vale, porque existem cidades com o mesmo nome em estados diferentes (Bom Jesus, por exemplo, existe no PI, no RS e em SC). Ela foi separada para padronizar o nome da cidade, do mesmo jeito que Tipo_Veiculo padroniza o tipo, e para permitir as consultas por cidade (C15 e C16).
+
+Depois:
+
+```
+CIDADE(cidade_id, nome, uf)                         UNIQUE(nome, uf)
+CEP(cep, cidade_id, logradouro, bairro, cep_generico)
+PESSOA(..., cep, numero, complemento, logradouro_informado, bairro_informado)
+SOLICITACAO(..., origem_cep, origem_numero, origem_complemento,
+            origem_logradouro_informado, origem_bairro_informado,
+            destino_cep, destino_numero, destino_complemento,
+            destino_logradouro_informado, destino_bairro_informado, ...)
+```
+
+### 8.3 Pessoa: dados repetidos entre Cliente, Funcionário e Prestador
+
+Antes:
+
+```
+CLIENTE(cliente_id, nome, cpf, email, senha, data_cadastro, status, logradouro, ...)
+CLIENTE_TELEFONE(cliente_id, telefone)
+FUNCIONARIO(funcionario_id, nome, cpf, email, cargo, perfil_acesso, senha, status)
+PRESTADOR_SERVICO(prestador_id, empresa_id, nome, cpf, telefone, email, cnh, status, data_cadastro)
+```
+
+Dependências funcionais:
+
+```
+cpf            → nome, email, senha        (vale nas três tabelas)
+cliente_id     → cpf, status
+funcionario_id → cpf, cargo, perfil_acesso, status
+prestador_id   → cpf, empresa_id, cnh, status
+```
+
+Problema: dentro de cada tabela não havia violação da 3FN, porque o `cpf` era chave candidata (único). O problema era a mesma dependência `cpf → nome, email, senha` guardada em três tabelas diferentes. Quando a mesma pessoa tem dois papéis, os dados dela ficam duplicados e podem ficar diferentes depois de uma alteração. Na massa de dados, Paulo Sérgio Ramos é prestador e também cliente. Além disso, o cliente podia ter vários telefones e o prestador só um.
+
+Correção: generalização. Os atributos que dependem só do CPF foram para Pessoa, e cada papel ficou só com o que é dele. O `cpf` UNIQUE em Cliente, Funcionario e Prestador_Servico garante que cada pessoa tenha no máximo um registro de cada papel.
+
+Depois:
+
+```
+PESSOA(cpf, nome, email, senha, cnpj, data_cadastro,
+       cep, numero, complemento, logradouro_informado, bairro_informado)
+PESSOA_TELEFONE(cpf, telefone)
+CLIENTE(cliente_id, cpf, status)
+FUNCIONARIO(funcionario_id, cpf, cargo, perfil_acesso, status)
+PRESTADOR_SERVICO(prestador_id, cpf, empresa_id, cnh, status)
+```
+
+### 8.4 Modelo_Veiculo: marca e modelo repetidos em duas tabelas
+
+Antes:
+
+```
+VEICULO(veiculo_id, cliente_id, tipo_veiculo_id, placa, marca, modelo, ano, cor, blindado)
+VEICULO_REBOQUE(veiculo_reboque_id, tipo_guincho_id, placa, marca, modelo, ano, capacidade_kg, status)
+```
+
+Dependências funcionais:
+
+```
+veiculo_id         → marca, modelo
+veiculo_reboque_id → marca, modelo
+(marca, modelo)      identifica um modelo de veículo
+```
+
+Problema: o nome do modelo sozinho não determina a marca. "Express", por exemplo, é nome de van da Chevrolet e da Renault. Por isso não consideramos `modelo → marca`, e não havia dependência transitiva dentro de cada tabela. O problema era que o par marca e modelo descreve outra coisa, o modelo, e era digitado de novo em cada veículo e em cada guincho. "Fiat Strada", "FIAT Strada" e "Strada" seriam aceitos como modelos diferentes, e não dava para saber que um carro de cliente e um guincho são do mesmo modelo. Na massa de dados, o Fiat Strada aparece nos dois.
+
+Correção: o modelo virou uma tabela própria, identificada pelo par (marca, nome). Por isso a restrição única é composta. Veiculo e Veiculo_Reboque passaram a apontar para ela.
+
+Depois:
+
+```
+MODELO_VEICULO(modelo_id, marca, nome)              UNIQUE(marca, nome)
+VEICULO(veiculo_id, cliente_id, tipo_veiculo_id, modelo_id, placa, ano, cor, blindado)
+VEICULO_REBOQUE(veiculo_reboque_id, tipo_guincho_id, modelo_id, placa, ano, capacidade_kg, status)
+```
+
+### 8.5 Tarifa: status deduzido da vigência
+
+Antes:
+
+```
+TARIFA(tarifa_id, tipo_veiculo_id, servico_id, valor_base, valor_por_km,
+       adicional_madrugada, adicional_domingo, adicional_feriado, adicional_rodovia,
+       vigencia_inicio, vigencia_fim, status)
+```
+
+Dependências funcionais:
+
+```
+tarifa_id   → vigencia_inicio, vigencia_fim, status
+vigencia_fim → status      (ENCERRADA se a data já passou; ATIVA se é nula ou futura)
+```
+
+Problema: dependência transitiva. O status não depende diretamente da tarifa, e sim da data de fim da vigência (`tarifa_id → vigencia_fim → status`). Se ninguém atualizar o status no dia em que a vigência termina, o banco fica com uma tarifa vencida marcada como ATIVA, ou com duas tarifas ATIVAS para o mesmo tipo de veículo e serviço. Na massa de dados, a tarifa 12 (automóvel, reboque urbano) terminou em 31/12/2025 e foi substituída pela tarifa 1.
+
+Correção: a coluna status foi removida. A tarifa vigente é encontrada pela data (`vigencia_inicio <= hoje` e `vigencia_fim` nula ou `>= hoje`), como na consulta A8 de `01_select.sql`. O gatilho R11 impede vigências sobrepostas.
+
+Depois:
+
+```
+TARIFA(tarifa_id, tipo_veiculo_id, servico_id, valor_base, valor_por_km,
+       adicional_madrugada, adicional_domingo, adicional_feriado, adicional_rodovia,
+       vigencia_inicio, vigencia_fim)
+```
+
+### 8.6 Redundâncias mantidas
 
 Mantivemos de propósito três dados que poderiam ser calculados: o `status_atual` da O.S. (o gatilho R15 garante que ele é igual ao último histórico), o `valor_estimado` da solicitação (é o que foi prometido ao cliente) e o `valor_multa` do cancelamento (pode ter havido isenção).
 
@@ -700,11 +823,11 @@ Colocamos na carga alguns casos de propósito:
 
 ## 12. Consultas Gerenciais
 
-Arquivo: [sql/consultas/03_gerenciais.sql](sql/consultas/03_gerenciais.sql). São os relatórios que a equipe da Feliguinchos usa para acompanhar a plataforma.
+Arquivo: [sql/consultas/03_gerenciais.sql](sql/consultas/03_gerenciais.sql). São os relatórios que a equipe da Feliguinchos usa para acompanhar a plataforma. No script, cada consulta traz a pergunta de negócio e a decisão que a resposta apoia.
 
 | # | Consulta | O que responde |
 |---|---|---|
-| C1 | Faturamento mensal | Quanto entrou por mês e o ticket médio |
+| C1 | Faturamento mensal | Quanto entrou por mês e o ticket médio por O.S. |
 | C2 | Faturamento por forma de pagamento | Quanto veio de cada forma e o percentual |
 | C3 | Ranking de prestadores | Faturamento, O.S. finalizadas e canceladas e nota média de cada prestador |
 | C4 | Desempenho por empresa parceira | Quanto cada parceira e os autônomos faturaram |
@@ -712,7 +835,7 @@ Arquivo: [sql/consultas/03_gerenciais.sql](sql/consultas/03_gerenciais.sql). Sã
 | C6 | Tempo médio de atendimento | Minutos do pedido até a finalização, por serviço |
 | C7 | Cancelamentos | Percentual de O.S. canceladas e quem mais cancela |
 | C8 | Top 5 clientes | Clientes que mais pagaram |
-| C9 | Uso da frota | O.S., km rodados e receita de cada guincho |
+| C9 | Uso da frota | O.S. finalizadas, km atendidos e receita de cada guincho |
 | C10 | Canal de abertura | Pedidos pelo aplicativo e por cada atendente |
 | C11 | Taxa de aceite | Quanto cada prestador aceita e quanto tempo leva para responder |
 | C12 | Demanda por dia e horário | Dias da semana e horários com mais chamados |
@@ -751,7 +874,7 @@ Arquivo: [sql/auditoria/01_consultas_auditoria.sql](sql/auditoria/01_consultas_a
 | D18 | Prestador atendendo o próprio veículo | Nenhuma linha |
 | D19 | Pessoa cadastrada sem nenhum papel | Nenhuma linha |
 
-Além das consultas, o arquivo [sql/auditoria/02_testes_integridade.sql](sql/auditoria/02_testes_integridade.sql) roda 152 testes automáticos. Cada teste roda dentro de uma transação que é desfeita no final, então o banco não é alterado. Os resultados ficam na tabela `feliguinchos_testes.resultado_teste`, e o esperado é 152 aprovados.
+Além das consultas, o arquivo [sql/auditoria/02_testes_integridade.sql](sql/auditoria/02_testes_integridade.sql) roda 152 testes automáticos. Cada teste roda dentro de uma transação que é desfeita no final, então o banco não é alterado. Os resultados ficam na tabela `feliguinchos_testes.resultado_teste`, e o esperado é 152 aprovados. O script liga o modo estrito (`STRICT_TRANS_TABLES`) só na própria sessão, porque o XAMPP vem sem ele, e sem esse modo o banco só avisa, em vez de bloquear, quando alguém tenta gravar numa coluna calculada.
 
 | Parte | O que testa |
 |---|---|

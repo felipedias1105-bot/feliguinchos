@@ -1,0 +1,113 @@
+Script: sql/consultas/01_select.sql
+Comando: mysql -u root -P 3307 --protocol=TCP -t --default-character-set=utf8mb4 < consultas\01_select.sql
+Início: 2026-10-31 22:31:56
+----- saída -----
++-------------+---------------------------+---------------------------------------+---------------+
+| cpf         | nome                      | email                                 | data_cadastro |
++-------------+---------------------------+---------------------------------------+---------------+
+| 10120230301 | Ana Paula Ferreira        | ana.ferreira@feliguinchos.com.br      | 2025-11-03    |
+| 11223344504 | Anderson Pereira Costa    | anderson.costa@reboqueforte.com.br    | 2026-01-20    |
+| 74185296309 | Beatriz Nogueira Castro   | beatriz.castro@email.com              | 2026-06-10    |
+| 10120230302 | Bruno Carvalho Dias       | bruno.dias@feliguinchos.com.br        | 2025-11-03    |
+| 10120230303 | Camila Rocha Santos       | camila.santos@feliguinchos.com.br     | 2025-12-01    |
+| 11223344501 | Carlos Henrique Souza     | carlos.souza@rapidosul.com.br         | 2025-02-20    |
+| 10120230304 | Diego Martins Silva       | diego.silva@feliguinchos.com.br       | 2025-12-01    |
+| 10120230305 | Eduarda Lopes Gomes       | eduarda.gomes@feliguinchos.com.br     | 2026-01-05    |
+| 11223344507 | Fábio Augusto Nunes       | fabio.nunes.reboque@email.com         | 2026-03-28    |
+| 10120230306 | Felipe Andrade Barros     | felipe.barros@feliguinchos.com.br     | 2025-11-03    |
+| 14725836907 | Fernanda Araújo Monteiro  | fernanda.monteiro@email.com           | 2026-04-18    |
+| 10120230307 | Gabriela Moura Pinto      | gabriela.pinto@feliguinchos.com.br    | 2025-12-01    |
+| 96385274108 | Gustavo Correia Vieira    | gustavo.vieira@email.com              | 2026-05-05    |
+| 11223344503 | José Roberto Alves        | jose.alves@reboqueforte.com.br        | 2026-01-20    |
+| 78912345603 | Juliana Ribeiro Fernandes | juliana.fernandes@email.com           | 2026-02-20    |
+| 25836914706 | Lucas Batista Freitas     | lucas.freitas@email.com               | 2026-04-02    |
+| 11223344508 | Luiz Fernando Teixeira    | luiz.teixeira@autosocorrosp.com.br    | 2026-01-02    |
+| 11223344502 | Marcos Vinícius Lima      | marcos.lima@rapidosul.com.br          | 2025-02-20    |
+| 32165498701 | Mariana Costa Almeida     | mariana.almeida@email.com             | 2026-01-15    |
+| 35715945605 | Patrícia Gomes Cardoso    | patricia.cardoso@email.com            | 2026-03-12    |
+| 11223344506 | Paulo Sérgio Ramos        | paulo.ramos.guincho@email.com         | 2026-03-10    |
+| 45678912302 | Rafael Souza Barbosa      | rafael.barbosa@email.com              | 2026-02-03    |
+| 11223344505 | Ricardo Mendes Oliveira   | ricardo.oliveira@autosocorrosp.com.br | 2026-02-15    |
+| 85296374110 | Roberto Carlos Duarte     | roberto.duarte@email.com              | 2026-07-01    |
+| 11223344509 | Rodrigo Alves Pacheco     | rodrigo.pacheco@email.com             | 2026-10-25    |
+| 63985214711 | Sérgio Lima Prado         | sergio.prado@email.com                | 2026-05-20    |
+| 15975345604 | Thiago Henrique Moreira   | thiago.moreira@email.com              | 2026-03-01    |
+| 11223344510 | Wagner Dias Moreira       | wagner.moreira@email.com              | 2026-08-14    |
++-------------+---------------------------+---------------------------------------+---------------+
++-------------+-------------------------+----------------+
+| cpf         | nome                    | cnpj           |
++-------------+-------------------------+----------------+
+| 15975345604 | Thiago Henrique Moreira | 45678901000104 |
+| 96385274108 | Gustavo Correia Vieira  | 56789012000105 |
++-------------+-------------------------+----------------+
++------------+-------------+--------+
+| cliente_id | cpf         | status |
++------------+-------------+--------+
+|          1 | 32165498701 | ATIVO  |
+|          2 | 45678912302 | ATIVO  |
+|          3 | 78912345603 | ATIVO  |
+|          4 | 15975345604 | ATIVO  |
+|          5 | 35715945605 | ATIVO  |
+|          6 | 25836914706 | ATIVO  |
+|          7 | 14725836907 | ATIVO  |
+|          8 | 96385274108 | ATIVO  |
+|          9 | 74185296309 | ATIVO  |
+|         12 | 11223344506 | ATIVO  |
++------------+-------------+--------+
++------------+---------+------+-------+
+| veiculo_id | placa   | ano  | cor   |
++------------+---------+------+-------+
+|          3 | SUV3B22 | 2023 | Prata |
+|          8 | SUV8G77 | 2022 | Preto |
+|         14 | CAR5N43 | 2024 | Preto |
++------------+---------+------+-------+
++--------------+-------------+-------------+------------+
+| prestador_id | cpf         | cnh         | status     |
++--------------+-------------+-------------+------------+
+|            6 | 11223344506 | 01234567806 | ATIVO      |
+|            7 | 11223344507 | 01234567807 | ATIVO      |
+|            9 | 11223344509 | NULL        | EM_ANALISE |
+|           10 | 11223344510 | NULL        | RECUSADO   |
++--------------+-------------+-------------+------------+
++--------------+-------------+------------+
+| prestador_id | cpf         | status     |
++--------------+-------------+------------+
+|            9 | 11223344509 | EM_ANALISE |
++--------------+-------------+------------+
++----------+-----------+
+| cep      | cidade_id |
++----------+-----------+
+| 06550000 |        10 |
+| 06950000 |         9 |
++----------+-----------+
++----------------+-----------------------+------------+------------+
+| solicitacao_id | data_hora_solicitacao | origem_cep | status     |
++----------------+-----------------------+------------+------------+
+|             22 | 2026-10-28 08:40:00   | 03081000   | EM_ANALISE |
+|             23 | 2026-10-29 18:00:00   | 07010010   | SOLICITADA |
++----------------+-----------------------+------------+------------+
++-----------+-----------------+------------+------------+--------------+-----------------+--------------+
+| tarifa_id | tipo_veiculo_id | servico_id | valor_base | valor_por_km | vigencia_inicio | vigencia_fim |
++-----------+-----------------+------------+------------+--------------+-----------------+--------------+
+|         1 |               2 |          1 |     150.00 |         3.50 | 2026-01-01      | NULL         |
+|         2 |               2 |          2 |     200.00 |         4.00 | 2026-01-01      | NULL         |
+|         3 |               1 |          1 |     100.00 |         2.50 | 2026-01-01      | NULL         |
+|         4 |               3 |          1 |     200.00 |         4.50 | 2026-01-01      | NULL         |
+|         5 |               3 |          2 |     260.00 |         5.00 | 2026-01-01      | NULL         |
+|         6 |               4 |          1 |     230.00 |         5.00 | 2026-01-01      | NULL         |
+|         7 |               5 |          2 |     450.00 |         8.00 | 2026-01-01      | NULL         |
+|         8 |               6 |          2 |     800.00 |        12.00 | 2026-01-01      | NULL         |
+|         9 |               2 |          3 |      90.00 |         1.50 | 2026-01-01      | NULL         |
+|        10 |               2 |          4 |      80.00 |         1.50 | 2026-01-01      | NULL         |
+|        11 |               3 |          5 |     600.00 |         6.00 | 2026-01-01      | NULL         |
+|        13 |               1 |          2 |     140.00 |         3.00 | 2026-01-01      | NULL         |
++-----------+-----------------+------------+------------+--------------+-----------------+--------------+
++-----------+------------+-----------------+-----------+-----------------+
+| tarifa_id | valor_base | valor_distancia | adicional | orcamento_total |
++-----------+------------+-----------------+-----------+-----------------+
+|         1 |     150.00 |           52.50 |     40.00 |          242.50 |
++-----------+------------+-----------------+-----------+-----------------+
+----- erros (stderr) -----
+(nenhum)
+----- código de saída: 0 -----
+Fim: 2026-10-31 22:31:56

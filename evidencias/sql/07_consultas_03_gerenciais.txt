@@ -1,0 +1,180 @@
+Script: sql/consultas/03_gerenciais.sql
+Comando: mysql -u root -P 3307 --protocol=TCP -t --default-character-set=utf8mb4 < consultas\03_gerenciais.sql
+Início: 2026-10-31 22:31:56
+----- saída -----
++---------+--------------+----------------+----------------+---------------------+
+| mes     | qtd_os_pagas | qtd_pagamentos | total_recebido | ticket_medio_por_os |
++---------+--------------+----------------+----------------+---------------------+
+| 2026-09 |            9 |              9 |        3076.00 |              341.78 |
+| 2026-10 |            6 |              7 |        5599.50 |              933.25 |
++---------+--------------+----------------+----------------+---------------------+
++----------------------+-----+---------+------------+
+| descricao            | qtd | total   | percentual |
++----------------------+-----+---------+------------+
+| Faturado (Boleto PJ) |   2 | 3030.00 |      34.93 |
+| PIX                  |   7 | 2773.50 |      31.97 |
+| Cartão de Crédito    |   4 | 2550.00 |      29.39 |
+| Cartão de Débito     |   2 |  202.00 |       2.33 |
+| Dinheiro             |   1 |  120.00 |       1.38 |
++----------------------+-----+---------+------------+
++---------+--------------+-------------------------+------------------------------+----------+-------------+------------+-------------+------------+
+| posicao | prestador_id | nome                    | empresa                      | total_os | finalizadas | canceladas | faturamento | nota_media |
++---------+--------------+-------------------------+------------------------------+----------+-------------+------------+-------------+------------+
+|       1 |            5 | Ricardo Mendes Oliveira | Auto Socorro Paulista Ltda   |        3 |           3 |          0 |     4460.00 |       3.33 |
+|       2 |            3 | José Roberto Alves      | Reboque Forte Transportes ME |        3 |           2 |          0 |     1945.00 |       4.00 |
+|       3 |            1 | Carlos Henrique Souza   | Guinchos Rápido Sul Ltda     |        4 |           3 |          1 |     1137.00 |       5.00 |
+|       4 |            6 | Paulo Sérgio Ramos      | Autônomo                     |        2 |           2 |          0 |      495.00 |       4.50 |
+|       5 |            4 | Anderson Pereira Costa  | Reboque Forte Transportes ME |        3 |           2 |          1 |      417.50 |       4.50 |
+|       6 |            7 | Fábio Augusto Nunes     | Autônomo                     |        2 |           2 |          0 |      337.00 |       5.00 |
+|       7 |            2 | Marcos Vinícius Lima    | Guinchos Rápido Sul Ltda     |        3 |           1 |          1 |       99.00 |       5.00 |
+|       8 |            8 | Luiz Fernando Teixeira  | Auto Socorro Paulista Ltda   |        0 |           0 |          0 |        0.00 |       NULL |
+|       8 |            9 | Rodrigo Alves Pacheco   | Autônomo                     |        0 |           0 |          0 |        0.00 |       NULL |
+|       8 |           10 | Wagner Dias Moreira     | Autônomo                     |        0 |           0 |          0 |        0.00 |       NULL |
++---------+--------------+-------------------------+------------------------------+----------+-------------+------------+-------------+------------+
++------------------------------+----------+-------------+-------------+
+| empresa                      | total_os | finalizadas | faturamento |
++------------------------------+----------+-------------+-------------+
+| Auto Socorro Paulista Ltda   |        3 |           3 |     4460.00 |
+| Reboque Forte Transportes ME |        6 |           4 |     2362.50 |
+| Guinchos Rápido Sul Ltda     |        7 |           4 |     1236.00 |
+| Autônomo                     |        4 |           4 |      832.00 |
++------------------------------+----------+-------------+-------------+
++----------------------------+--------------+------------------+-----------------+
+| descricao                  | tipo_servico | qtd_solicitacoes | ticket_medio_os |
++----------------------------+--------------+------------------+-----------------+
+| Reboque urbano             | REBOQUE      |               12 |          209.90 |
+| Reboque rodoviário         | REBOQUE      |                6 |         1093.33 |
+| Troca de pneu              | SOCORRO      |                2 |           99.00 |
+| Carga de bateria           | SOCORRO      |                2 |          101.00 |
+| Resgate em vala/ribanceira | RESGATE      |                1 |          980.00 |
+| Pane seca                  | SOCORRO      |                0 |            NULL |
++----------------------------+--------------+------------------+-----------------+
++----------------------------+----------------+--------------------+--------------+
+| servico                    | os_finalizadas | min_pedido_ate_fim | min_execucao |
++----------------------------+----------------+--------------------+--------------+
+| Resgate em vala/ribanceira |              1 |              210.0 |        190.0 |
+| Reboque rodoviário         |              6 |              195.0 |        175.8 |
+| Reboque urbano             |              5 |               67.0 |         53.0 |
+| Troca de pneu              |              1 |               55.0 |         40.0 |
+| Carga de bateria           |              2 |               50.0 |         37.5 |
++----------------------------+----------------+--------------------+--------------+
++----------+------------+-----------------------+
+| total_os | canceladas | taxa_cancelamento_pct |
++----------+------------+-----------------------+
+|       20 |          3 |                 15.00 |
++----------+------------+-----------------------+
++-------------+-----+--------+
+| responsavel | qtd | multas |
++-------------+-----+--------+
+| CENTRAL     |   1 |   0.00 |
+| CLIENTE     |   1 |  50.00 |
+| PRESTADOR   |   1 |   0.00 |
++-------------+-----+--------+
++------------+---------------------------+--------+------------+
+| cliente_id | nome                      | qtd_os | total_pago |
++------------+---------------------------+--------+------------+
+|          8 | Gustavo Correia Vieira    |      1 |    2730.00 |
+|          4 | Thiago Henrique Moreira   |      2 |    1330.00 |
+|          5 | Patrícia Gomes Cardoso    |      2 |     999.00 |
+|          2 | Rafael Souza Barbosa      |      1 |     915.00 |
+|          3 | Juliana Ribeiro Fernandes |      2 |     877.50 |
++------------+---------------------------+--------+------------+
++---------+---------------------------+-----------------------+------------+----------------+--------------+----------------+
+| placa   | modelo                    | tipo                  | status     | os_finalizadas | km_atendidos | receita_gerada |
++---------+---------------------------+-----------------------+------------+----------------+--------------+----------------+
+| GUI3C45 | Mercedes-Benz Accelo 1016 | Plataforma pesada     | EM_SERVICO |              4 |       245.00 |        3675.00 |
+| GUI2B34 | Ford Cargo 816            | Plataforma (prancha)  | EM_SERVICO |              3 |        24.00 |         436.00 |
+| GUI1A23 | Volkswagen Delivery 9.170 | Plataforma (prancha)  | DISPONIVEL |              3 |       142.00 |        1137.00 |
+| GUI6F78 | Fiat Strada               | Carretinha para motos | DISPONIVEL |              2 |        53.00 |         495.00 |
+| GUI4D56 | Iveco Daily 70C17         | Asa delta             | DISPONIVEL |              2 |        23.00 |         417.50 |
+| GUI5E67 | Volvo VM 270              | Lança pesada          | DISPONIVEL |              1 |       140.00 |        2730.00 |
+| GUI7G89 | Hyundai HR                | Plataforma (prancha)  | MANUTENCAO |              0 |         0.00 |           0.00 |
++---------+---------------------------+-----------------------+------------+----------------+--------------+----------------+
++---------------------+--------------+---------+
+| canal               | solicitacoes | aceitas |
++---------------------+--------------+---------+
+| Camila Rocha Santos |            8 |       4 |
+| Aplicativo          |            6 |       5 |
+| Diego Martins Silva |            5 |       4 |
+| Bruno Carvalho Dias |            4 |       4 |
++---------------------+--------------+---------+
++-------------------------+--------------+---------+-----------------+--------------------+
+| nome                    | notificacoes | aceitas | taxa_aceite_pct | min_medio_resposta |
++-------------------------+--------------+---------+-----------------+--------------------+
+| Paulo Sérgio Ramos      |            2 |       2 |           100.0 |                3.0 |
+| Anderson Pereira Costa  |            3 |       3 |           100.0 |                3.0 |
+| Fábio Augusto Nunes     |            3 |       2 |            66.7 |                3.5 |
+| Ricardo Mendes Oliveira |            5 |       3 |            60.0 |                4.0 |
+| José Roberto Alves      |            5 |       3 |            60.0 |                2.8 |
+| Carlos Henrique Souza   |            7 |       4 |            57.1 |                3.0 |
+| Marcos Vinícius Lima    |            7 |       3 |            42.9 |                2.4 |
++-------------------------+--------------+---------+-----------------+--------------------+
++------------+---------------+-----+
+| dia_semana | faixa_horaria | qtd |
++------------+---------------+-----+
+| Terça      | 18h-24h       |   4 |
+| Domingo    | 06h-12h       |   2 |
+| Quarta     | 06h-12h       |   2 |
+| Quinta     | 06h-12h       |   2 |
+| Segunda    | 06h-12h       |   2 |
+| Quinta     | 12h-18h       |   2 |
+| Quinta     | 18h-24h       |   1 |
+| Sexta      | 00h-06h       |   1 |
+| Sábado     | 12h-18h       |   1 |
+| Domingo    | 00h-06h       |   1 |
+| Segunda    | 12h-18h       |   1 |
+| Segunda    | 00h-06h       |   1 |
+| Quarta     | 12h-18h       |   1 |
+| Sexta      | 06h-12h       |   1 |
+| Sexta      | 12h-18h       |   1 |
++------------+---------------+-----+
++------+-----+
+| nota | qtd |
++------+-----+
+|    5 |   7 |
+|    4 |   4 |
+|    3 |   1 |
+|    2 |   1 |
++------+-----+
++------------+------------------+
+| nota_media | nps_simplificado |
++------------+------------------+
+|       4.31 |             38.5 |
++------------+------------------+
++---------------+-----+
+| status        | qtd |
++---------------+-----+
+| ACEITA        |  17 |
+| CANCELADA     |   3 |
+| SOLICITADA    |   1 |
+| EM_ANALISE    |   1 |
+| SEM_PRESTADOR |   1 |
++---------------+-----+
++------------------------+----+--------------+--------------+
+| cidade                 | uf | solicitacoes | valor_das_os |
++------------------------+----+--------------+--------------+
+| São Paulo              | SP |            9 |       766.50 |
+| Guarulhos              | SP |            4 |      1129.00 |
+| São Bernardo do Campo  | SP |            3 |       560.00 |
+| Santo André            | SP |            2 |       300.00 |
+| Cotia                  | SP |            1 |       980.00 |
+| Itu                    | SP |            1 |       750.00 |
+| Jundiaí                | SP |            1 |       915.00 |
+| Juquitiba              | SP |            1 |       760.00 |
+| Valinhos               | SP |            1 |      2730.00 |
++------------------------+----+--------------+--------------+
++------------------------+----------+
+| cidade                 | clientes |
++------------------------+----------+
+| São Paulo              |        6 |
+| Sem endereço           |        1 |
+| São Bernardo do Campo  |        1 |
+| Pirapora do Bom Jesus  |        1 |
+| Guarulhos              |        1 |
+| Santo André            |        1 |
+| Juquitiba              |        1 |
++------------------------+----------+
+----- erros (stderr) -----
+(nenhum)
+----- código de saída: 0 -----
+Fim: 2026-10-31 22:31:56

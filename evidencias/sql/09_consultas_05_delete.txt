@@ -1,0 +1,8 @@
+Script: sql/consultas/05_delete.sql
+Comando: mysql -u root -P 3307 --protocol=TCP -t --default-character-set=utf8mb4 < consultas\05_delete.sql
+Início: 2026-10-31 22:31:57
+----- saída -----
+----- erros (stderr) -----
+(nenhum)
+----- código de saída: 0 -----
+Fim: 2026-10-31 22:31:57

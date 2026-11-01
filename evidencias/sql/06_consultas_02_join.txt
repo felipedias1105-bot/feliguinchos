@@ -1,0 +1,229 @@
+Script: sql/consultas/02_join.sql
+Comando: mysql -u root -P 3307 --protocol=TCP -t --default-character-set=utf8mb4 < consultas\02_join.sql
+Início: 2026-10-31 22:31:56
+----- saída -----
++------------+---------------------------+-----------+---------------------------+------------------------------------------------------------+---------------------------+--------------+
+| cliente_id | nome                      | status    | telefones                 | endereco                                                   | cidade                    | qtd_veiculos |
++------------+---------------------------+-----------+---------------------------+------------------------------------------------------------+---------------------------+--------------+
+|          9 | Beatriz Nogueira Castro   | ATIVO     | 11912345678               | Avenida Kennedy, 880, Jardim do Mar                        | São Bernardo do Campo/SP  |            2 |
+|          7 | Fernanda Araújo Monteiro  | ATIVO     | 11977778888               | Rua Tuiuti, 1200, Apto 34, Tatuapé                         | São Paulo/SP              |            1 |
+|          8 | Gustavo Correia Vieira    | ATIVO     | 1139990000 / 11930001000  | Rodovia Anhanguera, km 25, Jardim Jaraguá                  | São Paulo/SP              |            1 |
+|          3 | Juliana Ribeiro Fernandes | ATIVO     | 11988887777               | Rua Vergueiro, 3185, Casa 2, Vila Mariana                  | São Paulo/SP              |            1 |
+|          6 | Lucas Batista Freitas     | ATIVO     | 11966667777               | Avenida Brigadeiro Faria Lima, 3477, Conj. 101, Itaim Bibi | São Paulo/SP              |            1 |
+|          1 | Mariana Costa Almeida     | ATIVO     | 1133224455 / 11987654321  | Rua Augusta, 1500, Apto 82, Consolação                     | São Paulo/SP              |            2 |
+|          5 | Patrícia Gomes Cardoso    | ATIVO     | 11955554444               | Rua das Flores, 45, Centro                                 | Guarulhos/SP              |            2 |
+|         12 | Paulo Sérgio Ramos        | ATIVO     | 11981110006 / 11981110016 | Estrada do Paiol, 310, Barnabés                            | Juquitiba/SP              |            1 |
+|          2 | Rafael Souza Barbosa      | ATIVO     | 11976543210 / 11991234567 | Avenida Paulista, 2000, Bela Vista                         | São Paulo/SP              |            2 |
+|         10 | Roberto Carlos Duarte     | PENDENTE  | 11900001111               |                                                            | NULL                      |            0 |
+|         11 | Sérgio Lima Prado         | BLOQUEADO | 11944443333               | Rua São José, 120, Centro                                  | Pirapora do Bom Jesus/SP  |            1 |
+|          4 | Thiago Henrique Moreira   | ATIVO     | 1144556677 / 11999990001  | Avenida Industrial, 600, Galpão 3, Jardim                  | Santo André/SP            |            2 |
++------------+---------------------------+-----------+---------------------------+------------------------------------------------------------+---------------------------+--------------+
++---------+---------------+------------------+------+----------------------------+---------------------------+
+| placa   | marca         | modelo           | ano  | tipo                       | proprietario              |
++---------+---------------+------------------+------+----------------------------+---------------------------+
+| CAR2K10 | Fiat          | Argo             | 2021 | Automóvel de passeio       | Beatriz Nogueira Castro   |
+| MOT3L21 | Yamaha        | Fazer 250        | 2022 | Motocicleta                | Beatriz Nogueira Castro   |
+| CAR9H88 | Renault       | Kwid             | 2019 | Automóvel de passeio       | Fernanda Araújo Monteiro  |
+| ONI1J99 | Mercedes-Benz | Axor 2544        | 2017 | Caminhão pesado / Ônibus   | Gustavo Correia Vieira    |
+| CAR4C33 | Hyundai       | HB20             | 2020 | Automóvel de passeio       | Juliana Ribeiro Fernandes |
+| SUV8G77 | Jeep          | Compass          | 2022 | SUV / Picape               | Lucas Batista Freitas     |
+| BRA2E19 | Chevrolet     | Onix             | 2022 | Automóvel de passeio       | Mariana Costa Almeida     |
+| MOT1A11 | Honda         | CG 160           | 2021 | Motocicleta                | Mariana Costa Almeida     |
+| CAR7F66 | Volkswagen    | Polo             | 2023 | Automóvel de passeio       | Patrícia Gomes Cardoso    |
+| SUV4M32 | Honda         | HR-V             | 2024 | SUV / Picape               | Patrícia Gomes Cardoso    |
+| STR7Q65 | Fiat          | Strada           | 2023 | SUV / Picape               | Paulo Sérgio Ramos        |
+| CAR5N43 | Toyota        | Corolla          | 2024 | Automóvel de passeio       | Rafael Souza Barbosa      |
+| SUV3B22 | Toyota        | Hilux            | 2023 | SUV / Picape               | Rafael Souza Barbosa      |
+| CAR6P54 | Chevrolet     | Prisma           | 2015 | Automóvel de passeio       | Sérgio Lima Prado         |
+| CAM6E55 | Volkswagen    | Delivery Express | 2021 | Caminhão leve (3/4)        | Thiago Henrique Moreira   |
+| VAN5D44 | Fiat          | Ducato           | 2019 | Utilitário / Van           | Thiago Henrique Moreira   |
++---------+---------------+------------------+------+----------------------------+---------------------------+
++----------------+-----------------------+---------------------------+---------+----------------------------+------------------------------------------------------+---------------------------+----------------------------------------------------------------------+---------------------------+---------------------+--------------+----------------+---------------+
+| solicitacao_id | data_hora_solicitacao | cliente                   | placa   | servico                    | origem_endereco                                      | origem_cidade             | destino_endereco                                                     | destino_cidade            | aberta_por          | distancia_km | valor_estimado | status        |
++----------------+-----------------------+---------------------------+---------+----------------------------+------------------------------------------------------+---------------------------+----------------------------------------------------------------------+---------------------------+---------------------+--------------+----------------+---------------+
+|              1 | 2026-09-02 08:15:00   | Mariana Costa Almeida     | BRA2E19 | Reboque urbano             | Avenida Rebouças, 1200, Pinheiros                    | São Paulo/SP              | Rua dos Pinheiros, 870, Oficina Pinheiros, Pinheiros                 | São Paulo/SP              | Camila Rocha Santos |        12.00 |         192.00 | ACEITA        |
+|              2 | 2026-09-06 02:30:00   | Rafael Souza Barbosa      | SUV3B22 | Reboque rodoviário         | Rodovia dos Bandeirantes, km 72, Distrito Industrial | Jundiaí/SP                | Avenida Rebouças, 3000, Toyota Concessionária, Pinheiros             | São Paulo/SP              | Aplicativo          |        85.00 |         685.00 | ACEITA        |
+|              3 | 2026-09-07 10:00:00   | Juliana Ribeiro Fernandes | CAR4C33 | Carga de bateria           | Rua Vergueiro, 3185, Casa 2, Vila Mariana            | São Paulo/SP              | Rua Vergueiro, 3185, Casa 2, Vila Mariana                            | São Paulo/SP              | Diego Martins Silva |         5.00 |          87.50 | ACEITA        |
+|              4 | 2026-09-10 14:20:00   | Thiago Henrique Moreira   | VAN5D44 | Reboque urbano             | Avenida dos Estados, 4500, Santa Terezinha           | Santo André/SP            | Rua das Figueiras, 300, Oficina Diesel ABC, Jardim                   | Santo André/SP            | Camila Rocha Santos |        18.00 |         320.00 | ACEITA        |
+|              5 | 2026-09-12 16:00:00   | Gustavo Correia Vieira    | ONI1J99 | Reboque rodoviário         | Rodovia Anhanguera, km 98, Macuco                    | Valinhos/SP               | Rodovia Anhanguera, km 25, Pátio da transportadora, Jardim Jaraguá   | São Paulo/SP              | Bruno Carvalho Dias |       140.00 |        2480.00 | ACEITA        |
+|              6 | 2026-09-15 19:30:00   | Mariana Costa Almeida     | MOT1A11 | Reboque urbano             | Rua Augusta, 900, Consolação                         | São Paulo/SP              | Rua Augusta, 2200, Moto Center, Cerqueira César                      | São Paulo/SP              | Aplicativo          |         8.00 |         120.00 | ACEITA        |
+|              7 | 2026-09-18 11:00:00   | Patrícia Gomes Cardoso    | CAR7F66 | Troca de pneu              | Avenida Monteiro Lobato, 1500, Macedo                | Guarulhos/SP              | Avenida Monteiro Lobato, 1500, Macedo                                | Guarulhos/SP              | Diego Martins Silva |         6.00 |          99.00 | ACEITA        |
+|              8 | 2026-09-20 09:00:00   | Lucas Batista Freitas     | SUV8G77 | Reboque urbano             | Avenida Brigadeiro Faria Lima, 3477, Itaim Bibi      | São Paulo/SP              | Avenida Europa, 500, Jeep Concessionária, Jardim Europa              | São Paulo/SP              | Camila Rocha Santos |        22.00 |         299.00 | CANCELADA     |
+|              9 | 2026-09-24 07:30:00   | Thiago Henrique Moreira   | CAM6E55 | Reboque rodoviário         | Rodovia Presidente Dutra, km 210, Vila Endres        | Guarulhos/SP              | Rua das Figueiras, 300, Oficina Diesel ABC, Jardim                   | Santo André/SP            | Bruno Carvalho Dias |        60.00 |         930.00 | ACEITA        |
+|             10 | 2026-09-28 03:10:00   | Fernanda Araújo Monteiro  | CAR9H88 | Reboque urbano             | Rua Tuiuti, 300, Tatuapé                             | São Paulo/SP              | Rua Itapura, 1000, Auto Center Tatuapé, Tatuapé                      | São Paulo/SP              | Aplicativo          |        15.00 |         202.50 | ACEITA        |
+|             11 | 2026-10-02 13:00:00   | Beatriz Nogueira Castro   | CAR2K10 | Reboque urbano             | Avenida Kennedy, 1500, Jardim do Mar                 | São Bernardo do Campo/SP  | Avenida Senador Vergueiro, 2000, Fiat Concessionária, Centro         | São Bernardo do Campo/SP  | Diego Martins Silva |        10.00 |         185.00 | ACEITA        |
+|             12 | 2026-10-04 10:30:00   | Beatriz Nogueira Castro   | MOT3L21 | Reboque rodoviário         | Rodovia dos Imigrantes, km 40, Riacho Grande         | São Bernardo do Campo/SP  | Avenida Kennedy, 500, Yamaha Motos, Jardim do Mar                    | São Bernardo do Campo/SP  | Camila Rocha Santos |        45.00 |         275.00 | ACEITA        |
+|             13 | 2026-10-06 18:00:00   | Patrícia Gomes Cardoso    | SUV4M32 | Resgate em vala/ribanceira | Estrada da Roselândia, 2000, Roselândia              | Cotia/SP                  | Avenida Brasil, 1000, Honda Concessionária, Jardim América           | São Paulo/SP              | Bruno Carvalho Dias |        30.00 |         780.00 | ACEITA        |
+|             14 | 2026-10-09 05:20:00   | Lucas Batista Freitas     | SUV8G77 | Reboque rodoviário         | Rodovia Castello Branco, km 70, Pirapitingui         | Itu/SP                    | Avenida Europa, 500, Jeep Concessionária, Jardim Europa              | São Paulo/SP              | Aplicativo          |        70.00 |         610.00 | ACEITA        |
+|             15 | 2026-10-12 15:00:00   | Rafael Souza Barbosa      | CAR5N43 | Reboque urbano             | Avenida Paulista, 2000, Bela Vista                   | São Paulo/SP              | Avenida Rebouças, 3000, Toyota Concessionária, Pinheiros             | São Paulo/SP              | Aplicativo          |        20.00 |         220.00 | CANCELADA     |
+|             16 | 2026-10-14 16:00:00   | Thiago Henrique Moreira   | VAN5D44 | Reboque urbano             | Avenida Industrial, 600, Galpão 3, Jardim            | Santo André/SP            | Rua das Figueiras, 300, Oficina Diesel ABC, Jardim                   | Santo André/SP            | Camila Rocha Santos |        25.00 |         355.00 | CANCELADA     |
+|             17 | 2026-10-15 07:50:00   | Mariana Costa Almeida     | BRA2E19 | Carga de bateria           | Rua Augusta, 1500, Apto 82, Consolação               | São Paulo/SP              | Rua Augusta, 1500, Apto 82, Consolação                               | São Paulo/SP              | Camila Rocha Santos |         3.00 |          84.50 | ACEITA        |
+|             18 | 2026-10-20 21:00:00   | Juliana Ribeiro Fernandes | CAR4C33 | Reboque rodoviário         | Rodovia Régis Bittencourt, km 350, Zona rural        | Juquitiba/SP              | Rua Vergueiro, 4000, Hyundai Concessionária, Vila Mariana            | São Paulo/SP              | Diego Martins Silva |       120.00 |         680.00 | ACEITA        |
+|             19 | 2026-10-22 12:00:00   | Beatriz Nogueira Castro   | CAR2K10 | Reboque urbano             | Avenida Kennedy, 880, Jardim do Mar                  | São Bernardo do Campo/SP  | Avenida Senador Vergueiro, 2000, Fiat Concessionária, Centro         | São Bernardo do Campo/SP  | Diego Martins Silva |        11.00 |         188.50 | SEM_PRESTADOR |
+|             20 | 2026-10-26 10:00:00   | Rafael Souza Barbosa      | SUV3B22 | Reboque urbano             | Avenida Paulista, 1000, Bela Vista                   | São Paulo/SP              | Avenida Rebouças, 3000, Toyota Concessionária, Pinheiros             | São Paulo/SP              | Bruno Carvalho Dias |        14.00 |         263.00 | ACEITA        |
+|             21 | 2026-10-27 22:15:00   | Patrícia Gomes Cardoso    | CAR7F66 | Reboque urbano             | Avenida Monteiro Lobato, 800, Macedo                 | Guarulhos/SP              | Avenida Tiradentes, 1200, VW Concessionária, Centro                  | Guarulhos/SP              | Aplicativo          |         9.00 |         181.50 | ACEITA        |
+|             22 | 2026-10-28 08:40:00   | Fernanda Araújo Monteiro  | CAR9H88 | Troca de pneu              | Rua Tuiuti, 1200, Apto 34, Tatuapé                   | São Paulo/SP              | Rua Tuiuti, 1200, Apto 34, Tatuapé                                   | São Paulo/SP              | Camila Rocha Santos |         4.00 |          96.00 | EM_ANALISE    |
+|             23 | 2026-10-29 18:00:00   | Patrícia Gomes Cardoso    | SUV4M32 | Reboque urbano             | Rua das Flores, 45, Centro                           | Guarulhos/SP              | Avenida Brasil, 1000, Honda Concessionária, Jardim América           | São Paulo/SP              | Camila Rocha Santos |        28.00 |         326.00 | SOLICITADA    |
++----------------+-----------------------+---------------------------+---------+----------------------------+------------------------------------------------------+---------------------------+----------------------------------------------------------------------+---------------------------+---------------------+--------------+----------------+---------------+
++----------+----------------+---------------------------+---------------+-----------------------------+----------------------------+----------------------------+-------------------------+------------------------------+---------------+---------------------------+-----------------------+-------------+
+| ordem_id | status_atual   | cliente                   | placa_cliente | veiculo                     | tipo_veiculo               | servico                    | prestador               | empresa                      | placa_guincho | modelo_guincho            | tipo_guincho          | valor_total |
++----------+----------------+---------------------------+---------------+-----------------------------+----------------------------+----------------------------+-------------------------+------------------------------+---------------+---------------------------+-----------------------+-------------+
+|        1 | FINALIZADA     | Mariana Costa Almeida     | BRA2E19       | Chevrolet Onix              | Automóvel de passeio       | Reboque urbano             | Carlos Henrique Souza   | Guinchos Rápido Sul Ltda     | GUI1A23       | Volkswagen Delivery 9.170 | Plataforma (prancha)  |      192.00 |
+|        2 | FINALIZADA     | Rafael Souza Barbosa      | SUV3B22       | Toyota Hilux                | SUV / Picape               | Reboque rodoviário         | José Roberto Alves      | Reboque Forte Transportes ME | GUI3C45       | Mercedes-Benz Accelo 1016 | Plataforma pesada     |      915.00 |
+|        3 | FINALIZADA     | Juliana Ribeiro Fernandes | CAR4C33       | Hyundai HB20                | Automóvel de passeio       | Carga de bateria           | Anderson Pereira Costa  | Reboque Forte Transportes ME | GUI4D56       | Iveco Daily 70C17         | Asa delta             |      117.50 |
+|        4 | FINALIZADA     | Thiago Henrique Moreira   | VAN5D44       | Fiat Ducato                 | Utilitário / Van           | Reboque urbano             | Anderson Pereira Costa  | Reboque Forte Transportes ME | GUI4D56       | Iveco Daily 70C17         | Asa delta             |      300.00 |
+|        5 | FINALIZADA     | Gustavo Correia Vieira    | ONI1J99       | Mercedes-Benz Axor 2544     | Caminhão pesado / Ônibus   | Reboque rodoviário         | Ricardo Mendes Oliveira | Auto Socorro Paulista Ltda   | GUI5E67       | Volvo VM 270              | Lança pesada          |     2730.00 |
+|        6 | FINALIZADA     | Mariana Costa Almeida     | MOT1A11       | Honda CG 160                | Motocicleta                | Reboque urbano             | Paulo Sérgio Ramos      | Autônomo                     | GUI6F78       | Fiat Strada               | Carretinha para motos |      120.00 |
+|        7 | FINALIZADA     | Patrícia Gomes Cardoso    | CAR7F66       | Volkswagen Polo             | Automóvel de passeio       | Troca de pneu              | Marcos Vinícius Lima    | Guinchos Rápido Sul Ltda     | GUI2B34       | Ford Cargo 816            | Plataforma (prancha)  |       99.00 |
+|        8 | CANCELADA      | Lucas Batista Freitas     | SUV8G77       | Jeep Compass                | SUV / Picape               | Reboque urbano             | Carlos Henrique Souza   | Guinchos Rápido Sul Ltda     | GUI1A23       | Volkswagen Delivery 9.170 | Plataforma (prancha)  |      349.00 |
+|        9 | FINALIZADA     | Thiago Henrique Moreira   | CAM6E55       | Volkswagen Delivery Express | Caminhão leve (3/4)        | Reboque rodoviário         | José Roberto Alves      | Reboque Forte Transportes ME | GUI3C45       | Mercedes-Benz Accelo 1016 | Plataforma pesada     |     1030.00 |
+|       10 | FINALIZADA     | Fernanda Araújo Monteiro  | CAR9H88       | Renault Kwid                | Automóvel de passeio       | Reboque urbano             | Fábio Augusto Nunes     | Autônomo                     | GUI2B34       | Ford Cargo 816            | Plataforma (prancha)  |      252.50 |
+|       11 | FINALIZADA     | Beatriz Nogueira Castro   | CAR2K10       | Fiat Argo                   | Automóvel de passeio       | Reboque urbano             | Carlos Henrique Souza   | Guinchos Rápido Sul Ltda     | GUI1A23       | Volkswagen Delivery 9.170 | Plataforma (prancha)  |      185.00 |
+|       12 | FINALIZADA     | Beatriz Nogueira Castro   | MOT3L21       | Yamaha Fazer 250            | Motocicleta                | Reboque rodoviário         | Paulo Sérgio Ramos      | Autônomo                     | GUI6F78       | Fiat Strada               | Carretinha para motos |      375.00 |
+|       13 | FINALIZADA     | Patrícia Gomes Cardoso    | SUV4M32       | Honda HR-V                  | SUV / Picape               | Resgate em vala/ribanceira | Ricardo Mendes Oliveira | Auto Socorro Paulista Ltda   | GUI3C45       | Mercedes-Benz Accelo 1016 | Plataforma pesada     |      980.00 |
+|       14 | FINALIZADA     | Lucas Batista Freitas     | SUV8G77       | Jeep Compass                | SUV / Picape               | Reboque rodoviário         | Ricardo Mendes Oliveira | Auto Socorro Paulista Ltda   | GUI3C45       | Mercedes-Benz Accelo 1016 | Plataforma pesada     |      750.00 |
+|       15 | CANCELADA      | Rafael Souza Barbosa      | CAR5N43       | Toyota Corolla              | Automóvel de passeio       | Reboque urbano             | Marcos Vinícius Lima    | Guinchos Rápido Sul Ltda     | GUI2B34       | Ford Cargo 816            | Plataforma (prancha)  |      280.00 |
+|       16 | CANCELADA      | Thiago Henrique Moreira   | VAN5D44       | Fiat Ducato                 | Utilitário / Van           | Reboque urbano             | Anderson Pereira Costa  | Reboque Forte Transportes ME | GUI4D56       | Iveco Daily 70C17         | Asa delta             |      355.00 |
+|       17 | FINALIZADA     | Mariana Costa Almeida     | BRA2E19       | Chevrolet Onix              | Automóvel de passeio       | Carga de bateria           | Fábio Augusto Nunes     | Autônomo                     | GUI2B34       | Ford Cargo 816            | Plataforma (prancha)  |       84.50 |
+|       18 | FINALIZADA     | Juliana Ribeiro Fernandes | CAR4C33       | Hyundai HB20                | Automóvel de passeio       | Reboque rodoviário         | Carlos Henrique Souza   | Guinchos Rápido Sul Ltda     | GUI1A23       | Volkswagen Delivery 9.170 | Plataforma (prancha)  |      760.00 |
+|       19 | EM_ATENDIMENTO | Rafael Souza Barbosa      | SUV3B22       | Toyota Hilux                | SUV / Picape               | Reboque urbano             | José Roberto Alves      | Reboque Forte Transportes ME | GUI3C45       | Mercedes-Benz Accelo 1016 | Plataforma pesada     |      263.00 |
+|       20 | A_CAMINHO      | Patrícia Gomes Cardoso    | CAR7F66       | Volkswagen Polo             | Automóvel de passeio       | Reboque urbano             | Marcos Vinícius Lima    | Guinchos Rápido Sul Ltda     | GUI2B34       | Ford Cargo 816            | Plataforma (prancha)  |      231.50 |
++----------+----------------+---------------------------+---------------+-----------------------------+----------------------------+----------------------------+-------------------------+------------------------------+---------------+---------------------------+-----------------------+-------------+
++-----------------------+-------------------+----------------------------+--------------------------------------------------------------+
+| tipo_guincho          | capacidade_max_kg | tipo_veiculo               | observacao                                                   |
++-----------------------+-------------------+----------------------------+--------------------------------------------------------------+
+| Carretinha para motos |            400.00 | Motocicleta                | Uso preferencial para motos                                  |
+| Plataforma (prancha)  |           3500.00 | Motocicleta                | Necessita cintas e calço de roda                             |
+| Plataforma (prancha)  |           3500.00 | Automóvel de passeio       | Prancha obrigatória para elétricos, rebaixados e blindados   |
+| Asa delta             |           4000.00 | Automóvel de passeio       | Evitar em veículos rebaixados                                |
+| Plataforma (prancha)  |           3500.00 | SUV / Picape               | Conferir peso: limite de 3.500 kg                            |
+| Plataforma pesada     |           8000.00 | SUV / Picape               | NULL                                                         |
+| Plataforma pesada     |           8000.00 | Utilitário / Van           | NULL                                                         |
+| Asa delta             |           4000.00 | Utilitário / Van           | Somente vans até 4.000 kg                                    |
+| Plataforma pesada     |           8000.00 | Caminhão leve (3/4)        | NULL                                                         |
+| Lança pesada          |          25000.00 | Caminhão leve (3/4)        | NULL                                                         |
+| Lança pesada          |          25000.00 | Caminhão pesado / Ônibus   | Único tipo apto para veículos pesados                        |
++-----------------------+-------------------+----------------------------+--------------------------------------------------------------+
++-------------------------+------------------------------+---------+---------------------------+-----------------------+-------------+------------+-----------+
+| prestador               | empresa                      | placa   | modelo                    | tipo_guincho          | data_inicio | data_fim   | status    |
++-------------------------+------------------------------+---------+---------------------------+-----------------------+-------------+------------+-----------+
+| Anderson Pereira Costa  | Reboque Forte Transportes ME | GUI4D56 | Iveco Daily 70C17         | Asa delta             | 2026-02-01  | NULL       | ATIVO     |
+| Carlos Henrique Souza   | Guinchos Rápido Sul Ltda     | GUI1A23 | Volkswagen Delivery 9.170 | Plataforma (prancha)  | 2025-03-01  | 2025-11-30 | ENCERRADO |
+| Carlos Henrique Souza   | Guinchos Rápido Sul Ltda     | GUI1A23 | Volkswagen Delivery 9.170 | Plataforma (prancha)  | 2026-01-10  | NULL       | ATIVO     |
+| Fábio Augusto Nunes     | Autônomo                     | GUI2B34 | Ford Cargo 816            | Plataforma (prancha)  | 2026-04-01  | NULL       | ATIVO     |
+| José Roberto Alves      | Reboque Forte Transportes ME | GUI3C45 | Mercedes-Benz Accelo 1016 | Plataforma pesada     | 2026-02-01  | NULL       | ATIVO     |
+| Luiz Fernando Teixeira  | Auto Socorro Paulista Ltda   | GUI7G89 | Hyundai HR                | Plataforma (prancha)  | 2026-01-05  | 2026-08-31 | ENCERRADO |
+| Marcos Vinícius Lima    | Guinchos Rápido Sul Ltda     | GUI7G89 | Hyundai HR                | Plataforma (prancha)  | 2025-06-01  | 2025-12-31 | ENCERRADO |
+| Marcos Vinícius Lima    | Guinchos Rápido Sul Ltda     | GUI2B34 | Ford Cargo 816            | Plataforma (prancha)  | 2026-01-10  | NULL       | ATIVO     |
+| Paulo Sérgio Ramos      | Autônomo                     | GUI6F78 | Fiat Strada               | Carretinha para motos | 2026-03-15  | NULL       | ATIVO     |
+| Ricardo Mendes Oliveira | Auto Socorro Paulista Ltda   | GUI5E67 | Volvo VM 270              | Lança pesada          | 2026-03-01  | NULL       | ATIVO     |
+| Ricardo Mendes Oliveira | Auto Socorro Paulista Ltda   | GUI3C45 | Mercedes-Benz Accelo 1016 | Plataforma pesada     | 2026-05-01  | NULL       | ATIVO     |
++-------------------------+------------------------------+---------+---------------------------+-----------------------+-------------+------------+-----------+
++---------------------+----------------+---------------------+----------------------------------------------------------------+
+| data_hora_alteracao | status         | responsavel         | observacao                                                     |
++---------------------+----------------+---------------------+----------------------------------------------------------------+
+| 2026-09-12 16:05:00 | ACEITA         | Prestador/Sistema   | Aceite registrado automaticamente (R14)                        |
+| 2026-09-12 16:20:00 | A_CAMINHO      | Prestador/Sistema   | Prestador iniciou o deslocamento (app)                         |
+| 2026-09-12 16:40:00 | NO_LOCAL       | Prestador/Sistema   | Prestador chegou ao local (app)                                |
+| 2026-09-12 16:45:00 | EM_ATENDIMENTO | Prestador/Sistema   | Atendimento iniciado (app)                                     |
+| 2026-09-12 20:30:00 | EM_ATENDIMENTO | Bruno Carvalho Dias | Cliente avisado do atraso: congestionamento na Rod. Anhanguera |
+| 2026-09-12 21:45:00 | FINALIZADA     | Prestador/Sistema   | Serviço concluído (app)                                        |
++---------------------+----------------+---------------------+----------------------------------------------------------------+
++----------------+-------------------------+---------------------+---------------------+--------------+------------------+
+| solicitacao_id | prestador               | data_hora_envio     | data_hora_resposta  | resposta     | minutos_resposta |
++----------------+-------------------------+---------------------+---------------------+--------------+------------------+
+|              1 | Carlos Henrique Souza   | 2026-09-02 08:16:00 | 2026-09-02 08:18:00 | ACEITA       |                2 |
+|              1 | Marcos Vinícius Lima    | 2026-09-02 08:16:00 | 2026-09-02 08:17:00 | RECUSADA     |                1 |
+|              2 | José Roberto Alves      | 2026-09-06 02:31:00 | 2026-09-06 02:33:00 | ACEITA       |                2 |
+|              2 | Ricardo Mendes Oliveira | 2026-09-06 02:31:00 | NULL                | EXPIRADA     |             NULL |
+|              3 | Anderson Pereira Costa  | 2026-09-07 10:01:00 | 2026-09-07 10:03:00 | ACEITA       |                2 |
+|              4 | José Roberto Alves      | 2026-09-10 14:21:00 | 2026-09-10 14:22:00 | RECUSADA     |                1 |
+|              4 | Anderson Pereira Costa  | 2026-09-10 14:21:00 | 2026-09-10 14:24:00 | ACEITA       |                3 |
+|              5 | Ricardo Mendes Oliveira | 2026-09-12 16:01:00 | 2026-09-12 16:05:00 | ACEITA       |                4 |
+|              6 | Paulo Sérgio Ramos      | 2026-09-15 19:31:00 | 2026-09-15 19:33:00 | ACEITA       |                2 |
+|              7 | Carlos Henrique Souza   | 2026-09-18 11:01:00 | 2026-09-18 11:02:00 | RECUSADA     |                1 |
+|              7 | Marcos Vinícius Lima    | 2026-09-18 11:01:00 | 2026-09-18 11:04:00 | ACEITA       |                3 |
+|              8 | Carlos Henrique Souza   | 2026-09-20 09:01:00 | 2026-09-20 09:03:00 | ACEITA       |                2 |
+|              9 | José Roberto Alves      | 2026-09-24 07:31:00 | 2026-09-24 07:36:00 | ACEITA       |                5 |
+|              9 | Ricardo Mendes Oliveira | 2026-09-24 07:31:00 | 2026-09-24 07:33:00 | RECUSADA     |                2 |
+|             10 | Marcos Vinícius Lima    | 2026-09-28 03:11:00 | NULL                | EXPIRADA     |             NULL |
+|             10 | Fábio Augusto Nunes     | 2026-09-28 03:11:00 | 2026-09-28 03:15:00 | ACEITA       |                4 |
+|             11 | Carlos Henrique Souza   | 2026-10-02 13:01:00 | 2026-10-02 13:04:00 | ACEITA       |                3 |
+|             12 | Paulo Sérgio Ramos      | 2026-10-04 10:31:00 | 2026-10-04 10:35:00 | ACEITA       |                4 |
+|             13 | Ricardo Mendes Oliveira | 2026-10-06 18:01:00 | 2026-10-06 18:06:00 | ACEITA       |                5 |
+|             14 | José Roberto Alves      | 2026-10-09 05:21:00 | 2026-10-09 05:23:00 | RECUSADA     |                2 |
+|             14 | Ricardo Mendes Oliveira | 2026-10-09 05:21:00 | 2026-10-09 05:26:00 | ACEITA       |                5 |
+|             15 | Marcos Vinícius Lima    | 2026-10-12 15:01:00 | 2026-10-12 15:04:00 | ACEITA       |                3 |
+|             16 | Anderson Pereira Costa  | 2026-10-14 16:01:00 | 2026-10-14 16:05:00 | ACEITA       |                4 |
+|             17 | Fábio Augusto Nunes     | 2026-10-15 07:51:00 | 2026-10-15 07:54:00 | ACEITA       |                3 |
+|             18 | Carlos Henrique Souza   | 2026-10-20 21:01:00 | 2026-10-20 21:08:00 | ACEITA       |                7 |
+|             18 | Marcos Vinícius Lima    | 2026-10-20 21:01:00 | 2026-10-20 21:03:00 | RECUSADA     |                2 |
+|             19 | Carlos Henrique Souza   | 2026-10-22 12:01:00 | NULL                | EXPIRADA     |             NULL |
+|             19 | Fábio Augusto Nunes     | 2026-10-22 12:01:00 | NULL                | EXPIRADA     |             NULL |
+|             20 | José Roberto Alves      | 2026-10-26 10:01:00 | 2026-10-26 10:05:00 | ACEITA       |                4 |
+|             21 | Marcos Vinícius Lima    | 2026-10-27 22:16:00 | 2026-10-27 22:19:00 | ACEITA       |                3 |
+|             22 | Carlos Henrique Souza   | 2026-10-28 08:41:00 | NULL                | SEM RESPOSTA |             NULL |
+|             22 | Marcos Vinícius Lima    | 2026-10-28 08:41:00 | NULL                | SEM RESPOSTA |             NULL |
++----------------+-------------------------+---------------------+---------------------+--------------+------------------+
++--------------+----------+---------------------------+----------------------+------------+---------------------+----------+
+| pagamento_id | ordem_id | cliente                   | forma                | valor_pago | data_hora_pagamento | status   |
++--------------+----------+---------------------------+----------------------+------------+---------------------+----------+
+|            1 |        1 | Mariana Costa Almeida     | PIX                  |     192.00 | 2026-09-02 09:25:00 | APROVADO |
+|            2 |        2 | Rafael Souza Barbosa      | Cartão de Crédito    |     915.00 | 2026-09-06 05:20:00 | APROVADO |
+|            3 |        3 | Juliana Ribeiro Fernandes | Cartão de Débito     |     117.50 | 2026-09-07 10:55:00 | APROVADO |
+|            6 |        6 | Mariana Costa Almeida     | Dinheiro             |     120.00 | 2026-09-15 20:30:00 | APROVADO |
+|            7 |        7 | Patrícia Gomes Cardoso    | PIX                  |      99.00 | 2026-09-18 12:00:00 | APROVADO |
+|            8 |        8 | Lucas Batista Freitas     | PIX                  |      50.00 | 2026-09-20 09:50:00 | APROVADO |
+|            9 |        9 | Thiago Henrique Moreira   | Cartão de Crédito    |    1030.00 | 2026-09-24 10:50:00 | RECUSADO |
+|           10 |        9 | Thiago Henrique Moreira   | PIX                  |    1030.00 | 2026-09-24 11:05:00 | APROVADO |
+|            4 |        4 | Thiago Henrique Moreira   | Faturado (Boleto PJ) |     300.00 | 2026-09-25 10:00:00 | APROVADO |
+|           11 |       10 | Fernanda Araújo Monteiro  | PIX                  |     252.50 | 2026-09-28 04:25:00 | APROVADO |
+|           12 |       11 | Beatriz Nogueira Castro   | PIX                  |     185.00 | 2026-10-02 14:10:00 | PENDENTE |
+|           13 |       12 | Beatriz Nogueira Castro   | Cartão de Crédito    |     375.00 | 2026-10-04 12:45:00 | APROVADO |
+|           14 |       13 | Patrícia Gomes Cardoso    | Cartão de Crédito    |     900.00 | 2026-10-06 21:40:00 | APROVADO |
+|           15 |       14 | Lucas Batista Freitas     | PIX                  |     750.00 | 2026-10-09 08:00:00 | APROVADO |
+|            5 |        5 | Gustavo Correia Vieira    | Faturado (Boleto PJ) |    2730.00 | 2026-10-10 09:00:00 | APROVADO |
+|           16 |       17 | Mariana Costa Almeida     | Cartão de Débito     |      84.50 | 2026-10-15 08:45:00 | APROVADO |
+|           17 |       18 | Juliana Ribeiro Fernandes | PIX                  |     400.00 | 2026-10-21 00:20:00 | APROVADO |
+|           18 |       18 | Juliana Ribeiro Fernandes | Cartão de Crédito    |     360.00 | 2026-10-21 00:22:00 | APROVADO |
++--------------+----------+---------------------------+----------------------+------------+---------------------+----------+
++----------------+--------------+-----------------------+---------+----------------------+
+| solicitacao_id | prestador_id | prestador             | guincho | tipo_guincho         |
++----------------+--------------+-----------------------+---------+----------------------+
+|             23 |            1 | Carlos Henrique Souza | GUI1A23 | Plataforma (prancha) |
++----------------+--------------+-----------------------+---------+----------------------+
++-------------+---------------------+--------------------+
+| cpf         | nome                | papeis             |
++-------------+---------------------+--------------------+
+| 11223344506 | Paulo Sérgio Ramos  | Cliente, Prestador |
++-------------+---------------------+--------------------+
++---------------+------------------+-------------------+----------+
+| marca         | modelo           | veiculos_clientes | guinchos |
++---------------+------------------+-------------------+----------+
+| Fiat          | Strada           |                 1 |        1 |
+| Ford          | Cargo 816        |                 0 |        1 |
+| Hyundai       | HR               |                 0 |        1 |
+| Iveco         | Daily 70C17      |                 0 |        1 |
+| Mercedes-Benz | Accelo 1016      |                 0 |        1 |
+| Volkswagen    | Delivery 9.170   |                 0 |        1 |
+| Volvo         | VM 270           |                 0 |        1 |
+| Chevrolet     | Onix             |                 1 |        0 |
+| Chevrolet     | Prisma           |                 1 |        0 |
+| Fiat          | Argo             |                 1 |        0 |
+| Fiat          | Ducato           |                 1 |        0 |
+| Honda         | HR-V             |                 1 |        0 |
+| Honda         | CG 160           |                 1 |        0 |
+| Hyundai       | HB20             |                 1 |        0 |
+| Jeep          | Compass          |                 1 |        0 |
+| Mercedes-Benz | Axor 2544        |                 1 |        0 |
+| Renault       | Kwid             |                 1 |        0 |
+| Toyota        | Corolla          |                 1 |        0 |
+| Toyota        | Hilux            |                 1 |        0 |
+| Volkswagen    | Polo             |                 1 |        0 |
+| Volkswagen    | Delivery Express |                 1 |        0 |
+| Yamaha        | Fazer 250        |                 1 |        0 |
++---------------+------------------+-------------------+----------+
+----- erros (stderr) -----
+(nenhum)
+----- código de saída: 0 -----
+Fim: 2026-10-31 22:31:56
