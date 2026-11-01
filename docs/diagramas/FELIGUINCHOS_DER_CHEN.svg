@@ -1,0 +1,711 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 -12 3450 1952" width="3450" height="1952" font-family="Helvetica, Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpmZGJjYjNjZC1kYTU3LTQ1OGYtYWI0YS1kNDJkYzYwZjg3ZDEAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaKvr9HGdokDd5G1r1E7GQcEAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDplMzVhMzc5OS0zZGVlLTQ0NTQtOTE0Yi0xOGQxYmUwNDBmOTlscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNowrA6Doo/k2CUkQBZoJeAYgAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggjic63078stBKhpYOGpz69R3cx28CSxKdXMTv5bokZWukZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaF592Tsl7WRC05X+nFn17QEAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCDJE2Kb7s9Fj9uKi98Osyo56cqCjimZ8G9tog6o09XMZWRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBjIZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmZkYmNiM2NkLWRhNTctNDU4Zi1hYjRhLWQ0MmRjNjBmODdkMS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmUzM2RiMWQ4LTY3ZTItNDBkNi1hZDYwLWM3N2Q2YzEwZmRjOHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCCOJzrfTvyy0EqGlg4anPr1HdzHbwJLEp1cxO/luiRla6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg0Xw95wf9q0WxmwQo6EL5MI4A5uoj9pveyeYa2hSBHcWiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg3apURVB+WrWGiHTg8/IHiNyIXlGXNigkL/L9wf3kmD10Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQAItL1+qAULhrqh1B06Phe6bPwjhsBSCkQ23P8zeGbxflzDIuIqoortIlcxCCtfzoUsDjmZYHjqzMAJy4IKc9OA=</c2pa:manifest></metadata>
+<rect x="20" y="-12" width="3450" height="1952" fill="#fff"/>
+<text x="1745" y="36" text-anchor="middle" font-size="28" font-weight="700" fill="#111">FeliGuinchos — Diagrama Entidade-Relacionamento (DER)</text>
+<text x="1745" y="62" text-anchor="middle" font-size="13" fill="#555">25 entidades · notação de Chen · atributos em círculos (PK em preto)</text>
+<g id="conexoes" fill="none" stroke="#222" stroke-width="1.3" stroke-linejoin="miter">
+<polyline points="180,860 280,860"/>
+<polyline points="480,860 380,860"/>
+<polyline points="180,820 440,820 440,580 470,580"/>
+<polyline points="860,300 600,300 600,580 570,580"/>
+<polyline points="180,900 210,900 210,930 160,930 160,1140 280,1140"/>
+<polyline points="480,1270 410,1270 410,1140 380,1140"/>
+<polyline points="180,880 220,880 220,1010"/>
+<polyline points="330,1040 270,1040"/>
+<polyline points="180,840 270,840 270,480 470,480"/>
+<polyline points="860,480 570,480"/>
+<polyline points="960,460 1000,460 1000,540 920,540 920,570"/>
+<polyline points="1040,600 980,600"/>
+<polyline points="580,860 670,860"/>
+<polyline points="860,860 770,860"/>
+<polyline points="900,1040 800,1040 800,1010"/>
+<polyline points="910,900 910,960 890,960 890,980 860,980"/>
+<polyline points="1250,1040 1190,1040 1190,880 1160,880"/>
+<polyline points="960,880 1040,880"/>
+<polyline points="180,1290 280,1290"/>
+<polyline points="480,1290 380,1290"/>
+<polyline points="1040,1290 1190,1290"/>
+<polyline points="1450,1490 1320,1490 1320,1290 1290,1290"/>
+<polyline points="1060,1040 1180,1040 1180,1180 1210,1180"/>
+<polyline points="1450,1470 1340,1470 1340,1180 1310,1180"/>
+<polyline points="960,860 1030,860 1030,840 1210,840 1210,860 1240,860"/>
+<polyline points="1500,860 1340,860"/>
+<polyline points="1700,1120 1670,1120 1670,990"/>
+<polyline points="1640,840 1670,840 1670,930"/>
+<polyline points="1000,320 1260,320"/>
+<polyline points="1500,800 1390,800 1390,320 1360,320"/>
+<polyline points="960,480 1190,480"/>
+<polyline points="1500,820 1340,820 1340,480 1310,480"/>
+<polyline points="960,500 1160,500 1160,690 1170,690"/>
+<polyline points="1500,840 1360,840 1360,690 1290,690"/>
+<polyline points="1640,820 1900,820"/>
+<polyline points="2300,820 2000,820"/>
+<polyline points="1390,1040 1430,1040 1430,1120"/>
+<polyline points="2150,1100 1970,1100 1970,1150 1480,1150"/>
+<polyline points="1860,1120 1950,1120 1950,1090"/>
+<polyline points="2150,1120 2060,1120 2060,1060 2000,1060"/>
+<polyline points="2250,1100 2280,1100 2280,1160 2310,1160"/>
+<polyline points="2300,840 2260,840 2260,950 2380,950 2380,1130"/>
+<polyline points="660,1290 890,1290 890,1100 1520,1100 1520,1070"/>
+<polyline points="2300,860 1740,860 1740,1030 1600,1030 1600,1040 1570,1040"/>
+<polyline points="1610,1490 1880,1490 1880,1200 1910,1200"/>
+<polyline points="2300,880 2040,880 2040,1200 2010,1200"/>
+<polyline points="2440,820 2520,820 2520,240 2550,240"/>
+<polyline points="2800,240 2650,240"/>
+<polyline points="1000,280 1850,280"/>
+<polyline points="2800,220 2660,220 2660,200 1980,200 1980,280 1950,280"/>
+<polyline points="1000,300 1250,300 1250,380 1850,380"/>
+<polyline points="2800,460 2680,460 2680,380 1950,380"/>
+<polyline points="2440,840 2540,840 2540,480 2570,480"/>
+<polyline points="2800,480 2670,480"/>
+<polyline points="2440,860 2550,860"/>
+<polyline points="2800,860 2690,860"/>
+<polyline points="2440,880 2540,880 2540,1020 2570,1020"/>
+<polyline points="2800,1020 2670,1020"/>
+<polyline points="3250,1020 3140,1020"/>
+<polyline points="2920,1020 3020,1020"/>
+<polyline points="660,1310 690,1310 690,1390 570,1390 570,1510 600,1510"/>
+<polyline points="1450,1510 880,1510"/>
+<polyline points="1040,1270 1070,1270 1070,1350 1000,1350 1000,1450 1030,1450"/>
+<polyline points="1250,1060 1200,1060 1200,1250 1300,1250 1300,1450 1270,1450"/>
+<polyline points="1570,880 1570,1000 1620,1000 1620,1660 1220,1660"/>
+<polyline points="660,1270 870,1270 870,1390 950,1390 950,1660 980,1660"/>
+</g>
+<g id="cardinalidades" font-size="11" font-weight="700" fill="#111">
+<text x="185" y="856" text-anchor="start">(0,1)</text>
+<text x="475" y="856" text-anchor="end">(1,1)</text>
+<text x="185" y="816" text-anchor="start">(0,1)</text>
+<text x="855" y="296" text-anchor="end">(1,1)</text>
+<text x="185" y="896" text-anchor="start">(0,1)</text>
+<text x="475" y="1266" text-anchor="end">(1,1)</text>
+<text x="185" y="876" text-anchor="start">(1,N)</text>
+<text x="325" y="1036" text-anchor="end">(1,1)</text>
+<text x="185" y="836" text-anchor="start">(0,1)</text>
+<text x="855" y="476" text-anchor="end">(0,N)</text>
+<text x="965" y="456" text-anchor="start">(1,1)</text>
+<text x="1035" y="596" text-anchor="end">(0,N)</text>
+<text x="585" y="856" text-anchor="start">(0,N)</text>
+<text x="855" y="856" text-anchor="end">(1,1)</text>
+<text x="895" y="1036" text-anchor="end">(0,N)</text>
+<text x="916" y="914" text-anchor="start">(1,1)</text>
+<text x="1245" y="1036" text-anchor="end">(0,N)</text>
+<text x="965" y="876" text-anchor="start">(1,1)</text>
+<text x="185" y="1286" text-anchor="start">(0,N)</text>
+<text x="475" y="1286" text-anchor="end">(0,1)</text>
+<text x="1045" y="1286" text-anchor="start">(0,N)</text>
+<text x="1445" y="1486" text-anchor="end">(1,1)</text>
+<text x="1065" y="1036" text-anchor="start">(0,N)</text>
+<text x="1445" y="1466" text-anchor="end">(1,1)</text>
+<text x="965" y="856" text-anchor="start">(0,N)</text>
+<text x="1495" y="856" text-anchor="end">(1,1)</text>
+<text x="1695" y="1116" text-anchor="end">(0,N)</text>
+<text x="1645" y="836" text-anchor="start">(1,1)</text>
+<text x="1005" y="316" text-anchor="start">(0,N)</text>
+<text x="1495" y="796" text-anchor="end">(0,1)</text>
+<text x="965" y="476" text-anchor="start">(0,N)</text>
+<text x="1495" y="816" text-anchor="end">(1,1)</text>
+<text x="965" y="496" text-anchor="start">(0,N)</text>
+<text x="1495" y="836" text-anchor="end">(1,1)</text>
+<text x="1645" y="816" text-anchor="start">(0,1)</text>
+<text x="2295" y="816" text-anchor="end">(1,1)</text>
+<text x="1395" y="1036" text-anchor="start">(0,N)</text>
+<text x="2145" y="1096" text-anchor="end">(1,1)</text>
+<text x="1865" y="1116" text-anchor="start">(0,N)</text>
+<text x="2145" y="1116" text-anchor="end">(1,1)</text>
+<text x="2255" y="1096" text-anchor="start">(0,N)</text>
+<text x="2295" y="836" text-anchor="end">(1,1)</text>
+<text x="665" y="1286" text-anchor="start">(0,N)</text>
+<text x="2295" y="856" text-anchor="end">(1,1)</text>
+<text x="1615" y="1486" text-anchor="start">(0,N)</text>
+<text x="2295" y="876" text-anchor="end">(1,1)</text>
+<text x="2445" y="816" text-anchor="start">(1,N)</text>
+<text x="2795" y="236" text-anchor="end">(1,1)</text>
+<text x="1005" y="276" text-anchor="start">(0,N)</text>
+<text x="2795" y="216" text-anchor="end">(0,1)</text>
+<text x="1005" y="296" text-anchor="start">(0,N)</text>
+<text x="2795" y="456" text-anchor="end">(0,1)</text>
+<text x="2445" y="836" text-anchor="start">(0,1)</text>
+<text x="2795" y="476" text-anchor="end">(1,1)</text>
+<text x="2445" y="856" text-anchor="start">(0,1)</text>
+<text x="2795" y="856" text-anchor="end">(1,1)</text>
+<text x="2445" y="876" text-anchor="start">(0,N)</text>
+<text x="2795" y="1016" text-anchor="end">(1,1)</text>
+<text x="3245" y="1016" text-anchor="end">(0,N)</text>
+<text x="2925" y="1016" text-anchor="start">(1,1)</text>
+<text x="665" y="1306" text-anchor="start">(0,N)</text>
+<text x="1445" y="1506" text-anchor="end">(0,N)</text>
+<text x="1045" y="1266" text-anchor="start">(0,N)</text>
+<text x="1245" y="1056" text-anchor="end">(0,N)</text>
+<text x="1576" y="894" text-anchor="start">(0,N)</text>
+<text x="665" y="1266" text-anchor="start">(0,N)</text>
+</g>
+<g id="relacionamentos">
+<polygon points="280,860 330,830 380,860 330,890" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="330" y="861" text-anchor="middle" font-size="12" fill="#111">é</text>
+<text x="330" y="874" text-anchor="middle" font-size="9" fill="#888">1:1</text>
+<polygon points="470,580 520,550 570,580 520,610" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="520" y="581" text-anchor="middle" font-size="12" fill="#111">é</text>
+<text x="520" y="594" text-anchor="middle" font-size="9" fill="#888">1:1</text>
+<polygon points="280,1140 330,1110 380,1140 330,1170" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="330" y="1141" text-anchor="middle" font-size="12" fill="#111">é</text>
+<text x="330" y="1154" text-anchor="middle" font-size="9" fill="#888">1:1</text>
+<polygon points="170,1040 220,1010 270,1040 220,1070" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="220" y="1041" text-anchor="middle" font-size="12" fill="#111">possui</text>
+<text x="220" y="1054" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="470,480 520,450 570,480 520,510" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="520" y="481" text-anchor="middle" font-size="12" fill="#111">reside em</text>
+<text x="520" y="494" text-anchor="middle" font-size="9" fill="#888">N:1</text>
+<polygon points="860,600 920,570 980,600 920,630" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="920" y="601" text-anchor="middle" font-size="12" fill="#111">pertence a</text>
+<text x="920" y="614" text-anchor="middle" font-size="9" fill="#888">N:1</text>
+<polygon points="670,860 720,830 770,860 720,890" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="720" y="861" text-anchor="middle" font-size="12" fill="#111">possui</text>
+<text x="720" y="874" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="740,980 800,950 860,980 800,1010" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="800" y="981" text-anchor="middle" font-size="12" fill="#111">classifica</text>
+<text x="800" y="994" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1040,880 1100,850 1160,880 1100,910" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1100" y="881" text-anchor="middle" font-size="12" fill="#111">classifica</text>
+<text x="1100" y="894" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="280,1290 330,1260 380,1290 330,1320" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="330" y="1291" text-anchor="middle" font-size="12" fill="#111">vincula</text>
+<text x="330" y="1304" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1190,1290 1240,1260 1290,1290 1240,1320" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1240" y="1291" text-anchor="middle" font-size="12" fill="#111">define</text>
+<text x="1240" y="1304" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1210,1180 1260,1150 1310,1180 1260,1210" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1260" y="1181" text-anchor="middle" font-size="12" fill="#111">modelo</text>
+<text x="1260" y="1194" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1240,860 1290,830 1340,860 1290,890" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1290" y="861" text-anchor="middle" font-size="12" fill="#111">gera</text>
+<text x="1290" y="874" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1610,960 1670,930 1730,960 1670,990" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1670" y="961" text-anchor="middle" font-size="12" fill="#111">solicitado</text>
+<text x="1670" y="974" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1260,320 1310,290 1360,320 1310,350" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1310" y="321" text-anchor="middle" font-size="12" fill="#111">registra</text>
+<text x="1310" y="334" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1190,480 1250,450 1310,480 1250,510" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1250" y="481" text-anchor="middle" font-size="12" fill="#111">é origem de</text>
+<text x="1250" y="494" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1170,690 1230,660 1290,690 1230,720" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1230" y="691" text-anchor="middle" font-size="12" fill="#111">é destino de</text>
+<text x="1230" y="704" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1900,820 1950,790 2000,820 1950,850" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1950" y="821" text-anchor="middle" font-size="12" fill="#111">gera</text>
+<text x="1950" y="834" text-anchor="middle" font-size="9" fill="#888">1:1</text>
+<polygon points="1380,1150 1430,1120 1480,1150 1430,1180" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1430" y="1151" text-anchor="middle" font-size="12" fill="#111">define</text>
+<text x="1430" y="1164" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1900,1060 1950,1030 2000,1060 1950,1090" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1950" y="1061" text-anchor="middle" font-size="12" fill="#111">possui</text>
+<text x="1950" y="1074" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="2310,1160 2380,1130 2450,1160 2380,1190" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="2380" y="1161" text-anchor="middle" font-size="12" fill="#111">é aplicada em</text>
+<text x="2380" y="1174" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1470,1040 1520,1010 1570,1040 1520,1070" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1520" y="1041" text-anchor="middle" font-size="12" fill="#111">executa</text>
+<text x="1520" y="1054" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1910,1200 1960,1170 2010,1200 1960,1230" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1960" y="1201" text-anchor="middle" font-size="12" fill="#111">realiza</text>
+<text x="1960" y="1214" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="2550,240 2600,210 2650,240 2600,270" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="2600" y="241" text-anchor="middle" font-size="12" fill="#111">registra</text>
+<text x="2600" y="254" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1850,280 1900,250 1950,280 1900,310" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1900" y="281" text-anchor="middle" font-size="12" fill="#111">registra</text>
+<text x="1900" y="294" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="1850,380 1900,350 1950,380 1900,410" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="1900" y="381" text-anchor="middle" font-size="12" fill="#111">autoriza</text>
+<text x="1900" y="394" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="2570,480 2620,450 2670,480 2620,510" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="2620" y="481" text-anchor="middle" font-size="12" fill="#111">pode ter</text>
+<text x="2620" y="494" text-anchor="middle" font-size="9" fill="#888">1:1</text>
+<polygon points="2550,860 2620,830 2690,860 2620,890" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="2620" y="861" text-anchor="middle" font-size="12" fill="#111">é avaliada em</text>
+<text x="2620" y="874" text-anchor="middle" font-size="9" fill="#888">1:1</text>
+<polygon points="2570,1020 2620,990 2670,1020 2620,1050" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="2620" y="1021" text-anchor="middle" font-size="12" fill="#111">é paga em</text>
+<text x="2620" y="1034" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polygon points="3020,1020 3080,990 3140,1020 3080,1050" fill="#fff" stroke="#222" stroke-width="1.3"/>
+<text x="3080" y="1021" text-anchor="middle" font-size="12" fill="#111">é usada em</text>
+<text x="3080" y="1034" text-anchor="middle" font-size="9" fill="#888">1:N</text>
+<polyline points="607,1470 607,1412 631.5,1412" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="635" cy="1412" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="643" y="1415.2" font-size="9.5" fill="#222">prestador_id (PK)</text>
+<polyline points="610,1470 610,1424 631.5,1424" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="635" cy="1424" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="643" y="1427.2" font-size="9.5" fill="#222">veiculo_reboque_id (PK)</text>
+<polyline points="613,1470 613,1436 631.5,1436" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="635" cy="1436" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="643" y="1439.2" font-size="9.5" fill="#222">data_inicio (PK)</text>
+<polyline points="616,1470 616,1448 631.5,1448" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="635" cy="1448" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="643" y="1451.2" font-size="9.5" fill="#222">data_fim</text>
+<polyline points="619,1470 619,1460 631.5,1460" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="635" cy="1460" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="643" y="1463.2" font-size="9.5" fill="#222">status</text>
+<rect x="600" y="1470" width="280" height="80" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<polygon points="600,1510 740,1470 880,1510 740,1550" fill="#fff" stroke="#111" stroke-width="1.5"/>
+<text x="740" y="1514" text-anchor="middle" font-size="12" font-weight="700" fill="#111">Prestador_Veiculo_Reboque</text>
+<polyline points="1037,1410 1037,1376 1055.5,1376" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1059" cy="1376" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="1067" y="1379.2" font-size="9.5" fill="#222">tipo_guincho_id (PK)</text>
+<polyline points="1040,1410 1040,1388 1055.5,1388" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1059" cy="1388" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="1067" y="1391.2" font-size="9.5" fill="#222">tipo_veiculo_id (PK)</text>
+<polyline points="1043,1410 1043,1400 1055.5,1400" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1059" cy="1400" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1067" y="1403.2" font-size="9.5" fill="#222">observacao</text>
+<rect x="1030" y="1410" width="240" height="80" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<polygon points="1030,1450 1150,1410 1270,1450 1150,1490" fill="#fff" stroke="#111" stroke-width="1.5"/>
+<text x="1150" y="1454" text-anchor="middle" font-size="12" font-weight="700" fill="#111">Guincho_Tipo_Veiculo</text>
+<polyline points="987,1620 987,1562 1011.5,1562" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1015" cy="1562" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="1023" y="1565.2" font-size="9.5" fill="#222">solicitacao_id (PK)</text>
+<polyline points="990,1620 990,1574 1011.5,1574" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1015" cy="1574" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="1023" y="1577.2" font-size="9.5" fill="#222">prestador_id (PK)</text>
+<polyline points="993,1620 993,1586 1011.5,1586" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1015" cy="1586" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1023" y="1589.2" font-size="9.5" fill="#222">data_hora_envio</text>
+<polyline points="996,1620 996,1598 1011.5,1598" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1015" cy="1598" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1023" y="1601.2" font-size="9.5" fill="#222">data_hora_resposta</text>
+<polyline points="999,1620 999,1610 1011.5,1610" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1015" cy="1610" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1023" y="1613.2" font-size="9.5" fill="#222">resposta</text>
+<rect x="980" y="1620" width="240" height="80" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<polygon points="980,1660 1100,1620 1220,1660 1100,1700" fill="#fff" stroke="#111" stroke-width="1.5"/>
+<text x="1100" y="1664" text-anchor="middle" font-size="12" font-weight="700" fill="#111">Notificacao_prestador</text>
+</g>
+<g id="entidades">
+<g class="atributos-Pessoa">
+<polyline points="87,800 87,682 126.5,682" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="682" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="685.2" font-size="9.5" fill="#222">cpf (PK)</text>
+<polyline points="90,800 90,694 126.5,694" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="694" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="697.2" font-size="9.5" fill="#222">nome</text>
+<polyline points="93,800 93,706 126.5,706" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="706" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="709.2" font-size="9.5" fill="#222">email</text>
+<polyline points="96,800 96,718 126.5,718" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="718" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="721.2" font-size="9.5" fill="#222">senha</text>
+<polyline points="99,800 99,730 126.5,730" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="730" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="733.2" font-size="9.5" fill="#222">cnpj</text>
+<polyline points="102,800 102,742 126.5,742" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="742" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="745.2" font-size="9.5" fill="#222">data_cadastro</text>
+<polyline points="105,800 105,754 126.5,754" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="754" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="757.2" font-size="9.5" fill="#222">numero</text>
+<polyline points="108,800 108,766 126.5,766" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="766" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="769.2" font-size="9.5" fill="#222">complemento</text>
+<polyline points="111,800 111,778 126.5,778" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="778" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="781.2" font-size="9.5" fill="#222">logradouro_informado</text>
+<polyline points="114,800 114,790 126.5,790" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="130" cy="790" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="138" y="793.2" font-size="9.5" fill="#222">bairro_informado</text>
+</g>
+<rect x="80" y="800" width="100" height="120" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="130.0" y="864.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Pessoa</text>
+<g class="atributos-Cliente">
+<polyline points="487,840 487,818 502.5,818" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="506" cy="818" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="514" y="821.2" font-size="9.5" fill="#222">cliente_id (PK)</text>
+<polyline points="490,840 490,830 502.5,830" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="506" cy="830" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="514" y="833.2" font-size="9.5" fill="#222">status</text>
+</g>
+<rect x="480" y="840" width="100" height="40" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="530.0" y="864.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Cliente</text>
+<g class="atributos-Funcionario">
+<polyline points="867,260 867,214 888.5,214" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="892" cy="214" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="900" y="217.2" font-size="9.5" fill="#222">funcionario_id (PK)</text>
+<polyline points="870,260 870,226 888.5,226" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="892" cy="226" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="900" y="229.2" font-size="9.5" fill="#222">cargo</text>
+<polyline points="873,260 873,238 888.5,238" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="892" cy="238" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="900" y="241.2" font-size="9.5" fill="#222">perfil_acesso</text>
+<polyline points="876,260 876,250 888.5,250" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="892" cy="250" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="900" y="253.2" font-size="9.5" fill="#222">status</text>
+</g>
+<rect x="860" y="260" width="140" height="80" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="930.0" y="304.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Funcionario</text>
+<g class="atributos-CEP">
+<polyline points="867,440 867,394 888.5,394" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="892" cy="394" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="900" y="397.2" font-size="9.5" fill="#222">cep (PK)</text>
+<polyline points="870,440 870,406 888.5,406" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="892" cy="406" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="900" y="409.2" font-size="9.5" fill="#222">logradouro</text>
+<polyline points="873,440 873,418 888.5,418" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="892" cy="418" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="900" y="421.2" font-size="9.5" fill="#222">bairro</text>
+<polyline points="876,440 876,430 888.5,430" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="892" cy="430" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="900" y="433.2" font-size="9.5" fill="#222">cep_generico</text>
+</g>
+<rect x="860" y="440" width="100" height="80" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="910.0" y="484.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">CEP</text>
+<g class="atributos-Empresa">
+<polyline points="87,1270 87,1212 111.5,1212" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="115" cy="1212" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="123" y="1215.2" font-size="9.5" fill="#222">empresa_id (PK)</text>
+<polyline points="90,1270 90,1224 111.5,1224" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="115" cy="1224" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="123" y="1227.2" font-size="9.5" fill="#222">razao_social</text>
+<polyline points="93,1270 93,1236 111.5,1236" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="115" cy="1236" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="123" y="1239.2" font-size="9.5" fill="#222">cnpj</text>
+<polyline points="96,1270 96,1248 111.5,1248" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="115" cy="1248" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="123" y="1251.2" font-size="9.5" fill="#222">telefone</text>
+<polyline points="99,1270 99,1260 111.5,1260" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="115" cy="1260" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="123" y="1263.2" font-size="9.5" fill="#222">email</text>
+</g>
+<rect x="80" y="1270" width="100" height="40" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="130.0" y="1294.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Empresa</text>
+<g class="atributos-Modelo_Veiculo">
+<polyline points="907,1020 907,986 925.5,986" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="929" cy="986" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="937" y="989.2" font-size="9.5" fill="#222">modelo_id (PK)</text>
+<polyline points="910,1020 910,998 925.5,998" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="929" cy="998" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="937" y="1001.2" font-size="9.5" fill="#222">marca</text>
+<polyline points="913,1020 913,1010 925.5,1010" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="929" cy="1010" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="937" y="1013.2" font-size="9.5" fill="#222">nome</text>
+</g>
+<rect x="900" y="1020" width="160" height="40" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="980.0" y="1044.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Modelo_Veiculo</text>
+<g class="atributos-Tipo_Veiculo">
+<polyline points="1257,1020 1257,974 1278.5,974" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1282" cy="974" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="1290" y="977.2" font-size="9.5" fill="#222">tipo_veiculo_id (PK)</text>
+<polyline points="1260,1020 1260,986 1278.5,986" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1282" cy="986" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1290" y="989.2" font-size="9.5" fill="#222">descricao</text>
+<polyline points="1263,1020 1263,998 1278.5,998" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1282" cy="998" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1290" y="1001.2" font-size="9.5" fill="#222">categoria</text>
+<polyline points="1266,1020 1266,1010 1278.5,1010" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1282" cy="1010" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1290" y="1013.2" font-size="9.5" fill="#222">peso_max_kg</text>
+</g>
+<rect x="1250" y="1020" width="140" height="60" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="1320.0" y="1054.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Tipo_Veiculo</text>
+<g class="atributos-Tipo_Guincho">
+<polyline points="907,1250 907,1216 925.5,1216" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="929" cy="1216" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="937" y="1219.2" font-size="9.5" fill="#222">tipo_guincho_id (PK)</text>
+<polyline points="910,1250 910,1228 925.5,1228" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="929" cy="1228" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="937" y="1231.2" font-size="9.5" fill="#222">descricao</text>
+<polyline points="913,1250 913,1240 925.5,1240" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="929" cy="1240" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="937" y="1243.2" font-size="9.5" fill="#222">capacidade_max_kg</text>
+</g>
+<rect x="900" y="1250" width="140" height="60" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="970.0" y="1284.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Tipo_Guincho</text>
+<g class="atributos-Pessoa_Telefone">
+<polyline points="337,1020 337,998 352.5,998" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="356" cy="998" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="364" y="1001.2" font-size="9.5" fill="#222">cpf (PK)</text>
+<polyline points="340,1020 340,1010 352.5,1010" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="356" cy="1010" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="364" y="1013.2" font-size="9.5" fill="#222">telefone (PK)</text>
+</g>
+<rect x="330" y="1020" width="160" height="40" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="410.0" y="1044.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Pessoa_Telefone</text>
+<g class="atributos-Veiculo">
+<polyline points="867,840 867,782 891.5,782" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="895" cy="782" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="903" y="785.2" font-size="9.5" fill="#222">veiculo_id (PK)</text>
+<polyline points="870,840 870,794 891.5,794" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="895" cy="794" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="903" y="797.2" font-size="9.5" fill="#222">placa</text>
+<polyline points="873,840 873,806 891.5,806" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="895" cy="806" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="903" y="809.2" font-size="9.5" fill="#222">ano</text>
+<polyline points="876,840 876,818 891.5,818" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="895" cy="818" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="903" y="821.2" font-size="9.5" fill="#222">cor</text>
+<polyline points="879,840 879,830 891.5,830" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="895" cy="830" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="903" y="833.2" font-size="9.5" fill="#222">blindado</text>
+</g>
+<rect x="860" y="840" width="100" height="60" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="910.0" y="874.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Veiculo</text>
+<g class="atributos-Servico_Reboque">
+<polyline points="1707,1100 1707,1054 1728.5,1054" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1732" cy="1054" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="1740" y="1057.2" font-size="9.5" fill="#222">servico_id (PK)</text>
+<polyline points="1710,1100 1710,1066 1728.5,1066" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1732" cy="1066" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1740" y="1069.2" font-size="9.5" fill="#222">descricao</text>
+<polyline points="1713,1100 1713,1078 1728.5,1078" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1732" cy="1078" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1740" y="1081.2" font-size="9.5" fill="#222">tipo_servico</text>
+<polyline points="1716,1100 1716,1090 1728.5,1090" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1732" cy="1090" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1740" y="1093.2" font-size="9.5" fill="#222">status</text>
+</g>
+<rect x="1700" y="1100" width="160" height="40" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="1780.0" y="1124.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Servico_Reboque</text>
+<g class="atributos-Prestador_Servico">
+<polyline points="487,1250 487,1216 505.5,1216" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="509" cy="1216" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="517" y="1219.2" font-size="9.5" fill="#222">prestador_id (PK)</text>
+<polyline points="490,1250 490,1228 505.5,1228" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="509" cy="1228" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="517" y="1231.2" font-size="9.5" fill="#222">cnh</text>
+<polyline points="493,1250 493,1240 505.5,1240" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="509" cy="1240" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="517" y="1243.2" font-size="9.5" fill="#222">status</text>
+</g>
+<rect x="480" y="1250" width="180" height="80" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="570.0" y="1294.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Prestador_Servico</text>
+<g class="atributos-Veiculo_Reboque">
+<polyline points="1457,1450 1457,1392 1481.5,1392" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1485" cy="1392" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="1493" y="1395.2" font-size="9.5" fill="#222">veiculo_reboque_id (PK)</text>
+<polyline points="1460,1450 1460,1404 1481.5,1404" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1485" cy="1404" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1493" y="1407.2" font-size="9.5" fill="#222">placa</text>
+<polyline points="1463,1450 1463,1416 1481.5,1416" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1485" cy="1416" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1493" y="1419.2" font-size="9.5" fill="#222">ano</text>
+<polyline points="1466,1450 1466,1428 1481.5,1428" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1485" cy="1428" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1493" y="1431.2" font-size="9.5" fill="#222">capacidade_kg</text>
+<polyline points="1469,1450 1469,1440 1481.5,1440" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1485" cy="1440" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1493" y="1443.2" font-size="9.5" fill="#222">status</text>
+</g>
+<rect x="1450" y="1450" width="160" height="80" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="1530.0" y="1494.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Veiculo_Reboque</text>
+<g class="atributos-Solicitacao">
+<polyline points="1507,780 1507,614 1558.5,614" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="614" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="617.2" font-size="9.5" fill="#222">solicitacao_id (PK)</text>
+<polyline points="1510,780 1510,626 1558.5,626" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="626" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="629.2" font-size="9.5" fill="#222">data_hora_solicitacao</text>
+<polyline points="1513,780 1513,638 1558.5,638" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="638" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="641.2" font-size="9.5" fill="#222">origem_numero</text>
+<polyline points="1516,780 1516,650 1558.5,650" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="650" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="653.2" font-size="9.5" fill="#222">origem_complemento</text>
+<polyline points="1519,780 1519,662 1558.5,662" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="662" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="665.2" font-size="9.5" fill="#222">origem_logradouro_informado</text>
+<polyline points="1522,780 1522,674 1558.5,674" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="674" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="677.2" font-size="9.5" fill="#222">origem_bairro_informado</text>
+<polyline points="1525,780 1525,686 1558.5,686" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="686" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="689.2" font-size="9.5" fill="#222">destino_numero</text>
+<polyline points="1528,780 1528,698 1558.5,698" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="698" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="701.2" font-size="9.5" fill="#222">destino_complemento</text>
+<polyline points="1531,780 1531,710 1558.5,710" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="710" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="713.2" font-size="9.5" fill="#222">destino_logradouro_informado</text>
+<polyline points="1534,780 1534,722 1558.5,722" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="722" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="725.2" font-size="9.5" fill="#222">destino_bairro_informado</text>
+<polyline points="1537,780 1537,734 1558.5,734" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="734" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="737.2" font-size="9.5" fill="#222">distancia_km</text>
+<polyline points="1540,780 1540,746 1558.5,746" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="746" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="749.2" font-size="9.5" fill="#222">observacao</text>
+<polyline points="1543,780 1543,758 1558.5,758" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="758" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="761.2" font-size="9.5" fill="#222">valor_estimado</text>
+<polyline points="1546,780 1546,770 1558.5,770" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1562" cy="770" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1570" y="773.2" font-size="9.5" fill="#222">status</text>
+</g>
+<rect x="1500" y="780" width="140" height="100" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="1570.0" y="834.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Solicitacao</text>
+<g class="atributos-Cidade">
+<polyline points="1047,580 1047,546 1065.5,546" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1069" cy="546" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="1077" y="549.2" font-size="9.5" fill="#222">cidade_id (PK)</text>
+<polyline points="1050,580 1050,558 1065.5,558" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1069" cy="558" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1077" y="561.2" font-size="9.5" fill="#222">nome</text>
+<polyline points="1053,580 1053,570 1065.5,570" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="1069" cy="570" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="1077" y="573.2" font-size="9.5" fill="#222">uf</text>
+</g>
+<rect x="1040" y="580" width="100" height="40" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="1090.0" y="604.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Cidade</text>
+<g class="atributos-Tarifa">
+<polyline points="2157,1080 2157,974 2193.5,974" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2197" cy="974" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="2205" y="977.2" font-size="9.5" fill="#222">tarifa_id (PK)</text>
+<polyline points="2160,1080 2160,986 2193.5,986" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2197" cy="986" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2205" y="989.2" font-size="9.5" fill="#222">valor_base</text>
+<polyline points="2163,1080 2163,998 2193.5,998" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2197" cy="998" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2205" y="1001.2" font-size="9.5" fill="#222">valor_por_km</text>
+<polyline points="2166,1080 2166,1010 2193.5,1010" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2197" cy="1010" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2205" y="1013.2" font-size="9.5" fill="#222">adicional_madrugada</text>
+<polyline points="2169,1080 2169,1022 2193.5,1022" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2197" cy="1022" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2205" y="1025.2" font-size="9.5" fill="#222">adicional_domingo</text>
+<polyline points="2172,1080 2172,1034 2193.5,1034" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2197" cy="1034" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2205" y="1037.2" font-size="9.5" fill="#222">adicional_feriado</text>
+<polyline points="2175,1080 2175,1046 2193.5,1046" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2197" cy="1046" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2205" y="1049.2" font-size="9.5" fill="#222">adicional_rodovia</text>
+<polyline points="2178,1080 2178,1058 2193.5,1058" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2197" cy="1058" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2205" y="1061.2" font-size="9.5" fill="#222">vigencia_inicio</text>
+<polyline points="2181,1080 2181,1070 2193.5,1070" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2197" cy="1070" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2205" y="1073.2" font-size="9.5" fill="#222">vigencia_fim</text>
+</g>
+<rect x="2150" y="1080" width="100" height="60" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="2200.0" y="1114.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Tarifa</text>
+<g class="atributos-Ordem_Servico">
+<polyline points="2307,800 2307,682 2346.5,682" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="682" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="685.2" font-size="9.5" fill="#222">ordem_id (PK)</text>
+<polyline points="2310,800 2310,694 2346.5,694" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="694" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="697.2" font-size="9.5" fill="#222">data_hora_inicio</text>
+<polyline points="2313,800 2313,706 2346.5,706" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="706" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="709.2" font-size="9.5" fill="#222">data_previsao</text>
+<polyline points="2316,800 2316,718 2346.5,718" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="718" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="721.2" font-size="9.5" fill="#222">data_hora_fim</text>
+<polyline points="2319,800 2319,730 2346.5,730" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="730" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="733.2" font-size="9.5" fill="#222">status_atual</text>
+<polyline points="2322,800 2322,742 2346.5,742" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="742" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="745.2" font-size="9.5" fill="#222">observacao</text>
+<polyline points="2325,800 2325,754 2346.5,754" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="754" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="757.2" font-size="9.5" fill="#222">valor_base</text>
+<polyline points="2328,800 2328,766 2346.5,766" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="766" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="769.2" font-size="9.5" fill="#222">valor_adicionais</text>
+<polyline points="2331,800 2331,778 2346.5,778" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="778" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="781.2" font-size="9.5" fill="#222">desconto</text>
+<polyline points="2334,800 2334,790 2346.5,790" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2350" cy="790" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2358" y="793.2" font-size="9.5" fill="#222">valor_total</text>
+</g>
+<rect x="2300" y="800" width="140" height="100" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="2370.0" y="854.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Ordem_Servico</text>
+<g class="atributos-Historico_Status">
+<polyline points="2807,200 2807,154 2828.5,154" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2832" cy="154" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="2840" y="157.2" font-size="9.5" fill="#222">historico_id (PK)</text>
+<polyline points="2810,200 2810,166 2828.5,166" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2832" cy="166" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2840" y="169.2" font-size="9.5" fill="#222">status</text>
+<polyline points="2813,200 2813,178 2828.5,178" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2832" cy="178" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2840" y="181.2" font-size="9.5" fill="#222">data_hora_alteracao</text>
+<polyline points="2816,200 2816,190 2828.5,190" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2832" cy="190" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2840" y="193.2" font-size="9.5" fill="#222">observacao</text>
+</g>
+<rect x="2800" y="200" width="180" height="60" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="2890.0" y="234.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Historico_Status</text>
+<g class="atributos-Cancelamento">
+<polyline points="2807,440 2807,382 2831.5,382" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="382" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="385.2" font-size="9.5" fill="#222">cancelamento_id (PK)</text>
+<polyline points="2810,440 2810,394 2831.5,394" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="394" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="397.2" font-size="9.5" fill="#222">responsavel</text>
+<polyline points="2813,440 2813,406 2831.5,406" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="406" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="409.2" font-size="9.5" fill="#222">motivo</text>
+<polyline points="2816,440 2816,418 2831.5,418" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="418" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="421.2" font-size="9.5" fill="#222">data_hora</text>
+<polyline points="2819,440 2819,430 2831.5,430" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="430" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="433.2" font-size="9.5" fill="#222">valor_multa</text>
+</g>
+<rect x="2800" y="440" width="140" height="60" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="2870.0" y="474.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Cancelamento</text>
+<g class="atributos-Avaliacao">
+<polyline points="2807,840 2807,794 2828.5,794" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2832" cy="794" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="2840" y="797.2" font-size="9.5" fill="#222">avaliacao_id (PK)</text>
+<polyline points="2810,840 2810,806 2828.5,806" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2832" cy="806" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2840" y="809.2" font-size="9.5" fill="#222">nota</text>
+<polyline points="2813,840 2813,818 2828.5,818" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2832" cy="818" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2840" y="821.2" font-size="9.5" fill="#222">comentario</text>
+<polyline points="2816,840 2816,830 2828.5,830" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2832" cy="830" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2840" y="833.2" font-size="9.5" fill="#222">data_avaliacao</text>
+</g>
+<rect x="2800" y="840" width="120" height="40" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="2860.0" y="864.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Avaliacao</text>
+<g class="atributos-Pagamento">
+<polyline points="2807,1000 2807,942 2831.5,942" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="942" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="945.2" font-size="9.5" fill="#222">pagamento_id (PK)</text>
+<polyline points="2810,1000 2810,954 2831.5,954" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="954" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="957.2" font-size="9.5" fill="#222">valor_pago</text>
+<polyline points="2813,1000 2813,966 2831.5,966" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="966" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="969.2" font-size="9.5" fill="#222">data_hora_pagamento</text>
+<polyline points="2816,1000 2816,978 2831.5,978" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="978" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="981.2" font-size="9.5" fill="#222">status</text>
+<polyline points="2819,1000 2819,990 2831.5,990" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="2835" cy="990" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="2843" y="993.2" font-size="9.5" fill="#222">comprovante</text>
+</g>
+<rect x="2800" y="1000" width="120" height="40" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="2860.0" y="1024.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Pagamento</text>
+<g class="atributos-Forma_Pagamento">
+<polyline points="3257,1000 3257,966 3275.5,966" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="3279" cy="966" r="3.5" fill="#111" stroke="#222" stroke-width="0.9"/>
+<text x="3287" y="969.2" font-size="9.5" fill="#222">forma_pagamento_id (PK)</text>
+<polyline points="3260,1000 3260,978 3275.5,978" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="3279" cy="978" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="3287" y="981.2" font-size="9.5" fill="#222">descricao</text>
+<polyline points="3263,1000 3263,990 3275.5,990" fill="none" stroke="#222" stroke-width="0.9"/>
+<circle cx="3279" cy="990" r="3.5" fill="#fff" stroke="#222" stroke-width="0.9"/>
+<text x="3287" y="993.2" font-size="9.5" fill="#222">tipo</text>
+</g>
+<rect x="3250" y="1000" width="160" height="40" fill="#fff" stroke="#111" stroke-width="1.8"/>
+<text x="3330.0" y="1024.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111">Forma_Pagamento</text>
+</g>
+<g id="legenda" font-size="12" fill="#222"><text x="50" y="1770" font-weight="700" font-size="13">Legenda</text>
+<rect x="50" y="1784" width="50" height="22" fill="#fff" stroke="#111" stroke-width="1.8"/><text x="112" y="1800">Entidade</text>
+<rect x="260" y="1778" width="60" height="34" fill="#fff" stroke="#111" stroke-width="1.8"/><polygon points="260,1795 290,1778 320,1795 290,1812" fill="#fff" stroke="#111" stroke-width="1.5"/><text x="334" y="1800">Entidade associativa (relacionamento N:N com atributos; PK composta)</text>
+<polygon points="75,1820 100,1835 75,1850 50,1835" fill="#fff" stroke="#222" stroke-width="1.3"/><text x="112" y="1839">Relacionamento (regra de negócio/requisito no losango)</text>
+<circle cx="57" cy="1868" r="3.5" fill="#111" stroke="#222"/><text x="70" y="1872">Chave primária (PK)</text>
+<circle cx="57" cy="1888" r="3.5" fill="#fff" stroke="#222"/><text x="70" y="1892">Atributo comum</text>
+<text x="50" y="1912" fill="#444" font-size="11">(min,max): participação da entidade no relacionamento — número de ocorrências do relacionamento para cada ocorrência desta entidade. Texto cinza no losango = proporção (ex.: 1:N).</text></g>
+</svg>

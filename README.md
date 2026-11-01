@@ -1,20 +1,38 @@
-# Projeto ERP — Feliguinchos
+# Projeto ERP - Feliguinchos
 
-Primeira entrega do Projeto Integrador de Modelagem de Dados.
+## 1. Identificação do projeto
 
-*A Feliguinchos é uma empresa fictícia. Montamos o cenário com base em como funcionam as pequenas empresas de guincho e auto socorro da região.*
+| Item | Descrição |
+|---|---|
+| Projeto | Feliguinchos, aplicativo de guincho e auto socorro que liga o cliente ao prestador (guincheiro) |
+| Disciplina | Projeto Integrador de Modelagem de Dados |
+| Banco de dados | `feliguinchos`, em MariaDB 10.4+ (XAMPP) ou MySQL 8.0.16+ |
+| Repositório | https://github.com/felipedias1105-bot/feliguinchos |
 
-Arquivos do repositório:
+A Feliguinchos é uma empresa fictícia, criada pelo grupo para este projeto.
+
+Organização das pastas:
 
 ```
-README.md                    documentação da entrega
-docs/der/der_conceitual.png  DER em imagem
-docs/der/der_conceitual.svg  DER em vetor (dá para ampliar sem perder qualidade)
+README.md          documentação geral do projeto
+docs/
+  diagramas/       DER (svg e pdf)
+  documentacao/    Modelo Lógico e Modelo Físico
+  normalizacao/    modelo de tabelas normalizado (1FN, 2FN e 3FN)
+  requisitos/      requisitos funcionais e não funcionais
+sql/
+  README.md        como rodar os scripts
+  ddl/             tabelas, gatilhos e views
+  dados/           massa de dados
+  consultas/       select, join, gerenciais, update e delete
+  auditoria/       consultas de auditoria e testes de integridade
+apresentacao/
+evidencias/
 ```
 
 ---
 
-## 1. Identificação da equipe
+## 2. Integrantes
 
 | Integrante | RGM |
 |---|---|
@@ -33,213 +51,64 @@ docs/der/der_conceitual.svg  DER em vetor (dá para ampliar sem perder qualidade
 
 ---
 
-## 2. Caracterização da empresa
+## 3. Empresa e problema
 
-A Feliguinchos Reboque Automotivo Ltda. é uma microempresa de reboque e auto socorro 24 horas, com sede na Zona Leste de São Paulo. Ela atende a capital, a Grande São Paulo e trechos das rodovias Dutra e Ayrton Senna.
+### 3.1 A empresa
 
-A empresa começou em 2018 com um único guincho próprio. Quando a procura aumentou, os sócios preferiram não comprar mais caminhões e passaram a trabalhar como uma central: recebem o pedido do cliente e chamam um guincheiro credenciado para fazer o serviço. O ganho vem da diferença entre o que o cliente paga e o que é repassado ao guincheiro. Hoje a rede tem 28 prestadores (18 autônomos e 10 ligados a quatro pequenas empresas parceiras), que somam 34 guinchos. A média é de uns 600 atendimentos por mês.
+A Feliguinchos é um aplicativo de guincho e auto socorro. A ideia é parecida com a de um aplicativo de transporte: o cliente que está com o veículo parado faz o pedido pelo app, o pedido vai para os prestadores (guincheiros) cadastrados e o primeiro que aceitar faz o atendimento.
 
-Os serviços oferecidos são reboque urbano, reboque em rodovia, reboque de moto, socorro mecânico leve, troca de pneu, carga de bateria e pane seca. Os clientes são, em sua maioria, motoristas particulares e motoboys. Uma parte menor, mas que volta sempre, são pequenas frotas: autoescolas, transportadoras pequenas e empresas de entrega.
+A Feliguinchos não tem guinchos próprios. Quem faz o serviço são os prestadores, que podem ser guincheiros autônomos ou trabalhar para uma empresa parceira, e usam os próprios guinchos. A Feliguinchos cuida do aplicativo, das regras de preço, do cadastro e aprovação dos prestadores e do controle dos pagamentos.
 
-A equipe interna tem cinco pessoas, divididas assim:
+Os serviços oferecidos são reboque urbano, reboque em rodovia, reboque de moto, socorro mecânico leve, troca de pneu, carga de bateria e pane seca.
 
-| Setor | O que faz |
+| Quem participa | O que faz no aplicativo |
 |---|---|
-| Atendimento (central 24h, 3 atendentes em turnos) | Recebe os pedidos por telefone e WhatsApp, anota os dados, passa o valor e acompanha o chamado |
-| Operação / despacho | Chama o guincheiro e acompanha o atendimento até o fim (hoje é feito pelos próprios atendentes) |
-| Credenciamento | Cadastra guincheiros, empresas parceiras e guinchos e confere os documentos |
-| Financeiro (1 auxiliar) | Confere pagamentos e faz o fechamento do mês |
-| Gerência (1 gerente, que também é sócio) | Define preços, aprova novos guincheiros e resolve cancelamentos e reclamações |
+| Cliente | Cadastra seus veículos, pede o serviço, acompanha o atendimento, paga e avalia |
+| Prestador (guincheiro) | Se cadastra com seus guinchos, recebe os pedidos compatíveis, aceita ou recusa e atualiza cada etapa do atendimento |
+| Empresa parceira | Empresa de guincho que tem prestadores e guinchos cadastrados na plataforma |
+| Equipe da Feliguinchos | Atendentes abrem pedidos para quem liga em vez de usar o app, o financeiro confere os pagamentos e o gerente aprova prestadores, define as tarifas e resolve cancelamentos |
 
-**Como funciona hoje.** O cliente liga ou manda mensagem no WhatsApp. O atendente anota o chamado numa planilha do Google, olha a tabela de preços impressa na parede e passa um valor aproximado. Depois joga o chamado no grupo de WhatsApp dos guincheiros, e quem responder primeiro fica com o serviço. O acompanhamento é todo por mensagem e ligação. O pagamento é por Pix na conta da empresa ou em dinheiro direto para o guincheiro, e só é conferido no fim do mês, cruzando extrato, planilha e conversa de WhatsApp. Os documentos dos guincheiros ficam numa pasta no escritório.
+### 3.2 O problema
 
-As informações que importam para o negócio são: clientes e seus veículos, guincheiros e os guinchos que eles usam, quais guinchos servem para quais veículos, a tabela de preços, os chamados e os atendimentos, o andamento de cada serviço, os cancelamentos, os pagamentos e a opinião dos clientes.
+Hoje, quem precisa de um guincho normalmente procura na internet ou pede indicação, liga para vários números e combina o preço na hora. Do outro lado, muitos guincheiros autônomos dependem de indicação e de grupos de WhatsApp para conseguir serviço. Nos dois lados quase nada fica registrado.
+
+| Problema | Consequência |
+|---|---|
+| O cliente não sabe quem chamar | Demora para conseguir atendimento, principalmente de madrugada ou na estrada |
+| Preço combinado na hora, sem tabela | Valores diferentes pelo mesmo serviço e desconfiança do cliente |
+| Não dá para saber se o guincho serve para o veículo | Chega um guincho errado, por exemplo um guincho leve para uma van |
+| Não dá para saber se o guincheiro tem documentos em dia | Risco para o cliente |
+| O cliente não acompanha o atendimento | Não sabe se o guincho já saiu nem quando vai chegar |
+| Pedido combinado por ligação ou WhatsApp | Nada fica registrado, nem quem recusou o serviço |
+| Sem regra de cancelamento | O guincheiro perde o deslocamento e há discussão com o cliente |
+| Pagamento direto em dinheiro ou Pix, sem comprovante | Não há controle do que foi pago |
+| Nenhuma avaliação do serviço | Não dá para saber quem atende bem |
+| O guincheiro não tem controle dos próprios serviços | Não sabe quanto atendeu nem quanto recebeu no mês |
 
 ---
 
-## 3. Justificativa da escolha
+## 4. Solução proposta
 
-Escolhemos a Feliguinchos porque, mesmo sendo pequena, ela tem processos claros e bem separados. Todo atendimento passa pelas mesmas etapas: pedido, escolha do guincheiro, execução, pagamento e avaliação. Cada etapa gera informação que precisa ser guardada, o que dá material concreto para a análise.
+A solução é o aplicativo Feliguinchos, com um banco de dados único que guarda o cadastro de clientes e prestadores, os pedidos, os atendimentos, os pagamentos e as avaliações. O cliente vê o preço antes de confirmar, o pedido só vai para guincheiros aprovados e com guincho compatível, cada etapa fica registrada e a equipe da Feliguinchos acompanha tudo pelos relatórios.
 
-O segundo motivo é a desorganização. Os dados de um mesmo atendimento ficam espalhados entre planilha, grupo de WhatsApp, tabela impressa, extrato do banco e pasta de papel, sem nenhum lugar que reúna tudo. Os setores também dependem uns dos outros sem compartilhar informação: o atendimento precisa saber quais guincheiros estão ativos, o despacho precisa saber se o guincho aguenta o veículo e o financeiro precisa saber o que foi atendido. Hoje cada um refaz o trabalho do outro.
+Escolhemos esse tema porque o processo tem etapas bem definidas (pedido, envio aos prestadores, execução, pagamento e avaliação) e situações que exigem uma modelagem mais cuidadosa, como relacionamentos N:N com atributos, preços que mudam com o tempo e regras de cancelamento.
 
-Por isso a empresa é um bom caso para um ERP: um sistema único que junte cadastro, operação, financeiro e gestão na mesma base. Por fim, o negócio tem situações que exigem modelagem de verdade, como relacionamentos N:N com atributos próprios, preços que mudam com o tempo e regras de cancelamento, sem precisar inventar complexidade.
+O centro do modelo é a Ordem de Serviço. É nela que se juntam cliente, veículo, prestador, guincho, tarifa, histórico, pagamento, cancelamento e avaliação.
 
----
+### 4.1 Processos
 
-## 4. Problemas identificados
+| Código | Processo | O que fica registrado | Resultado |
+|---|---|---|---|
+| P1 | Cadastro de cliente e veículo | Pessoa, cliente, telefones, endereço e veículo | Cliente pode pedir atendimento |
+| P2 | Credenciamento | Prestador, empresa parceira, guincho e vínculo prestador-guincho | Prestador liberado para receber chamados |
+| P3 | Solicitação | Veículo, serviço, origem, destino e valor estimado pela tarifa vigente | Solicitação aguardando prestador |
+| P4 | Despacho | Notificação para cada prestador compatível e a resposta dele | O.S. aberta no primeiro aceite |
+| P5 | Execução | Cada mudança de status no histórico da O.S. | O.S. finalizada |
+| P6 | Pagamento e avaliação | Tentativas de pagamento e nota de 1 a 5 | O.S. paga e avaliada |
+| P7 | Cancelamento | Quem cancelou, motivo, multa e funcionário que autorizou | O.S. cancelada |
+| P8 | Manutenção de tarifas | Nova tarifa com vigência, encerrando a anterior | Preço novo sem mexer nas O.S. abertas |
 
-| Problema | Consequência | Requisitos relacionados |
-|---|---|---|
-| Chamados anotados na planilha e, às vezes, só no WhatsApp | Chamados se perdem e não existe histórico confiável | RF11, RF15 |
-| Despacho feito no grupo de WhatsApp ("quem pega?") | Demora para achar guincheiro, às vezes dois vão ao mesmo chamado e não fica registrado quem recusou | RF13, RF14 |
-| Preço calculado de cabeça, com uma tabela impressa desatualizada | Clientes pagam valores diferentes pelo mesmo serviço, o que gera reclamação | RF10, RF12 |
-| O mesmo cliente aparece várias vezes na planilha, com telefones diferentes | Cadastro duplicado e dificuldade para achar o histórico do cliente | RF01, RF20 |
-| A central não sabe ao certo qual guincho cada guincheiro está usando nem se ele comporta o veículo | Guincho errado enviado (guincho leve para uma van ou para um carro blindado, por exemplo) | RF04, RF07, RF08 |
-| Documentos dos guincheiros guardados numa pasta, sem controle | Guincheiro com documentação vencida atendendo cliente | RF06 |
-| Nenhuma regra clara para cancelamento | Prejuízo com deslocamento perdido e discussão com cliente e guincheiro | RF16 |
-| Pix e dinheiro sem conferência na hora | Não se sabe quais atendimentos foram pagos e o fechamento nunca bate | RF17 |
-| Nenhum registro da opinião do cliente | A gerência não consegue identificar quem atende mal | RF18 |
-| Relatórios montados à mão no fim do mês | Horas de retrabalho e números pouco confiáveis | RF21 |
-| Qualquer pessoa altera a planilha e não fica registrado quem mexeu | Erros sem responsável e dados alterados sem querer | RF19, RNF01, RNF03 |
-
----
-
-## 5. Processos de negócio
-
-| Código | Processo | Quem participa | O que inicia | O que acontece | Informação gerada | Resultado |
-|---|---|---|---|---|---|---|
-| P1 | Cadastro de cliente e veículo | Cliente, atendente | Primeiro contato do cliente | Registro dos dados, telefones, endereço e veículos | Cliente, Veículo | Cliente pode pedir atendimento |
-| P2 | Credenciamento de prestador e guincho | Prestador, empresa parceira, atendente, gerente | Guincheiro quer entrar na rede | Cadastro do prestador, da empresa (se tiver) e dos guinchos, vínculo prestador–guincho e análise dos documentos | Prestador, Empresa, Veículo_Reboque, vínculo Opera | Prestador ativo e liberado para receber chamados |
-| P3 | Solicitação de reboque | Cliente, atendente | Pedido pelo aplicativo ou por telefone | Escolha do veículo, do serviço e dos endereços, e cálculo do valor pela tarifa vigente | Solicitação | Solicitação aguardando prestador |
-| P4 | Despacho | Sistema, prestadores, atendente | Solicitação aguardando prestador | Aviso aos prestadores compatíveis, registro das respostas e abertura da OS no primeiro aceite | Notificações, Ordem de Serviço | OS aberta com prestador, guincho e tarifa definidos |
-| P5 | Execução do atendimento | Prestador, atendente | Abertura da OS | Deslocamento, chegada, serviço, transporte e entrega, com cada etapa registrada | Histórico de status, adicionais | OS finalizada |
-| P6 | Pagamento e avaliação | Cliente, financeiro | OS finalizada | Cálculo do valor final, registro dos pagamentos e pedido de avaliação | Pagamento, Avaliação | OS encerrada |
-| P7 | Cancelamento | Cliente, prestador, atendente, gerente | Pedido de cancelamento | Verificação do momento, cálculo da multa e, se for o caso, isenção pelo gerente | Cancelamento, histórico | OS cancelada |
-| P8 | Manutenção de tarifas | Gerente | Reajuste ou serviço novo | Cadastro da nova tarifa com vigência e encerramento da anterior | Tarifa | Preços atualizados sem mexer nos atendimentos em andamento |
-
-Os processos dependem uns dos outros. P2 e P8 são a base: sem prestador credenciado não tem despacho, e sem tarifa não tem como passar o valor. P3 alimenta P4, que abre a OS executada em P5, que termina em P6. O cancelamento (P7) pode interromper o ciclo durante P4 ou P5.
-
----
-
-## 6. Requisitos funcionais
-
-| Código | Requisito |
-|---|---|
-| RF01 | O sistema deverá cadastrar clientes, com seus telefones e endereço. |
-| RF02 | O sistema deverá cadastrar os veículos de cada cliente. |
-| RF03 | O sistema deverá manter o cadastro de tipos de veículo. |
-| RF04 | O sistema deverá manter o cadastro de tipos de guincho e registrar com quais tipos de veículo cada um é compatível. |
-| RF05 | O sistema deverá cadastrar as empresas parceiras. |
-| RF06 | O sistema deverá credenciar prestadores e controlar sua situação (em análise, ativo, suspenso, inativo). |
-| RF07 | O sistema deverá cadastrar os guinchos e seus tipos. |
-| RF08 | O sistema deverá registrar quais guinchos cada prestador opera e em qual período. |
-| RF09 | O sistema deverá manter o cadastro dos serviços oferecidos. |
-| RF10 | O sistema deverá manter as tarifas por tipo de veículo e serviço, com período de vigência. |
-| RF11 | O sistema deverá registrar solicitações feitas pelo aplicativo ou pela central. |
-| RF12 | O sistema deverá calcular o valor estimado da solicitação com base na tarifa vigente e na distância. |
-| RF13 | O sistema deverá avisar os prestadores compatíveis e registrar a resposta de cada um. |
-| RF14 | O sistema deverá abrir a ordem de serviço quando um prestador aceitar a solicitação. |
-| RF15 | O sistema deverá registrar cada mudança de status da ordem de serviço, com data e hora. |
-| RF16 | O sistema deverá registrar cancelamentos com responsável, motivo e multa, quando houver. |
-| RF17 | O sistema deverá registrar os pagamentos de cada ordem de serviço e a forma usada. |
-| RF18 | O sistema deverá registrar a avaliação do cliente sobre o atendimento. |
-| RF19 | O sistema deverá cadastrar os funcionários da central e seus perfis de acesso. |
-| RF20 | O sistema deverá permitir consultar o histórico de atendimentos de um cliente. |
-| RF21 | O sistema deverá gerar relatórios de atendimentos por período e por prestador, de faturamento e de média das avaliações. |
-
----
-
-## 7. Requisitos não funcionais
-
-| Código | Tipo | Requisito |
-|---|---|---|
-| RNF01 | Controle de acesso | O sistema deverá liberar as funções de acordo com o perfil do funcionário (atendente, financeiro ou gerente). |
-| RNF02 | Segurança | As senhas de clientes e funcionários deverão ser guardadas criptografadas. |
-| RNF03 | Auditoria | O sistema deverá registrar as mudanças de status das ordens de serviço, com data, hora e o funcionário responsável, quando houver. |
-| RNF04 | Disponibilidade | O sistema deverá funcionar 24 horas por dia, 7 dias por semana, porque o atendimento não para. |
-| RNF05 | Desempenho | O aviso aos prestadores deverá sair em até 10 segundos depois da confirmação da solicitação. |
-| RNF06 | Tempo de resposta | As consultas de ordens de serviço e do histórico do cliente deverão responder em até 3 segundos. |
-| RNF07 | Usabilidade | As telas usadas pelos prestadores deverão funcionar bem no celular, já que eles usam o sistema na rua. |
-| RNF08 | Privacidade | O tratamento dos dados pessoais deverá seguir a LGPD (Lei nº 13.709/2018). |
-| RNF09 | Confiabilidade | Deverá ser feito backup diário da base de dados. |
-| RNF10 | Escalabilidade | Novos tipos de veículo, tipos de guincho, serviços e formas de pagamento deverão entrar por cadastro, sem mudar a estrutura do sistema. |
-
----
-
-## 8. Regras de negócio
-
-As regras foram numeradas para poderem ser citadas nas cardinalidades (seção 14) e nas justificativas (seção 17).
-
-**Clientes e veículos**
-
-| Código | Regra |
-|---|---|
-| RN01 | Um cliente pode ter nenhum ou vários veículos cadastrados. Cada veículo pertence a um único cliente. |
-| RN02 | Todo cliente precisa informar pelo menos um telefone e pode informar vários. |
-| RN03 | CPF e e-mail do cliente não podem se repetir. |
-| RN04 | Todo veículo tem exatamente um tipo (carro de passeio, moto, utilitário, van, caminhonete). Um tipo pode classificar nenhum ou vários veículos. |
-| RN05 | A placa do veículo não pode se repetir. |
-
-**Prestadores e guinchos**
-
-| Código | Regra |
-|---|---|
-| RN06 | O prestador pode ser autônomo ou estar ligado a uma única empresa parceira. Uma empresa pode ter nenhum ou vários prestadores. |
-| RN07 | O CPF do prestador e o CNPJ da empresa parceira não podem se repetir. |
-| RN08 | Todo guincho tem exatamente um tipo (plataforma, asa-delta, reboque leve, pesado). Um tipo pode classificar nenhum ou vários guinchos. |
-| RN09 | Um prestador pode operar vários guinchos e um guincho pode ser operado por vários prestadores ao longo do tempo. Cada vínculo guarda data de início, data de fim e situação. |
-| RN10 | Todo tipo de veículo precisa ser compatível com pelo menos um tipo de guincho. Um tipo de guincho pode atender nenhum ou vários tipos de veículo. |
-
-**Serviços e tarifas**
-
-| Código | Regra |
-|---|---|
-| RN11 | Uma tarifa vale para um tipo de veículo e um serviço. O mesmo tipo de veículo e o mesmo serviço podem ter várias tarifas ao longo do tempo. |
-| RN12 | Não pode haver duas tarifas ativas no mesmo período para o mesmo tipo de veículo e o mesmo serviço. |
-
-**Solicitação e despacho**
-
-| Código | Regra |
-|---|---|
-| RN13 | Toda solicitação é de um único veículo. Um veículo pode ter nenhuma ou várias solicitações. |
-| RN14 | Toda solicitação pede um único serviço. Um serviço pode aparecer em nenhuma ou várias solicitações. |
-| RN15 | A solicitação pode ser aberta pelo cliente no aplicativo, sem funcionário envolvido, ou por um atendente da central. Um atendente pode abrir várias. |
-| RN16 | O valor estimado é calculado com a tarifa vigente na hora do pedido e fica guardado como o valor que foi passado ao cliente. |
-| RN17 | Uma solicitação pode ser enviada a vários prestadores, e um prestador pode receber várias solicitações. Cada envio guarda data de envio, data de resposta e situação (pendente, aceita, recusada, expirada). |
-| RN18 | Só são avisados os prestadores ativos que estejam operando, naquele momento, um guincho compatível com o tipo do veículo. |
-| RN19 | Uma solicitação gera no máximo uma ordem de serviço, no primeiro aceite. Toda ordem de serviço vem de uma única solicitação. |
-
-**Ordem de serviço**
-
-| Código | Regra |
-|---|---|
-| RN20 | Toda ordem de serviço é feita por um único prestador, com um único guincho. Um prestador e um guincho podem estar em nenhuma ou várias ordens de serviço. |
-| RN21 | A ordem de serviço guarda a tarifa vigente no momento em que foi aberta. Um reajuste depois disso não muda as ordens já abertas. |
-| RN22 | Toda mudança de status da ordem de serviço gera um registro no histórico. Por isso toda OS tem pelo menos um registro, o de abertura. |
-| RN23 | Quando um funcionário muda o status, ele fica identificado no histórico. Quando a mudança vem do prestador ou do próprio sistema, não há funcionário ligado ao registro. |
-| RN24 | O valor final da OS é o valor base mais os adicionais, menos o desconto. |
-
-**Cancelamento, pagamento e avaliação**
-
-| Código | Regra |
-|---|---|
-| RN25 | Uma ordem de serviço só pode ser cancelada uma vez, e só antes de ser finalizada. |
-| RN26 | Só um funcionário com perfil de gerente pode liberar a isenção de multa de um cancelamento. Um gerente pode liberar várias. |
-| RN27 | Uma ordem de serviço pode ter nenhuma ou várias tentativas de pagamento. Cada pagamento é de uma única OS. |
-| RN28 | Todo pagamento usa uma única forma de pagamento. |
-| RN29 | A OS só é encerrada quando a soma dos pagamentos aprovados é igual ao valor final. |
-| RN30 | Uma ordem de serviço pode receber no máximo uma avaliação, só depois de finalizada, com nota de 1 a 5. |
-
----
-
-## 9. Restrições e políticas organizacionais
-
-São decisões da gerência que o sistema precisa respeitar.
-
-| Política | Como aparece no modelo |
-|---|---|
-| Só o gerente cadastra e altera tarifas. | Perfil de acesso do funcionário (RNF01) |
-| Só o gerente aprova o credenciamento de um prestador, e só com CNH válida e compatível com o guincho. | Situação do prestador só passa para "ativo" pelo perfil gerente |
-| O desconto numa OS não pode passar de 10% do valor base somado aos adicionais. | Atributo desconto da OS |
-| Cancelar antes de algum prestador aceitar não custa nada. Se o cliente cancelar depois que o prestador já saiu, paga multa de 20% do valor base. Se quem cancelar for o prestador ou a central, o cliente não paga multa. | Entidade Cancelamento (tipo_responsavel e valor_multa) e status da solicitação |
-| A isenção de multa só pode ser dada pelo gerente. | Relacionamento AUTORIZA, entre Funcionário e Cancelamento |
-| O aviso ao prestador expira em 3 minutos sem resposta. Depois de três rodadas sem aceite, a central é alertada e resolve o chamado manualmente. | Atributos do relacionamento NOTIFICA |
-| Carro blindado só pode ser levado por guincho plataforma com capacidade para o peso. | Atributo blindado do veículo e compatibilidade entre tipos |
-| Prestador com média abaixo de 3,0 nas últimas 20 OS fica suspenso até a gerência analisar. | Avaliação ligada à OS e situação do prestador |
-| Se o prestador cancelar uma OS, a central abre uma nova solicitação para o cliente, com prioridade. | RN19 (uma OS por solicitação) e processo P7 |
-| Ordens de serviço, pagamentos e cancelamentos não podem ser apagados, só ter o status alterado. | Histórico de status (RNF03) |
-| Dados pessoais dos clientes só ficam visíveis para quem precisa deles no trabalho. | Perfil de acesso (RNF01) e LGPD (RNF08) |
-| Formas aceitas: Pix, crédito, débito e dinheiro. O pagamento em dinheiro precisa ser confirmado pelo prestador no aplicativo. | Entidade Forma_Pagamento e status do pagamento |
-
----
-## 10. Fluxogramas
-
-Os fluxogramas mostram como os processos da seção 5 vão funcionar com o sistema. As decisões de cada fluxo seguem as regras da seção 8 e as políticas da seção 9.
-
-### 10.1 Visão geral integrada
-
-Mostra a ligação entre os processos. As linhas tracejadas são processos que fornecem dados para outros.
+### 4.2 Fluxo geral
 
 ```mermaid
 flowchart TD
@@ -249,8 +118,8 @@ flowchart TD
     D --> E{"Algum prestador aceitou?"}
     E -->|Não| F["Central trata o chamado manualmente"]
     F --> Z(["Fim"])
-    E -->|Sim| G["P5 - OS aberta e executada"]
-    G --> H{"OS cancelada antes de finalizar?"}
+    E -->|Sim| G["P5 - O.S. aberta e executada"]
+    G --> H{"O.S. cancelada antes de finalizar?"}
     H -->|Sim| I["P7 - Cancelamento registrado"]
     I --> J{"Há multa a cobrar?"}
     J -->|Não| Z
@@ -262,634 +131,675 @@ flowchart TD
     N["P8 - Tarifas vigentes"] -.-> C
 ```
 
-### 10.2 Credenciamento de prestador e guincho (P2)
-
-```mermaid
-flowchart TD
-    A(["Início"]) --> B["Prestador envia dados e documentos"]
-    B --> C{"CPF já cadastrado?"}
-    C -->|Sim| D["Atualizar cadastro existente"]
-    C -->|Não| E["Cadastrar prestador com situação em análise"]
-    D --> F{"Trabalha por empresa parceira?"}
-    E --> F
-    F -->|Sim| G{"Empresa já cadastrada?"}
-    G -->|Não| H["Cadastrar empresa parceira"]
-    G -->|Sim| I["Vincular prestador à empresa"]
-    H --> I
-    F -->|Não| J["Registrar como autônomo"]
-    I --> K["Cadastrar guincho com tipo e capacidade"]
-    J --> K
-    K --> L["Registrar vínculo prestador-guincho com data de início"]
-    L --> M{"Gerente aprova? CNH válida e compatível"}
-    M -->|Sim| N["Situação do prestador: ativo"]
-    M -->|Não| O["Situação mantida em análise e prestador avisado"]
-    N --> Z(["Fim"])
-    O --> Z
-```
-
-### 10.3 Solicitação de reboque (P3)
-
-```mermaid
-flowchart TD
-    A(["Início"]) --> B{"Pedido pelo aplicativo ou por telefone?"}
-    B -->|Aplicativo| C["Cliente abre a solicitação"]
-    B -->|Telefone| D["Atendente abre a solicitação e fica registrado"]
-    C --> E{"Cliente cadastrado?"}
-    D --> E
-    E -->|Não| F["Cadastrar cliente - P1"]
-    E -->|Sim| G{"Veículo cadastrado?"}
-    F --> G
-    G -->|Não| H["Cadastrar veículo e tipo"]
-    G -->|Sim| I["Informar veículo, serviço, origem e destino"]
-    H --> I
-    I --> J["Calcular distância"]
-    J --> K["Buscar tarifa vigente para tipo de veículo e serviço"]
-    K --> L["Calcular e registrar valor estimado"]
-    L --> M{"Cliente aceita o valor?"}
-    M -->|Não| N["Solicitação cancelada sem custo"]
-    M -->|Sim| O["Solicitação aguardando prestador"]
-    N --> Z(["Fim"])
-    O --> P["Seguir para o despacho - P4"]
-    P --> Z
-```
-
-### 10.4 Despacho do prestador (P4)
-
-```mermaid
-flowchart TD
-    A(["Início"]) --> B["Filtrar prestadores ativos com guincho compatível"]
-    B --> C{"Há prestadores disponíveis?"}
-    C -->|Não| K["Alertar a central"]
-    C -->|Sim| D["Enviar notificação e registrar data de envio"]
-    D --> E["Aguardar respostas por até 3 minutos"]
-    E --> F{"Algum prestador aceitou?"}
-    F -->|Não| G["Marcar notificações como recusadas ou expiradas"]
-    G --> H{"Já foram 3 rodadas?"}
-    H -->|Não| B
-    H -->|Sim| K
-    K --> L["Atendente trata o chamado manualmente"]
-    L --> Z(["Fim"])
-    F -->|Sim| I["Registrar aceite do primeiro prestador e encerrar as demais notificações"]
-    I --> J["Gerar OS com prestador, guincho e tarifa vigente"]
-    J --> M["Registrar status aberta no histórico"]
-    M --> Z
-```
-
-### 10.5 Execução do atendimento (P5)
-
-```mermaid
-flowchart TD
-    A(["Início"]) --> B["OS aberta"]
-    B --> C["Prestador inicia deslocamento - status em deslocamento"]
-    C --> D["Prestador chega ao local - status no local"]
-    D --> E{"Há adicionais? rodovia, madrugada, domingo ou feriado"}
-    E -->|Sim| F["Registrar valores adicionais"]
-    E -->|Não| G["Executar o serviço ou carregar o veículo"]
-    F --> G
-    G --> H{"Serviço exige transporte?"}
-    H -->|Sim| I["Transportar até o destino - status em transporte"]
-    H -->|Não| J["Registrar data de finalização - status finalizada"]
-    I --> J
-    J --> K["Seguir para pagamento - P6"]
-    K --> Z(["Fim"])
-```
-
-Cada mudança de status neste fluxo gera um registro no histórico da OS (RN22).
-
-### 10.6 Pagamento e avaliação (P6)
-
-```mermaid
-flowchart TD
-    A(["Início"]) --> B["OS finalizada"]
-    B --> C{"Cliente pediu desconto?"}
-    C -->|Sim| D{"Desconto de até 10%?"}
-    D -->|Sim| E["Registrar desconto"]
-    D -->|Não| F["Desconto recusado"]
-    C -->|Não| G["Calcular valor final"]
-    E --> G
-    F --> G
-    G --> H["Cliente escolhe a forma de pagamento"]
-    H --> I["Registrar pagamento como pendente"]
-    I --> J{"Pagamento aprovado?"}
-    J -->|Não| K["Pagamento recusado"]
-    K --> L{"Cliente tenta novamente?"}
-    L -->|Sim| H
-    L -->|Não| M["OS pendente de pagamento e financeiro avisado"]
-    M --> Z(["Fim"])
-    J -->|Sim| N{"Total aprovado igual ao valor final?"}
-    N -->|Não| H
-    N -->|Sim| O["OS encerrada - registro no histórico"]
-    O --> P["Enviar pedido de avaliação ao cliente"]
-    P --> Q{"Cliente avaliou?"}
-    Q -->|Sim| R["Registrar nota de 1 a 5 e comentário"]
-    Q -->|Não| Z
-    R --> Z
-```
-
-### 10.7 Cancelamento (P7)
-
-```mermaid
-flowchart TD
-    A(["Início"]) --> B["Pedido de cancelamento"]
-    B --> C{"Já existe OS?"}
-    C -->|Não| D["Solicitação cancelada sem custo"]
-    D --> Z(["Fim"])
-    C -->|Sim| E{"OS já finalizada?"}
-    E -->|Sim| F["Cancelamento não permitido"]
-    F --> Z
-    E -->|Não| G["Registrar cancelamento com responsável, motivo e data"]
-    G --> H{"Quem cancelou?"}
-    H -->|Prestador| I["Sem multa e central abre nova solicitação"]
-    H -->|Central| J["Sem multa"]
-    H -->|Cliente| K{"Prestador já estava em deslocamento?"}
-    K -->|Não| J
-    K -->|Sim| L["Calcular multa de 20% do valor base"]
-    L --> M{"Cliente pediu isenção?"}
-    M -->|Não| N["Cobrar multa - P6"]
-    M -->|Sim| O{"Gerente autoriza?"}
-    O -->|Sim| P["Multa zerada e gerente registrado"]
-    O -->|Não| N
-    I --> Q["Status cancelada no histórico"]
-    J --> Q
-    N --> Q
-    P --> Q
-    Q --> Z
-```
-
-### 10.8 Manutenção de tarifas (P8)
-
-```mermaid
-flowchart TD
-    A(["Início"]) --> B{"Funcionário tem perfil de gerente?"}
-    B -->|Não| C["Acesso negado"]
-    C --> Z(["Fim"])
-    B -->|Sim| D["Escolher tipo de veículo e serviço"]
-    D --> E{"Existe tarifa ativa para a combinação?"}
-    E -->|Sim| F["Encerrar a vigência da tarifa atual"]
-    E -->|Não| G["Cadastrar nova tarifa com início de vigência"]
-    F --> G
-    G --> H["OS já abertas mantêm a tarifa anterior"]
-    H --> Z
-```
-
----
-## 11. Entidades
-
-Chegamos às entidades procurando os substantivos dos requisitos e das regras. Só ficou como entidade o que tem informação própria que a empresa precisa guardar.
-
-| Entidade | O que representa | Por que existe | Origem |
-|---|---|---|---|
-| **Cliente** | Pessoa que solicita o atendimento | É a origem de toda solicitação e o dono dos veículos atendidos | RF01, RN01 |
-| **Veiculo** | Veículo do cliente que será rebocado ou socorrido | O tipo e as características do veículo definem o guincho e a tarifa | RF02, RN01, RN04 |
-| **Tipo_Veiculo** | Categoria do veículo (carro, moto, utilitário, van...) | Padroniza a classificação usada no preço e na compatibilidade, evitando digitações diferentes | RF03, RN04, RN10 |
-| **Tipo_Guincho** | Categoria do guincho (plataforma, asa-delta, leve, pesado) | Define quais veículos cada guincho pode transportar | RF04, RN08, RN10 |
-| **Empresa** | Pequena empresa parceira à qual alguns prestadores pertencem | Parte da rede é formada por empresas, e é preciso saber a quem o prestador está ligado | RF05, RN06 |
-| **Prestador** | Guincheiro credenciado que executa os atendimentos | É quem recebe as notificações e executa as ordens de serviço | RF06, RN06 |
-| **Veiculo_Reboque** | Guincho usado nos atendimentos | O guincho tem placa, capacidade e tipo próprios e pode passar por mais de um prestador | RF07, RN08, RN09 |
-| **Servico_Reboque** | Serviço oferecido (reboque urbano, troca de pneu...) | O serviço define o preço e o tipo de atendimento | RF09, RN14 |
-| **Tarifa** | Preço de um serviço para um tipo de veículo em um período | Os preços mudam com o tempo e dependem de duas informações ao mesmo tempo | RF10, RN11, RN12 |
-| **Solicitacao** | Pedido de socorro feito pelo cliente | Guarda o chamado mesmo quando nenhum prestador aceita, que era o problema dos chamados perdidos | RF11, RN13 a RN16 |
-| **Ordem_Servico** | Atendimento efetivo, criado quando um prestador aceita | Concentra quem atendeu, com qual guincho, por qual preço e com qual resultado | RF14, RN19 a RN21 |
-| **Historico_Status** | Cada mudança de status de uma OS | Permite acompanhar o atendimento e saber quem alterou o quê e quando | RF15, RN22, RN23 |
-| **Cancelamento** | Cancelamento de uma OS | Guarda responsável, motivo e multa, que não cabem na própria OS sem deixá-la cheia de campos vazios | RF16, RN25, RN26 |
-| **Pagamento** | Cada tentativa de pagamento de uma OS | Uma OS pode ter mais de uma tentativa, e cada uma precisa ficar registrada | RF17, RN27 |
-| **Forma_Pagamento** | Meio de pagamento (Pix, crédito, débito, dinheiro) | Padroniza os meios aceitos e permite incluir novos por cadastro | RN28 |
-| **Avaliacao** | Opinião do cliente sobre o atendimento | Permite medir a qualidade dos prestadores | RF18, RN30 |
-| **Funcionario** | Pessoa da central (atendente, financeiro, gerente) | Controla o acesso e identifica quem abriu chamados, alterou status e autorizou isenções | RF19, RNF01, RN15, RN23, RN26 |
-
-Algumas coisas ficaram de fora como entidade. O *endereço* ficou como atributo composto do Cliente, porque não é compartilhado entre clientes nem existe sozinho. O *telefone* virou atributo multivalorado. O *status* ficou como atributo porque os valores são poucos e fixos. Já a notificação, o vínculo prestador–guincho e a compatibilidade viraram atributos de relacionamento (seção 14.3).
-
 ---
 
-## 12. Atributos
+## 5. Requisitos e regras de negócio
 
-**Legenda de classificação:** **(ID)** identificador · **(S)** simples · **(C)** composto · **(M)** multivalorado · **(D)** derivado. A descrição completa de cada atributo está no dicionário de dados (seção 15).
+O documento completo dos requisitos está em [docs/requisitos/FeliGuinchos_RF_RNF_Corrigido.pdf](docs/requisitos/FeliGuinchos_RF_RNF_Corrigido.pdf).
 
-| Entidade | Atributos |
+### 5.1 Requisitos funcionais
+
+| Código | Requisito |
 |---|---|
-| Cliente | id_cliente (ID), nome (S), cpf (S), email (S), senha (S), telefone (M), endereco (C: logradouro, numero, complemento, bairro, cidade, uf, cep), data_cadastro (S), status (S) |
-| Veiculo | id_veiculo (ID), placa (S), marca (S), modelo (S), ano (S), cor (S), blindado (S) |
-| Tipo_Veiculo | id_tipo_veiculo (ID), descricao (S), categoria (S) |
-| Tipo_Guincho | id_tipo_guincho (ID), descricao (S), capacidade_max_kg (S) |
-| Empresa | id_empresa (ID), razao_social (S), cnpj (S), telefone (S), email (S) |
-| Prestador | id_prestador (ID), nome (S), cpf (S), cnh (S), telefone (S), email (S), data_cadastro (S), status (S) |
-| Veiculo_Reboque | id_veiculo_reboque (ID), placa (S), marca (S), modelo (S), ano (S), capacidade_kg (S), status (S) |
-| Servico_Reboque | id_servico_reboque (ID), descricao (S), tipo_servico (S), status (S) |
-| Tarifa | id_tarifa (ID), valor_base (S), valor_km (S), adicional_madrugada (S), adicional_domingo (S), adicional_feriado (S), adicional_rodovia (S), vigencia_inicio (S), vigencia_fim (S), status (S) |
-| Solicitacao | id_solicitacao (ID), data_solicitacao (S), endereco_origem (S), endereco_destino (S), distancia_km (S), observacoes (S), valor_estimado (S), status (S) |
-| Ordem_Servico | id_os (ID), data_inicio (S), data_previsao (S), data_finalizacao (S), status_os (S), observacoes (S), valor_base (S), valor_adicionais (S), desconto (S), valor_final (D) |
-| Historico_Status | id_historico (ID), status (S), data_hora (S), observacao (S) |
-| Cancelamento | id_cancelamento (ID), tipo_responsavel (S), motivo (S), data_hora (S), valor_multa (S) |
-| Pagamento | id_pagamento (ID), valor (S), data_pagamento (S), status (S), comprovante (S) |
-| Forma_Pagamento | id_forma_pagamento (ID), descricao (S), tipo (S) |
-| Avaliacao | id_avaliacao (ID), nota (S), comentario (S), data_avaliacao (S) |
-| Funcionario | id_funcionario (ID), nome (S), cpf (S), email (S), cargo (S), perfil_acesso (S), senha (S), status (S) |
+| RF01 | Cadastro de clientes, pessoas físicas e empresas |
+| RF02 | Cadastro de prestadores, guinchos e situação de aprovação |
+| RF03 | Cadastro de veículos dos clientes e veículos de reboque |
+| RF04 | Cadastro, consulta, alteração e desativação dos serviços |
+| RF05 | Registro da solicitação com solicitante, veículo, serviço, origem e destino |
+| RF06 | Cálculo do valor estimado e do valor final pela tarifa e pelos adicionais |
+| RF07 | Verificação de disponibilidade, aprovação e compatibilidade do guincho |
+| RF08 | Envio da solicitação aos prestadores, registrando cada notificação |
+| RF09 | Aceite ou recusa pelo prestador, sem dois aceites na mesma solicitação |
+| RF10 | Abertura da O.S. só depois de um aceite válido |
+| RF11 | Atualização do status da O.S. com histórico |
+| RF12 | Acompanhamento da solicitação e da O.S. pelo cliente |
+| RF13 | Registro da conclusão, sem a O.S. finalizada voltar a um status anterior |
+| RF14 | Histórico de solicitações, O.S., notificações, status e cancelamentos |
+| RF15 | Uma avaliação por O.S. concluída, com nota de 1 a 5 |
+| RF16 | Controle de cancelamentos com responsável, motivo e multa |
+| RF17 | Controle financeiro de pagamentos, formas de pagamento e repasses |
+| RF18 | Relatórios operacionais e financeiros por período |
+| RF19 | Controle dos documentos dos prestadores |
+| RF20 | Controle da disponibilidade dos prestadores |
+| RF21 | Indicadores financeiros como faturamento mensal e ticket médio |
 
-**Atributos de relacionamento**
+### 5.2 Requisitos não funcionais
 
-| Relacionamento | Atributos |
-|---|---|
-| Compativel (Tipo_Veiculo × Tipo_Guincho) | observacao (S) |
-| Opera (Prestador × Veiculo_Reboque) | data_inicio (S), data_fim (S), status (S) |
-| Notifica (Solicitacao × Prestador) | data_envio (S), data_resposta (S), status (S) |
-
----
-
-## 13. Relacionamentos
-
-Os relacionamentos saíram dos verbos das regras de negócio.
-
-| Nº | Relacionamento | Entidades | Significado | Regra |
-|---|---|---|---|---|
-| 1 | POSSUI | Cliente e Veiculo | O cliente possui veículos cadastrados | RN01 |
-| 2 | CLASSIFICADO | Veiculo e Tipo_Veiculo | O veículo é classificado por um tipo | RN04 |
-| 3 | COMPATIVEL | Tipo_Veiculo e Tipo_Guincho | Um tipo de guincho pode transportar um tipo de veículo | RN10 |
-| 4 | REFERE-SE | Veiculo e Solicitacao | A solicitação se refere a um veículo | RN13 |
-| 5 | TIPO_DE | Solicitacao e Servico_Reboque | A solicitação pede um serviço | RN14 |
-| 6 | ABRE | Funcionario e Solicitacao | O atendente abre a solicitação pela central | RN15 |
-| 7 | DEFINE | Tipo_Veiculo e Tarifa | A tarifa é definida para um tipo de veículo | RN11 |
-| 8 | PRECIFICA | Servico_Reboque e Tarifa | A tarifa dá o preço de um serviço | RN11 |
-| 9 | VINCULA | Empresa e Prestador | O prestador pode estar vinculado a uma empresa parceira | RN06 |
-| 10 | CLASSIFICA | Tipo_Guincho e Veiculo_Reboque | O guincho é classificado por um tipo | RN08 |
-| 11 | OPERA | Prestador e Veiculo_Reboque | O prestador opera guinchos em determinados períodos | RN09 |
-| 12 | NOTIFICA | Solicitacao e Prestador | A solicitação é enviada aos prestadores | RN17, RN18 |
-| 13 | GERA | Solicitacao e Ordem_Servico | A solicitação aceita gera a OS | RN19 |
-| 14 | APLICA | Tarifa e Ordem_Servico | A OS aplica a tarifa vigente | RN21 |
-| 15 | EXECUTA | Prestador e Ordem_Servico | O prestador executa a OS | RN20 |
-| 16 | UTILIZA | Veiculo_Reboque e Ordem_Servico | A OS utiliza um guincho | RN20 |
-| 17 | REGISTRA | Ordem_Servico e Historico_Status | A OS registra suas mudanças de status | RN22 |
-| 18 | ALTERA | Funcionario e Historico_Status | O funcionário altera o status da OS | RN23 |
-| 19 | CANCELADA | Ordem_Servico e Cancelamento | A OS pode ser cancelada | RN25 |
-| 20 | AUTORIZA | Funcionario e Cancelamento | O gerente autoriza a isenção de multa | RN26 |
-| 21 | PAGA | Ordem_Servico e Pagamento | A OS é paga por um ou mais pagamentos | RN27 |
-| 22 | PAGO_COM | Forma_Pagamento e Pagamento | O pagamento usa uma forma de pagamento | RN28 |
-| 23 | AVALIADA | Ordem_Servico e Avaliacao | A OS recebe a avaliação do cliente | RN30 |
-
----
-
-## 14. Cardinalidades
-
-Analisamos cada relacionamento nos dois sentidos, pelo método "vá e volte".
-
-Uma observação sobre a leitura do DER: usamos a notação de Chen com cardinalidade (mínima, máxima), no padrão do brModelo. Nesse padrão, a cardinalidade que fica junto de uma entidade diz quantas ocorrências dela podem se ligar a uma ocorrência do outro lado. Por exemplo, o (1,1) junto de Cliente, em POSSUI, quer dizer que cada veículo tem exatamente um cliente. Para não ficar dúvida, a tabela abaixo escreve a ida e a volta por extenso.
-
-### 14.1 Tabela de cardinalidades
-
-| Nº | Relacionamento | Ida | Volta | Tipo | Regra |
-|---|---|---|---|---|---|
-| 1 | Cliente POSSUI Veiculo | Um cliente possui quantos veículos? **(0,N)** | Um veículo pertence a quantos clientes? **(1,1)** | 1:N | RN01 |
-| 2 | Veiculo CLASSIFICADO Tipo_Veiculo | Um veículo tem quantos tipos? **(1,1)** | Um tipo classifica quantos veículos? **(0,N)** | N:1 | RN04 |
-| 3 | Tipo_Veiculo COMPATIVEL Tipo_Guincho | Um tipo de veículo é compatível com quantos tipos de guincho? **(1,N)** | Um tipo de guincho atende quantos tipos de veículo? **(0,N)** | N:N | RN10 |
-| 4 | Veiculo REFERE-SE Solicitacao | Um veículo tem quantas solicitações? **(0,N)** | Uma solicitação se refere a quantos veículos? **(1,1)** | 1:N | RN13 |
-| 5 | Solicitacao TIPO_DE Servico_Reboque | Uma solicitação pede quantos serviços? **(1,1)** | Um serviço aparece em quantas solicitações? **(0,N)** | N:1 | RN14 |
-| 6 | Funcionario ABRE Solicitacao | Um funcionário abre quantas solicitações? **(0,N)** | Uma solicitação é aberta por quantos funcionários? **(0,1)** | 1:N | RN15 |
-| 7 | Tipo_Veiculo DEFINE Tarifa | Um tipo de veículo tem quantas tarifas? **(0,N)** | Uma tarifa vale para quantos tipos de veículo? **(1,1)** | 1:N | RN11 |
-| 8 | Servico_Reboque PRECIFICA Tarifa | Um serviço tem quantas tarifas? **(0,N)** | Uma tarifa vale para quantos serviços? **(1,1)** | 1:N | RN11 |
-| 9 | Empresa VINCULA Prestador | Uma empresa tem quantos prestadores? **(0,N)** | Um prestador pertence a quantas empresas? **(0,1)** | 1:N | RN06 |
-| 10 | Tipo_Guincho CLASSIFICA Veiculo_Reboque | Um tipo classifica quantos guinchos? **(0,N)** | Um guincho tem quantos tipos? **(1,1)** | 1:N | RN08 |
-| 11 | Prestador OPERA Veiculo_Reboque | Um prestador opera quantos guinchos? **(0,N)** | Um guincho é operado por quantos prestadores? **(0,N)** | N:N | RN09 |
-| 12 | Solicitacao NOTIFICA Prestador | Uma solicitação é enviada a quantos prestadores? **(0,N)** | Um prestador recebe quantas solicitações? **(0,N)** | N:N | RN17 |
-| 13 | Solicitacao GERA Ordem_Servico | Uma solicitação gera quantas OS? **(0,1)** | Uma OS vem de quantas solicitações? **(1,1)** | 1:1 | RN19 |
-| 14 | Tarifa APLICA Ordem_Servico | Uma tarifa é aplicada em quantas OS? **(0,N)** | Uma OS aplica quantas tarifas? **(1,1)** | 1:N | RN21 |
-| 15 | Prestador EXECUTA Ordem_Servico | Um prestador executa quantas OS? **(0,N)** | Uma OS é executada por quantos prestadores? **(1,1)** | 1:N | RN20 |
-| 16 | Veiculo_Reboque UTILIZA Ordem_Servico | Um guincho é usado em quantas OS? **(0,N)** | Uma OS usa quantos guinchos? **(1,1)** | 1:N | RN20 |
-| 17 | Ordem_Servico REGISTRA Historico_Status | Uma OS tem quantos registros de status? **(1,N)** | Um registro pertence a quantas OS? **(1,1)** | 1:N | RN22 |
-| 18 | Funcionario ALTERA Historico_Status | Um funcionário faz quantos registros? **(0,N)** | Um registro é feito por quantos funcionários? **(0,1)** | 1:N | RN23 |
-| 19 | Ordem_Servico CANCELADA Cancelamento | Uma OS tem quantos cancelamentos? **(0,1)** | Um cancelamento se refere a quantas OS? **(1,1)** | 1:1 | RN25 |
-| 20 | Funcionario AUTORIZA Cancelamento | Um gerente autoriza quantas isenções? **(0,N)** | Um cancelamento tem quantos autorizadores? **(0,1)** | 1:N | RN26 |
-| 21 | Ordem_Servico PAGA Pagamento | Uma OS tem quantos pagamentos? **(0,N)** | Um pagamento pertence a quantas OS? **(1,1)** | 1:N | RN27 |
-| 22 | Forma_Pagamento PAGO_COM Pagamento | Uma forma é usada em quantos pagamentos? **(0,N)** | Um pagamento usa quantas formas? **(1,1)** | 1:N | RN28 |
-| 23 | Ordem_Servico AVALIADA Avaliacao | Uma OS recebe quantas avaliações? **(0,1)** | Uma avaliação se refere a quantas OS? **(1,1)** | 1:1 | RN30 |
-
-### 14.2 Verificação dos relacionamentos N:N
-
-Fizemos a pergunta do manual para os pares em que os dois lados podiam ser "vários".
-
-| Par | A pode ter vários B? | B pode ter vários A? | Conclusão |
-|---|---|---|---|
-| Tipo_Veiculo × Tipo_Guincho | Sim. Um carro de passeio pode ir em plataforma ou asa-delta | Sim. A plataforma leva carro, van e moto | **N:N** (COMPATIVEL) |
-| Prestador × Veiculo_Reboque | Sim. O prestador pode trocar de guincho ou usar mais de um | Sim. Um guincho de empresa parceira passa por vários motoristas | **N:N** (OPERA) |
-| Solicitacao × Prestador | Sim. O chamado é enviado a vários prestadores | Sim. O prestador recebe vários chamados ao longo do dia | **N:N** (NOTIFICA) |
-| Cliente × Prestador | Sim | Sim | **Não modelado diretamente.** A ligação já existe pelo caminho Cliente → Veículo → Solicitação → OS → Prestador. Um relacionamento direto seria redundante. |
-| Ordem_Servico × Forma_Pagamento | Sim, com pagamentos em formas diferentes | Sim | **Resolvido pela entidade Pagamento**, que tem identidade e atributos próprios (valor, data, comprovante) |
-
-### 14.3 Atributos dos relacionamentos
-
-| Relacionamento | Atributos | Por que pertencem ao relacionamento |
+| Código | Tipo | Requisito |
 |---|---|---|
-| COMPATIVEL | observacao | A observação ("somente com cinta de roda", por exemplo) descreve a combinação dos dois tipos, e não cada tipo isoladamente. |
-| OPERA | data_inicio, data_fim, status | O período não é do prestador nem do guincho, e sim do vínculo entre eles. O mesmo prestador pode operar o mesmo guincho em períodos diferentes. |
-| NOTIFICA | data_envio, data_resposta, status | Cada prestador responde de um jeito à mesma solicitação: um aceita, outro recusa, outro deixa expirar. A resposta só existe para o par solicitação–prestador. |
+| RNF01 | Segurança | Autenticação e senhas guardadas como hash |
+| RNF02 | Controle de acesso | Acesso conforme o perfil de cada conta |
+| RNF03 | Privacidade | Dados pessoais tratados conforme a LGPD |
+| RNF04 | Registro das operações | Registro de quem fez cada operação, com data e hora |
+| RNF05 | Desempenho | Tempo das consultas medido em teste |
+| RNF06 | Disponibilidade | Funcionamento 24 horas, com monitoramento |
+| RNF07 | Confiabilidade | Dados de solicitações, O.S. e pagamentos consistentes mesmo com falhas |
+| RNF08 | Usabilidade | Telas adequadas para cliente, prestador e equipe da Feliguinchos |
+| RNF09 | Integridade | Restrições no banco para impedir dados inválidos |
+| RNF10 | Rastreabilidade | Saber quem alterou cada registro e em que ordem |
+| RNF11 | Backup | Cópias periódicas com teste de restauração |
+| RNF12 | Tempo de resposta | Monitorar o tempo de envio das solicitações aos prestadores |
+| RNF13 | Controle por perfil | Permissões diferentes para cada tipo de usuário |
+| RNF14 | Integração | Cadastro, solicitações, O.S. e financeiro na mesma base |
 
----
-## 15. Dicionário de dados conceitual
+### 5.3 Regras de negócio
 
-Dicionário preliminar, no nível conceitual. Tipos de dados e tamanho dos campos ficam para o modelo lógico e o físico, nas próximas entregas.
+Clientes, prestadores e guinchos:
 
-**Classificação:** ID = identificador · S = simples · C = composto · M = multivalorado · D = derivado.
+- CPF, e-mail, CNPJ e placa não podem se repetir, e toda pessoa precisa ter pelo menos um telefone.
+- Uma mesma pessoa pode ser cliente, funcionário e prestador sem precisar ser cadastrada de novo.
+- O prestador pode ser autônomo ou ligado a uma única empresa parceira. Ele só fica ATIVO com a CNH preenchida.
+- Um prestador pode operar vários guinchos e um guincho pode passar por vários prestadores. Cada vínculo tem data de início e de fim.
+- A compatibilidade é definida entre tipo de guincho e tipo de veículo. Todo tipo de veículo precisa ter pelo menos um tipo de guincho compatível, e a capacidade de um guincho não pode passar da capacidade do seu tipo.
 
-### Cliente
-Pessoa que solicita atendimento à Feliguinchos.
+Tarifas e solicitação:
 
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_cliente | Identificador do cliente | ID | Sim | Único, gerado pelo sistema |
-| nome | Nome completo | S | Sim | - |
-| cpf | CPF do cliente | S | Sim | Não pode se repetir (RN03) |
-| email | E-mail de contato e acesso ao aplicativo | S | Sim | Não pode se repetir (RN03) |
-| senha | Senha de acesso ao aplicativo | S | Sim | Armazenada criptografada (RNF02) |
-| telefone | Telefones de contato | M | Sim | Pelo menos um; pode haver vários (RN02) |
-| endereco | Endereço residencial | C | Sim | Composto por logradouro, numero, complemento (opcional), bairro, cidade, uf e cep |
-| data_cadastro | Data em que o cliente foi cadastrado | S | Sim | Preenchida pelo sistema |
-| status | Situação do cadastro | S | Sim | Valores: ativo, inativo, bloqueado |
+- Cada tarifa vale para um tipo de veículo e um serviço, dentro de um período. Duas tarifas da mesma combinação não podem valer ao mesmo tempo.
+- O valor estimado é calculado com a tarifa vigente e fica gravado, porque é o valor que foi passado ao cliente.
+- A solicitação pode ser aberta pelo cliente no aplicativo ou por um atendente. Só cliente ATIVO pode pedir, e só serviço ATIVO pode ser pedido.
+- Só prestadores ATIVOS recebem notificação. Cada solicitação tem no máximo um aceite e gera no máximo uma O.S.
 
-### Veiculo
-Veículo do cliente atendido pelo serviço.
+Ordem de serviço:
 
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_veiculo | Identificador do veículo | ID | Sim | Único |
-| placa | Placa do veículo | S | Sim | Não pode se repetir (RN05) |
-| marca | Fabricante | S | Sim | - |
-| modelo | Modelo | S | Sim | - |
-| ano | Ano de fabricação | S | Sim | - |
-| cor | Cor predominante | S | Sim | Ajuda o prestador a identificar o veículo no local |
-| blindado | Indica se o veículo é blindado | S | Sim | Sim ou não. Carro blindado só pode ir em guincho plataforma com capacidade para o peso (seção 9) |
+- O prestador da O.S. tem que ser o que aceitou. O guincho tem que estar vinculado a ele na data e ser compatível com o veículo, e a tarifa tem que ser do mesmo tipo de veículo e serviço.
+- Toda O.S. começa com o registro de aceite no histórico. A ordem dos status é ACEITA, A_CAMINHO, NO_LOCAL, EM_ATENDIMENTO e FINALIZADA. A O.S. pode ser cancelada em qualquer etapa antes de finalizar, e depois de finalizada não volta.
+- Valor total = valor base + adicionais - desconto. O desconto não pode ser maior que o valor bruto.
 
-### Tipo_Veiculo
-Categoria usada para definir preço e compatibilidade com guinchos.
+Cancelamento, pagamento e avaliação:
 
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_tipo_veiculo | Identificador do tipo | ID | Sim | Único |
-| descricao | Nome do tipo (ex.: carro de passeio, moto, van) | S | Sim | Não pode se repetir |
-| categoria | Agrupamento por porte | S | Sim | Valores: leve, médio, pesado |
+- Cada O.S. cancelada tem no máximo um cancelamento, com quem cancelou (cliente, prestador ou a central, que é a equipe da Feliguinchos), motivo e multa. A isenção da multa precisa de autorização de um funcionário.
+- Uma O.S. pode ter várias tentativas de pagamento, cada uma em uma forma (Pix, crédito, débito, dinheiro ou faturado em boleto para PJ).
+- Só O.S. finalizada pode ser avaliada, uma vez, com nota de 1 a 5.
+- O.S., pagamentos e cancelamentos não são apagados. As exclusões são bloqueadas nas chaves estrangeiras.
 
-### Tipo_Guincho
-Categoria do guincho.
+### 5.4 Regras implementadas no banco (R1 a R16)
 
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_tipo_guincho | Identificador do tipo | ID | Sim | Único |
-| descricao | Nome do tipo (ex.: plataforma, asa-delta, reboque leve) | S | Sim | Não pode se repetir |
-| capacidade_max_kg | Peso máximo suportado por esse tipo | S | Sim | Maior que zero |
+Essas regras foram levantadas no Modelo Lógico e depois implementadas no banco.
 
-### Empresa
-Pequena empresa parceira à qual prestadores podem estar vinculados.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_empresa | Identificador da empresa | ID | Sim | Único |
-| razao_social | Razão social | S | Sim | - |
-| cnpj | CNPJ | S | Sim | Não pode se repetir (RN07) |
-| telefone | Telefone comercial | S | Sim | - |
-| email | E-mail comercial | S | Não | - |
-
-### Prestador
-Guincheiro credenciado que executa os atendimentos.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_prestador | Identificador do prestador | ID | Sim | Único |
-| nome | Nome completo | S | Sim | - |
-| cpf | CPF | S | Sim | Não pode se repetir (RN07) |
-| cnh | Número da CNH | S | Sim | Precisa estar válida e ser compatível com o guincho (seção 9) |
-| telefone | Telefone para contato em campo | S | Sim | - |
-| email | E-mail | S | Sim | - |
-| data_cadastro | Data do credenciamento | S | Sim | Preenchida pelo sistema |
-| status | Situação do prestador | S | Sim | Valores: em análise, ativo, suspenso, inativo. Só o gerente ativa |
-
-### Veiculo_Reboque
-Guincho utilizado nos atendimentos.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_veiculo_reboque | Identificador do guincho | ID | Sim | Único |
-| placa | Placa do guincho | S | Sim | Não pode se repetir |
-| marca | Fabricante | S | Sim | - |
-| modelo | Modelo | S | Sim | - |
-| ano | Ano de fabricação | S | Sim | - |
-| capacidade_kg | Capacidade real deste guincho | S | Sim | Não pode ser maior que a capacidade máxima do seu tipo |
-| status | Situação do guincho | S | Sim | Valores: disponível, em manutenção, inativo |
-
-### Servico_Reboque
-Serviço oferecido pela empresa.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_servico_reboque | Identificador do serviço | ID | Sim | Único |
-| descricao | Nome do serviço (ex.: reboque urbano, reboque em rodovia) | S | Sim | - |
-| tipo_servico | Natureza do serviço | S | Sim | Valores: reboque, socorro mecânico, troca de pneu, carga de bateria, pane seca |
-| status | Situação do serviço | S | Sim | Valores: ativo, inativo. Serviço inativo não aparece em novas solicitações |
-
-### Tarifa
-Preço de um serviço para um tipo de veículo durante um período.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_tarifa | Identificador da tarifa | ID | Sim | Único |
-| valor_base | Valor fixo de saída | S | Sim | Maior que zero |
-| valor_km | Valor cobrado por quilômetro | S | Sim | Maior ou igual a zero |
-| adicional_madrugada | Percentual para atendimentos das 22h às 6h | S | Não | - |
-| adicional_domingo | Percentual para atendimentos aos domingos | S | Não | - |
-| adicional_feriado | Percentual para atendimentos em feriados | S | Não | - |
-| adicional_rodovia | Percentual para atendimentos em rodovia | S | Não | - |
-| vigencia_inicio | Data a partir da qual a tarifa vale | S | Sim | - |
-| vigencia_fim | Data em que a tarifa deixa de valer | S | Não | Vazia enquanto a tarifa estiver em vigor. Não pode haver sobreposição (RN12) |
-| status | Situação da tarifa | S | Sim | Valores: ativa, encerrada. Só o gerente altera |
-
-### Solicitacao
-Pedido de socorro feito pelo cliente.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_solicitacao | Identificador da solicitação | ID | Sim | Único |
-| data_solicitacao | Data e hora do pedido | S | Sim | Preenchida pelo sistema |
-| endereco_origem | Local onde o veículo está | S | Sim | Texto livre, pois pode ser um ponto de referência (ex.: "km 32 da Dutra, sentido RJ") |
-| endereco_destino | Local para onde o veículo será levado | S | Não | Vazio em serviços sem transporte (troca de pneu, bateria) |
-| distancia_km | Distância entre origem e destino | S | Não | Usada no cálculo do valor estimado |
-| observacoes | Informações extras do cliente | S | Não | - |
-| valor_estimado | Valor informado ao cliente antes do aceite | S | Sim | Calculado com a tarifa vigente e guardado como registro do que foi informado (RN16) |
-| status | Situação da solicitação | S | Sim | Valores: aguardando prestador, atendida, sem prestador, cancelada |
-
-### Ordem_Servico
-Atendimento efetivo, criado no aceite do prestador.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_os | Identificador da OS | ID | Sim | Único |
-| data_inicio | Data e hora da abertura da OS | S | Sim | Preenchida pelo sistema |
-| data_previsao | Previsão de chegada ao local | S | Sim | Informada pelo prestador no aceite |
-| data_finalizacao | Data e hora de conclusão | S | Não | Preenchida ao finalizar |
-| status_os | Status atual da OS | S | Sim | Valores: aberta, em deslocamento, no local, em transporte, finalizada, encerrada, cancelada. Cada mudança gera histórico (RN22) |
-| observacoes | Anotações do atendimento | S | Não | - |
-| valor_base | Valor calculado pela tarifa aplicada | S | Sim | Valor base da tarifa mais o valor por km multiplicado pela distância |
-| valor_adicionais | Soma dos adicionais aplicados | S | Não | Madrugada, domingo, feriado e rodovia |
-| desconto | Desconto concedido | S | Não | No máximo 10% de valor_base + valor_adicionais (seção 9) |
-| valor_final | Valor total a pagar | D | - | valor_base + valor_adicionais − desconto (RN24). Calculado, não armazenado |
-
-### Historico_Status
-Registro de cada mudança de status de uma OS.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_historico | Identificador do registro | ID | Sim | Único |
-| status | Status assumido pela OS | S | Sim | Mesmos valores de status_os |
-| data_hora | Momento da mudança | S | Sim | Preenchida pelo sistema |
-| observacao | Comentário sobre a mudança | S | Não | - |
-
-### Cancelamento
-Cancelamento de uma OS.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_cancelamento | Identificador do cancelamento | ID | Sim | Único |
-| tipo_responsavel | Quem pediu o cancelamento | S | Sim | Valores: cliente, prestador, central |
-| motivo | Motivo informado | S | Sim | - |
-| data_hora | Momento do cancelamento | S | Sim | - |
-| valor_multa | Multa cobrada | S | Sim | 20% do valor base quando o cliente cancela após o início do deslocamento. Zero nos outros casos ou quando o gerente libera a isenção (seção 9) |
-
-### Pagamento
-Cada tentativa de pagamento de uma OS.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_pagamento | Identificador do pagamento | ID | Sim | Único |
-| valor | Valor pago nesta tentativa | S | Sim | Maior que zero |
-| data_pagamento | Data e hora do pagamento | S | Sim | - |
-| status | Situação do pagamento | S | Sim | Valores: pendente, aprovado, recusado, estornado |
-| comprovante | Referência do comprovante (código Pix, autorização do cartão) | S | Não | Obrigatório quando aprovado, exceto em dinheiro |
-
-### Forma_Pagamento
-Meio de pagamento aceito.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_forma_pagamento | Identificador da forma | ID | Sim | Único |
-| descricao | Nome da forma (ex.: Pix, cartão de crédito) | S | Sim | Não pode se repetir |
-| tipo | Tipo de liquidação | S | Sim | Valores: eletrônico, presencial |
-
-### Avaliacao
-Avaliação do cliente sobre o atendimento.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_avaliacao | Identificador da avaliação | ID | Sim | Único |
-| nota | Nota dada pelo cliente | S | Sim | De 1 a 5 (RN30) |
-| comentario | Comentário livre | S | Não | - |
-| data_avaliacao | Data da avaliação | S | Sim | Só depois da finalização da OS |
-
-### Funcionario
-Pessoa que trabalha na central da Feliguinchos.
-
-| Atributo | Descrição | Classif. | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| id_funcionario | Identificador do funcionário | ID | Sim | Único |
-| nome | Nome completo | S | Sim | - |
-| cpf | CPF | S | Sim | Não pode se repetir |
-| email | E-mail usado para acesso ao sistema | S | Sim | Não pode se repetir |
-| cargo | Cargo na empresa | S | Sim | Ex.: atendente, auxiliar financeiro, gerente operacional |
-| perfil_acesso | Perfil que define o que pode ser feito no sistema | S | Sim | Valores: atendente, financeiro, gerente (RNF01) |
-| senha | Senha de acesso | S | Sim | Armazenada criptografada (RNF02) |
-| status | Situação do funcionário | S | Sim | Valores: ativo, inativo |
-
-### Atributos dos relacionamentos
-
-| Relacionamento | Atributo | Descrição | Obrigatório | Regra / Observação |
-|---|---|---|---|---|
-| COMPATIVEL | observacao | Condição especial da compatibilidade | Não | Ex.: "somente com cinta de roda" |
-| OPERA | data_inicio | Início do vínculo do prestador com o guincho | Sim | - |
-| OPERA | data_fim | Fim do vínculo | Não | Vazio enquanto o vínculo estiver ativo |
-| OPERA | status | Situação do vínculo | Sim | Valores: ativo, encerrado |
-| NOTIFICA | data_envio | Momento em que o prestador foi notificado | Sim | - |
-| NOTIFICA | data_resposta | Momento da resposta | Não | Vazio se a notificação expirar |
-| NOTIFICA | status | Resultado da notificação | Sim | Valores: pendente, aceita, recusada, expirada. Expira em 3 minutos sem resposta |
+| Regra | Descrição | Como foi feita |
+|---|---|---|
+| R1 | Nota de 1 a 5 | CHECK |
+| R2 | Valores e distâncias maiores ou iguais a zero, valor pago maior que zero, desconto até o valor bruto | CHECK |
+| R3 | Datas coerentes (fim depois do início, resposta depois do envio) | CHECK |
+| R4 | Valores permitidos de status e perfil | CHECK |
+| R5 | Prestador ATIVO precisa de CNH | CHECK |
+| R6 | Só uma notificação ACEITA por solicitação | Coluna gerada `aceite_unico` com UNIQUE |
+| R7 | O prestador da O.S. é o que aceitou | Gatilho |
+| R8 | Só prestador ATIVO recebe notificação e O.S. | Gatilho |
+| R9 | Guincho vinculado ao prestador e compatível com o veículo | Gatilho |
+| R10 | Tarifa certa para o veículo e o serviço, vigente na data | Gatilho |
+| R11 | Tarifas sem vigência sobreposta | Gatilho |
+| R12 | Capacidade do guincho dentro da capacidade do tipo | Gatilho |
+| R13 | Mínimos (1,N) do DER | Consulta de auditoria e teste |
+| R14 | Toda O.S. começa com histórico de aceite | Gatilho |
+| R15 | Ordem dos status e `status_atual` igual ao último histórico | Gatilho |
+| R16 | Avaliação só de O.S. finalizada, cancelamento só de O.S. cancelada, solicitação só de cliente ativo | Gatilho |
 
 ---
 
-## 16. DER
+## 6. DER atualizado
 
-DER conceitual em notação de Chen, com cardinalidade (mínima, máxima). São 17 entidades e 23 relacionamentos, sendo 3 deles com atributos próprios.
+O DER foi refeito em notação de Chen a partir do modelo já normalizado. Ele tem 25 entidades, com as chaves e as cardinalidades (mínima, máxima).
 
-![DER conceitual da Feliguinchos](docs/der/der_conceitual.png)
+![DER da Feliguinchos](docs/diagramas/DER_FeliGuinchos.svg)
 
-Versão em vetor, para ampliar: [docs/der/der_conceitual.svg](docs/der/der_conceitual.svg)
+Arquivos: [DER_FeliGuinchos.svg](docs/diagramas/DER_FeliGuinchos.svg) e [DER_FeliGuinchos.pdf](docs/diagramas/DER_FeliGuinchos.pdf).
 
-**Legenda:** retângulo = entidade · losango = relacionamento · ● = atributo identificador · ○ = atributo · (1,n) no nome = multivalorado · atributo com ramificações = composto (endereco) · círculo tracejado = derivado (valor_final).
+Algumas decisões que tomamos no modelo:
 
----
-## 17. Justificativas técnicas
-
-**1. Solicitação e Ordem de Serviço separadas**
-
-Separamos o pedido do cliente (Solicitação) do atendimento de fato (Ordem de Serviço), e uma solicitação gera no máximo uma OS (RN19). Muitos pedidos nunca viram atendimento: o cliente desiste quando ouve o valor, ou nenhum guincheiro aceita. Se fosse tudo uma entidade só, prestador, guincho, tarifa e datas ficariam vazios nesses casos. Com a separação, a empresa também consegue ver quantos chamados perdeu, o que hoje é impossível porque muitos nem chegam na planilha.
-
-**2. NOTIFICA como N:N com atributos**
-
-O chamado vai para vários prestadores ao mesmo tempo, e cada um responde de um jeito: um aceita, outro recusa, outro nem vê. Essa resposta não pertence só à solicitação nem só ao prestador, e sim ao par. Por isso data_envio, data_resposta e status ficaram no relacionamento (RN17, RN18). Assim dá para saber quem recusou e quanto tempo cada um levou para responder, coisa que se perde hoje no grupo de WhatsApp.
-
-**3. OPERA como N:N com período**
-
-Nas empresas parceiras o mesmo guincho passa por motoristas diferentes, e um autônomo pode trocar de guincho. Se guardássemos só "o guincho do prestador", não saberíamos qual guincho ele usava num atendimento antigo nem teríamos certeza de quem pode receber um chamado agora. Com data_inicio, data_fim e status no vínculo, os dois casos ficam resolvidos (RN09, RN18).
-
-**4. Compatibilidade entre tipos, e não entre guinchos e veículos**
-
-Toda plataforma leva carro de passeio. Por isso a compatibilidade é uma característica do tipo, e não de cada guincho ou de cada carro. Registrar guincho por guincho multiplicaria os dados e abriria espaço para erro. Do jeito que ficou, basta informar o tipo quando um guincho novo é cadastrado (RN10, RNF10).
-
-**5. Tarifa como entidade, com vigência**
-
-O preço depende de duas coisas ao mesmo tempo, o tipo de veículo e o serviço, então não cabia como atributo de nenhum dos dois. E como o preço muda, a vigência deixa reajustar sem apagar a tarifa antiga. A OS guarda a tarifa que foi aplicada, e por isso um reajuste no meio do dia não altera os atendimentos em andamento (RN11, RN12, RN21).
-
-**6. Histórico_Status além do status atual**
-
-O status_os mostra como a OS está agora. Mas a gerência também precisa saber a que horas o prestador saiu, quando chegou e quem mudou cada etapa. É isso que atende a auditoria do RNF03 e resolve a questão de ninguém saber quem mexeu na planilha. A cardinalidade (1,N) garante que toda OS tenha pelo menos o registro de abertura (RN22, RN23).
-
-**7. Pagamento (0,N) em relação à OS**
-
-É zero no mínimo porque a OS existe antes de ser paga. É N porque um cartão pode ser recusado e o cliente tenta de novo, ou porque ele pode pagar uma parte no Pix e o resto em dinheiro. Cada tentativa precisa ficar registrada para o fechamento bater (RN27, RN29).
-
-**8. Cancelamento como entidade própria, (0,1)**
-
-A maioria das OS nunca é cancelada. Se responsável, motivo e multa ficassem dentro da OS, esses campos ficariam vazios quase sempre. Quando o cancelamento acontece antes de existir OS, ou seja, antes de algum prestador aceitar, não há custo, e isso é tratado só no status da solicitação, conforme a política de cancelamento da seção 9 (RN25).
-
-**9. Funcionário com mínimo zero nos relacionamentos**
-
-A entidade Funcionário foi incluída porque, sem ela, o controle de acesso por perfil (RNF01) e a auditoria (RNF03) não teriam como aparecer no modelo. Nos relacionamentos ABRE, ALTERA e AUTORIZA o lado do funcionário é (0,1) porque nem tudo passa por alguém da central. Pedido feito pelo aplicativo, status atualizado pelo próprio prestador e cancelamento sem pedido de isenção não têm funcionário envolvido. O AUTORIZA representa diretamente a política de que só o gerente libera a isenção de multa (RN15, RN23, RN26).
-
-**10. Avaliação ligada à OS**
-
-A avaliação se liga só à Ordem de Serviço. Cliente e prestador já são encontrados a partir da OS, então ligar a avaliação a eles criaria um segundo caminho, que poderia apontar para pessoas diferentes das da OS. Ligar à OS também garante que só avalia quem foi atendido de verdade (RN30).
-
-**11. Solicitação ligada ao Veículo, e não ao Cliente**
-
-Como cada veículo tem um único dono (RN01), o cliente da solicitação já vem pelo veículo. Um relacionamento direto entre Cliente e Solicitação seria repetido e permitiria um erro: uma solicitação apontando para um cliente e para o carro de outra pessoa (RN13).
-
-**12. Empresa (0,1) para o Prestador**
-
-A maior parte da rede (18 dos 28 prestadores) é autônoma, por isso o mínimo é zero. O máximo é um porque o prestador atende pela Feliguinchos em nome de uma única empresa (RN06).
-
-**13. Classificação dos atributos**
-
-O endereço do cliente é composto para permitir consultas por bairro e cidade, o que ajuda a planejar onde faltam guincheiros. O telefone é multivalorado porque vimos clientes com vários números espalhados em linhas diferentes da planilha (RN02). O valor_final é derivado: dá para calcular a partir de outros atributos, e guardá-lo poderia gerar divergência (RN24). Já os endereços de origem e destino da solicitação ficaram simples, porque o lugar de uma pane muitas vezes não é um endereço formal, como "km 32 da Dutra, sentido RJ".
-
-**14. valor_estimado guardado**
-
-Mesmo podendo ser recalculado, o valor estimado fica guardado porque é o valor que foi prometido ao cliente naquele momento. Se a tarifa mudar depois, o recálculo daria outro número e a empresa perderia o registro do que foi combinado (RN16).
-
-**15. Tipos e formas de pagamento como entidades**
-
-Tipo_Veiculo, Tipo_Guincho, Servico_Reboque e Forma_Pagamento poderiam ser só um texto digitado. Mas foi justamente isso que causou problema na planilha, com "van", "Van" e "utilitário grande" para a mesma coisa, o que impede calcular preço e compatibilidade com segurança. Como entidades, eles têm atributos próprios (capacidade, categoria) e entram em relacionamentos, e itens novos entram por cadastro, sem mexer na estrutura (RNF10).
-
-**16. Integração e evolução do modelo**
-
-O modelo gira em torno da Ordem de Serviço, que liga cliente, prestador, guincho, tarifa, pagamento e avaliação. É ela que junta atendimento, operação, financeiro e gerência na mesma base, que é a ideia do ERP. O modelo também aceita crescer sem ser refeito. O repasse aos guincheiros pode virar uma entidade ligada à OS e ao Prestador. Clientes de seguradoras podem entrar com uma entidade Seguradora ligada à Solicitação. Atender outras cidades exige só novas tarifas e novos prestadores.
+- Separamos a Solicitação da Ordem de Serviço porque muitos pedidos não viram atendimento (o cliente desiste ou ninguém aceita). Assim também dá para saber quantos chamados foram perdidos.
+- A notificação ficou como relacionamento N:N com atributos, porque a resposta (aceita, recusada ou expirada) é de cada par solicitação-prestador.
+- O vínculo entre prestador e guincho guarda o período, para saber qual guincho ele usava em cada data.
+- A compatibilidade é entre tipos, e não entre cada guincho e cada carro. Quando entra um guincho novo, basta informar o tipo.
+- A tarifa tem vigência. Quando o preço muda, as O.S. já abertas continuam com a tarifa antiga.
+- Além do status atual, a O.S. tem um histórico de status, que mostra quem mudou cada etapa e quando.
+- Cancelamento e Avaliação são entidades separadas, já que a maioria das O.S. não tem cancelamento e algumas não são avaliadas.
+- A Solicitação se liga ao Veículo, e o cliente é encontrado pelo veículo. Ligar direto ao cliente criaria dois caminhos que poderiam apontar para pessoas diferentes.
+- O funcionário é opcional ao abrir solicitação, mudar status e autorizar cancelamento, porque o pedido pode vir do aplicativo e o status pode ser mudado pelo prestador.
+- A entidade Pessoa reúne os dados comuns de clientes, funcionários e prestadores (ver seção 8).
 
 ---
 
-## 18. Conclusão
+## 7. Modelo lógico
 
-O que a análise mostrou é que a Feliguinchos não tem falta de informação: ela tem informação espalhada. Os dados de um mesmo atendimento ficam divididos entre planilha, WhatsApp, tabela impressa, extrato e pasta de papel, e nenhum setor enxerga o quadro inteiro. Daí vêm os chamados perdidos, os preços diferentes, o guincho errado e o retrabalho no fim do mês.
+Documento completo: [docs/documentacao/MODELO LOGICO.docx](docs/documentacao/MODELO%20LOGICO.docx).
 
-Seguimos a ordem pedida no manual. Primeiro entendemos a empresa e seus processos, depois levantamos os problemas, os requisitos, as regras e as políticas, e só então chegamos às entidades, atributos, relacionamentos e cardinalidades. Por isso cada parte do DER pode ser ligada a uma regra ou a um requisito descrito antes.
+Regras que usamos para passar do DER para tabelas:
 
-O modelo final tem 17 entidades e 23 relacionamentos, sendo três N:N com atributos próprios. Ele cobre o atendimento do pedido até a avaliação e coloca os setores da empresa na mesma base de dados. Na próxima etapa ele será convertido para o modelo lógico, normalizado e, depois, implementado no modelo físico.
+- Cada entidade virou uma tabela com chave primária numérica (`<tabela>_id`).
+- Nos relacionamentos 1:N, a chave estrangeira fica no lado N. Ela aceita nulo quando o DER marca (0,1).
+- Nos relacionamentos 1:1, a chave estrangeira fica na tabela dependente com UNIQUE (Ordem_Servico, Avaliacao e Cancelamento).
+- Os relacionamentos N:N viraram tabelas associativas com chave composta.
+- O telefone (multivalorado) ganhou tabela própria, o endereço (composto) foi separado em colunas e o valor total da O.S. (derivado) virou coluna calculada.
+- Todas as chaves estrangeiras usam ON DELETE RESTRICT, menos a do telefone, que usa CASCADE.
+
+A primeira versão do modelo lógico tinha 21 tabelas (17 entidades, 3 associativas e a tabela de telefone) e 27 chaves estrangeiras. Testamos essa versão em SQLite e as 30 verificações passaram. Depois da normalização (seção 8), o modelo ficou com 25 tabelas:
+
+```
+pessoa (cpf PK, nome, email UK, senha, cnpj UK, data_cadastro, cep FK, numero, complemento,
+        logradouro_informado, bairro_informado)
+pessoa_telefone (cpf PK FK, telefone PK)
+cliente (cliente_id PK, cpf FK UK, status)
+funcionario (funcionario_id PK, cpf FK UK, cargo, perfil_acesso, status)
+empresa (empresa_id PK, razao_social, cnpj UK, telefone, email)
+prestador_servico (prestador_id PK, cpf FK UK, empresa_id FK, cnh UK, status)
+cidade (cidade_id PK, nome, uf)
+cep (cep PK, cidade_id FK, logradouro, bairro, cep_generico)
+modelo_veiculo (modelo_id PK, marca, nome)
+tipo_veiculo (tipo_veiculo_id PK, descricao UK, categoria, peso_max_kg)
+veiculo (veiculo_id PK, cliente_id FK, tipo_veiculo_id FK, modelo_id FK, placa UK, ano, cor, blindado)
+tipo_guincho (tipo_guincho_id PK, descricao UK, capacidade_max_kg)
+veiculo_reboque (veiculo_reboque_id PK, tipo_guincho_id FK, modelo_id FK, placa UK, ano,
+                 capacidade_kg, status)
+guincho_tipo_veiculo (tipo_guincho_id PK FK, tipo_veiculo_id PK FK, observacao)
+prestador_veiculo_reboque (prestador_id PK FK, veiculo_reboque_id PK FK, data_inicio PK, data_fim, status)
+servico_reboque (servico_id PK, descricao UK, tipo_servico, status)
+tarifa (tarifa_id PK, tipo_veiculo_id FK, servico_id FK, valor_base, valor_por_km, adicional_madrugada,
+        adicional_domingo, adicional_feriado, adicional_rodovia, vigencia_inicio, vigencia_fim)
+solicitacao (solicitacao_id PK, veiculo_id FK, servico_id FK, funcionario_id FK, data_hora_solicitacao,
+             origem_cep FK, origem_numero, origem_complemento, origem_logradouro_informado,
+             origem_bairro_informado, destino_cep FK, destino_numero, destino_complemento,
+             destino_logradouro_informado, destino_bairro_informado, distancia_km, observacao,
+             valor_estimado, status)
+notificacao_prestador (solicitacao_id PK FK, prestador_id PK FK, data_hora_envio, data_hora_resposta,
+                       resposta, aceite_unico UK)
+ordem_servico (ordem_id PK, solicitacao_id FK UK, tarifa_id FK, prestador_id FK, veiculo_reboque_id FK,
+               data_hora_inicio, data_previsao, data_hora_fim, status_atual, observacao, valor_base,
+               valor_adicionais, desconto, valor_total)
+historico_status (historico_id PK, ordem_id FK, funcionario_id FK, status, data_hora_alteracao, observacao)
+forma_pagamento (forma_pagamento_id PK, descricao UK, tipo)
+pagamento (pagamento_id PK, ordem_id FK, forma_pagamento_id FK, valor_pago, data_hora_pagamento,
+           status, comprovante)
+avaliacao (avaliacao_id PK, ordem_id FK UK, nota, comentario, data_avaliacao)
+cancelamento (cancelamento_id PK, ordem_id FK UK, funcionario_id FK, responsavel, motivo, data_hora,
+              valor_multa)
+```
+
+Durante a conversão, comparamos o texto da primeira entrega com o DER e corrigimos 17 diferenças (C1 a C17). Por exemplo, a Empresa não aparecia no texto, a `distancia_km` estava repetida na O.S. e o `valor_total` era guardado em vez de calculado. Algumas regras citadas nos documentos não tinham onde ficar no DER, como documentos do prestador, aceite dos termos de uso, nota fiscal e repasse ao prestador. Essas ficaram anotadas como pendências (P1 a P14), sem criar tabelas por conta própria.
+
+---
+
+## 8. Normalização
+
+Documento completo: [docs/normalizacao/Modelo de tabelas normalizado (1FN, 2FN e 3FN).pdf](docs/normalizacao/Modelo%20de%20tabelas%20normalizado%20%281FN%2C%202FN%20e%203FN%29%20%283%29.pdf). Responsável: Gabriel da Silva.
+
+Partimos das 21 tabelas do modelo lógico e chegamos a 25: 4 tabelas novas, 8 alteradas e 13 que não mudaram.
+
+| Forma normal | O que verificamos |
+|---|---|
+| 1FN | Todos os atributos são atômicos. O telefone foi para uma tabela própria e o endereço foi dividido em colunas. |
+| 2FN | Nas tabelas com chave composta, os atributos dependem da chave inteira (vínculo prestador-guincho, compatibilidade e notificação). |
+| 3FN | Não sobrou dependência transitiva entre atributos que não são chave. As mudanças abaixo foram feitas para isso. |
+
+| Mudança | Por que foi feita |
+|---|---|
+| Nova tabela Pessoa, com cpf, nome, e-mail, senha e endereço. Cliente, Funcionario e Prestador_Servico passam a apontar para ela pelo CPF | Esses dados se repetiam nas três tabelas, e quem tinha dois papéis era cadastrado duas vezes |
+| Cliente_Telefone virou Pessoa_Telefone | Funcionários e prestadores também têm telefone |
+| Novas tabelas Cidade e CEP | O CEP já determina logradouro, bairro e cidade. Agora a pessoa e a solicitação guardam só CEP, número e complemento. Em cidades com CEP único (CEP genérico), o logradouro e o bairro são digitados |
+| Origem e destino da Solicitação passam a usar CEP | Antes eram texto livre, sem padrão |
+| Nova tabela Modelo_Veiculo, usada por Veiculo e Veiculo_Reboque | A marca depende do modelo, e isso se repetia nas duas tabelas |
+| Tarifa perdeu a coluna status | O status já dá para saber pela data de vigência |
+
+Mantivemos de propósito três dados que poderiam ser calculados: o `status_atual` da O.S. (o gatilho R15 garante que ele é igual ao último histórico), o `valor_estimado` da solicitação (é o que foi prometido ao cliente) e o `valor_multa` do cancelamento (pode ter havido isenção).
+
+---
+
+## 9. Dicionário de Dados
+
+Os tipos abaixo são os do banco (MariaDB/MySQL). PK = chave primária, FK = chave estrangeira, UK = valor único, NN = obrigatório. O modelo físico completo, derivado do modelo lógico normalizado, está em [docs/documentacao/Modelo_Fisico_Feliguinchos.pdf](docs/documentacao/Modelo_Fisico_Feliguinchos.pdf), com o diagrama físico, as 36 chaves estrangeiras, as restrições, os índices, os gatilhos e as views.
+
+### Pessoas
+
+pessoa: dados comuns de clientes, funcionários e prestadores
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| cpf | CHAR(11) | PK, 11 dígitos | CPF |
+| nome | VARCHAR(100) | NN | Nome completo |
+| email | VARCHAR(120) | NN, UK | E-mail |
+| senha | VARCHAR(255) | NN | Hash da senha |
+| cnpj | CHAR(14) | UK, opcional | Preenchido quando a pessoa atua como PJ |
+| data_cadastro | DATE | NN, padrão data atual | Data do cadastro |
+| cep | CHAR(8) | FK cep, opcional | CEP do endereço |
+| numero | VARCHAR(10) | opcional | Número |
+| complemento | VARCHAR(60) | opcional | Complemento |
+| logradouro_informado | VARCHAR(120) | obrigatório se o CEP for genérico | Logradouro digitado |
+| bairro_informado | VARCHAR(60) | obrigatório se o CEP for genérico | Bairro digitado |
+
+pessoa_telefone
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| cpf | CHAR(11) | PK, FK pessoa (CASCADE) | Dono do telefone |
+| telefone | VARCHAR(15) | PK, só dígitos | DDD e número |
+
+cliente
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| cliente_id | INT UNSIGNED | PK, auto incremento | Código do cliente |
+| cpf | CHAR(11) | FK pessoa, UK | Pessoa |
+| status | VARCHAR(10) | ATIVO, PENDENTE ou BLOQUEADO | Situação do cadastro |
+
+funcionario
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| funcionario_id | INT UNSIGNED | PK, auto incremento | Código do funcionário |
+| cpf | CHAR(11) | FK pessoa, UK | Pessoa |
+| cargo | VARCHAR(50) | NN | Cargo |
+| perfil_acesso | VARCHAR(10) | ATENDENTE, FINANCEIRO ou GERENTE | Perfil de acesso |
+| status | VARCHAR(10) | ATIVO ou INATIVO | Situação |
+
+empresa: empresa parceira
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| empresa_id | INT UNSIGNED | PK, auto incremento | Código da empresa |
+| razao_social | VARCHAR(150) | NN | Razão social |
+| cnpj | CHAR(14) | NN, UK | CNPJ |
+| telefone | VARCHAR(15) | opcional | Telefone |
+| email | VARCHAR(120) | opcional | E-mail |
+
+prestador_servico
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| prestador_id | INT UNSIGNED | PK, auto incremento | Código do prestador |
+| cpf | CHAR(11) | FK pessoa, UK | Pessoa |
+| empresa_id | INT UNSIGNED | FK empresa, nulo se autônomo | Empresa parceira |
+| cnh | VARCHAR(11) | UK, obrigatória se ATIVO | CNH |
+| status | VARCHAR(10) | EM_ANALISE (padrão), ATIVO, RECUSADO ou BLOQUEADO | Situação do credenciamento |
+
+### Endereços
+
+cidade
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| cidade_id | INT UNSIGNED | PK, auto incremento | Código da cidade |
+| nome | VARCHAR(60) | NN, UK junto com uf | Nome |
+| uf | CHAR(2) | 2 letras maiúsculas | Estado |
+
+cep
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| cep | CHAR(8) | PK, 8 dígitos | CEP |
+| cidade_id | INT UNSIGNED | FK cidade | Cidade |
+| logradouro | VARCHAR(120) | nulo se CEP genérico | Logradouro |
+| bairro | VARCHAR(60) | nulo se CEP genérico | Bairro |
+| cep_generico | BOOLEAN | padrão FALSE | Indica CEP único da cidade |
+
+### Veículos e guinchos
+
+modelo_veiculo
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| modelo_id | INT UNSIGNED | PK, auto incremento | Código do modelo |
+| marca | VARCHAR(50) | NN, UK junto com nome | Fabricante |
+| nome | VARCHAR(60) | NN | Nome do modelo |
+
+tipo_veiculo
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| tipo_veiculo_id | INT UNSIGNED | PK, auto incremento | Código do tipo |
+| descricao | VARCHAR(50) | NN, UK | Ex.: motocicleta, automóvel, utilitário |
+| categoria | VARCHAR(50) | opcional | Porte (leve, médio, pesado) |
+| peso_max_kg | DECIMAL(8,2) | opcional | Peso máximo |
+
+veiculo: veículo do cliente
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| veiculo_id | INT UNSIGNED | PK, auto incremento | Código do veículo |
+| cliente_id | INT UNSIGNED | FK cliente | Dono |
+| tipo_veiculo_id | INT UNSIGNED | FK tipo_veiculo | Tipo |
+| modelo_id | INT UNSIGNED | FK modelo_veiculo | Marca e modelo |
+| placa | VARCHAR(8) | NN, UK | Placa |
+| ano | SMALLINT | 1900 ou mais | Ano |
+| cor | VARCHAR(30) | opcional | Cor |
+| blindado | BOOLEAN | padrão FALSE | Se é blindado |
+
+tipo_guincho
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| tipo_guincho_id | INT UNSIGNED | PK, auto incremento | Código do tipo |
+| descricao | VARCHAR(50) | NN, UK | Ex.: plataforma, asa delta, lança |
+| capacidade_max_kg | DECIMAL(8,2) | maior que zero, opcional | Capacidade máxima |
+
+veiculo_reboque: guincho
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| veiculo_reboque_id | INT UNSIGNED | PK, auto incremento | Código do guincho |
+| tipo_guincho_id | INT UNSIGNED | FK tipo_guincho | Tipo |
+| modelo_id | INT UNSIGNED | FK modelo_veiculo | Marca e modelo |
+| placa | VARCHAR(8) | NN, UK | Placa |
+| ano | SMALLINT | 1900 ou mais | Ano |
+| capacidade_kg | DECIMAL(8,2) | até a capacidade do tipo | Capacidade |
+| status | VARCHAR(20) | NN | Situação (disponível, em manutenção etc.) |
+
+guincho_tipo_veiculo: compatibilidade entre tipos
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| tipo_guincho_id | INT UNSIGNED | PK, FK tipo_guincho | Tipo de guincho |
+| tipo_veiculo_id | INT UNSIGNED | PK, FK tipo_veiculo | Tipo de veículo |
+| observacao | VARCHAR(255) | opcional | Condição especial |
+
+prestador_veiculo_reboque: vínculo do prestador com o guincho
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| prestador_id | INT UNSIGNED | PK, FK prestador_servico | Prestador |
+| veiculo_reboque_id | INT UNSIGNED | PK, FK veiculo_reboque | Guincho |
+| data_inicio | DATE | PK | Início do vínculo |
+| data_fim | DATE | depois do início, nulo se ainda vale | Fim do vínculo |
+| status | VARCHAR(20) | NN | Situação do vínculo |
+
+### Serviços e tarifas
+
+servico_reboque
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| servico_id | INT UNSIGNED | PK, auto incremento | Código do serviço |
+| descricao | VARCHAR(80) | NN, UK | Ex.: reboque urbano, troca de pneu |
+| tipo_servico | VARCHAR(50) | NN | Tipo do serviço |
+| status | VARCHAR(10) | ATIVO ou INATIVO | Serviço inativo não pode ser pedido |
+
+tarifa
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| tarifa_id | INT UNSIGNED | PK, auto incremento | Código da tarifa |
+| tipo_veiculo_id | INT UNSIGNED | FK tipo_veiculo | Tipo de veículo |
+| servico_id | INT UNSIGNED | FK servico_reboque | Serviço |
+| valor_base | DECIMAL(10,2) | zero ou mais | Valor de saída |
+| valor_por_km | DECIMAL(10,2) | zero ou mais | Valor por km |
+| adicional_madrugada, adicional_domingo, adicional_feriado, adicional_rodovia | DECIMAL(10,2) | zero ou mais, padrão 0 | Adicionais |
+| vigencia_inicio | DATE | NN, UK junto com tipo e serviço | Início da vigência |
+| vigencia_fim | DATE | nulo se ainda vale, sem sobreposição | Fim da vigência |
+
+### Atendimento
+
+solicitacao
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| solicitacao_id | INT UNSIGNED | PK, auto incremento | Código da solicitação |
+| veiculo_id | INT UNSIGNED | FK veiculo | Veículo atendido |
+| servico_id | INT UNSIGNED | FK servico_reboque | Serviço pedido |
+| funcionario_id | INT UNSIGNED | FK funcionario, nulo se veio do aplicativo | Atendente que abriu |
+| data_hora_solicitacao | DATETIME | padrão data e hora atual | Momento do pedido |
+| origem_cep, destino_cep | CHAR(8) | FK cep | CEP de origem e destino |
+| origem_numero, destino_numero | VARCHAR(10) | NN | Número |
+| origem_complemento, destino_complemento | VARCHAR(60) | opcional | Complemento |
+| origem_logradouro_informado, origem_bairro_informado, destino_logradouro_informado, destino_bairro_informado | VARCHAR | só com CEP genérico | Endereço digitado |
+| distancia_km | DECIMAL(8,2) | zero ou mais | Distância |
+| observacao | VARCHAR(500) | opcional | Observação do cliente |
+| valor_estimado | DECIMAL(10,2) | zero ou mais | Valor passado ao cliente |
+| status | VARCHAR(15) | SOLICITADA (padrão), EM_ANALISE, ACEITA, SEM_PRESTADOR ou CANCELADA | Situação |
+
+notificacao_prestador
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| solicitacao_id | INT UNSIGNED | PK, FK solicitacao | Solicitação |
+| prestador_id | INT UNSIGNED | PK, FK prestador_servico | Prestador avisado |
+| data_hora_envio | DATETIME | padrão data e hora atual | Envio |
+| data_hora_resposta | DATETIME | opcional | Resposta |
+| resposta | VARCHAR(10) | ACEITA, RECUSADA, EXPIRADA ou nulo | Resposta do prestador |
+| aceite_unico | INT UNSIGNED | coluna gerada, UK | Impede dois aceites |
+
+ordem_servico
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| ordem_id | INT UNSIGNED | PK, auto incremento | Número da O.S. |
+| solicitacao_id | INT UNSIGNED | FK solicitacao, UK | Solicitação de origem |
+| tarifa_id | INT UNSIGNED | FK tarifa | Tarifa usada |
+| prestador_id | INT UNSIGNED | FK prestador_servico | Prestador |
+| veiculo_reboque_id | INT UNSIGNED | FK veiculo_reboque | Guincho |
+| data_hora_inicio | DATETIME | opcional | Início |
+| data_previsao | DATETIME | opcional | Previsão de chegada |
+| data_hora_fim | DATETIME | depois do início | Conclusão |
+| status_atual | VARCHAR(15) | ACEITA (padrão), A_CAMINHO, NO_LOCAL, EM_ATENDIMENTO, FINALIZADA ou CANCELADA | Status atual |
+| observacao | VARCHAR(500) | opcional | Anotações |
+| valor_base | DECIMAL(10,2) | zero ou mais | Valor pela tarifa |
+| valor_adicionais | DECIMAL(10,2) | zero ou mais, padrão 0 | Adicionais |
+| desconto | DECIMAL(10,2) | até o valor bruto, padrão 0 | Desconto |
+| valor_total | DECIMAL(10,2) | coluna calculada | valor_base + valor_adicionais - desconto |
+
+historico_status
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| historico_id | INT UNSIGNED | PK, auto incremento | Código do registro |
+| ordem_id | INT UNSIGNED | FK ordem_servico | O.S. |
+| funcionario_id | INT UNSIGNED | FK funcionario, nulo se foi o prestador ou o sistema | Quem alterou |
+| status | VARCHAR(15) | mesmos valores do status_atual | Novo status |
+| data_hora_alteracao | DATETIME | padrão data e hora atual | Momento |
+| observacao | VARCHAR(500) | opcional | Comentário |
+
+### Pagamento, avaliação e cancelamento
+
+forma_pagamento
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| forma_pagamento_id | INT UNSIGNED | PK, auto incremento | Código |
+| descricao | VARCHAR(50) | NN, UK | Ex.: PIX, cartão de crédito |
+| tipo | VARCHAR(30) | opcional | Tipo |
+
+pagamento
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| pagamento_id | INT UNSIGNED | PK, auto incremento | Código |
+| ordem_id | INT UNSIGNED | FK ordem_servico | O.S. |
+| forma_pagamento_id | INT UNSIGNED | FK forma_pagamento | Forma de pagamento |
+| valor_pago | DECIMAL(10,2) | maior que zero | Valor |
+| data_hora_pagamento | DATETIME | padrão data e hora atual | Momento |
+| status | VARCHAR(10) | PENDENTE (padrão), APROVADO ou RECUSADO | Situação |
+| comprovante | VARCHAR(255) | opcional | Código do Pix, autorização do cartão ou boleto |
+
+avaliacao
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| avaliacao_id | INT UNSIGNED | PK, auto incremento | Código |
+| ordem_id | INT UNSIGNED | FK ordem_servico, UK | O.S. avaliada (precisa estar finalizada) |
+| nota | SMALLINT | de 1 a 5 | Nota |
+| comentario | VARCHAR(500) | opcional | Comentário |
+| data_avaliacao | DATETIME | padrão data e hora atual | Momento |
+
+cancelamento
+
+| Coluna | Tipo | Restrições | Descrição |
+|---|---|---|---|
+| cancelamento_id | INT UNSIGNED | PK, auto incremento | Código |
+| ordem_id | INT UNSIGNED | FK ordem_servico, UK | O.S. cancelada |
+| funcionario_id | INT UNSIGNED | FK funcionario, opcional | Quem autorizou |
+| responsavel | VARCHAR(10) | CLIENTE, PRESTADOR ou CENTRAL | Quem cancelou |
+| motivo | VARCHAR(255) | NN | Motivo |
+| data_hora | DATETIME | padrão data e hora atual | Momento |
+| valor_multa | DECIMAL(10,2) | zero ou mais, padrão 0 | Multa cobrada |
+
+---
+
+## 10. Implementação SQL
+
+Os scripts ficam na pasta [sql/](sql/). O passo a passo para rodar pelo phpMyAdmin ou pelo Shell do XAMPP está em [sql/README.md](sql/README.md).
+
+| Script | O que faz |
+|---|---|
+| [sql/ddl/01_tabelas.sql](sql/ddl/01_tabelas.sql) | Cria o banco e as 25 tabelas, com 36 chaves estrangeiras e 36 CHECKs |
+| [sql/ddl/02_gatilhos.sql](sql/ddl/02_gatilhos.sql) | 15 gatilhos e 2 procedures para a regra de endereço e as regras R7 a R16 |
+| [sql/ddl/03_views.sql](sql/ddl/03_views.sql) | `vw_solicitacao_endereco` (monta o endereço pelo CEP) e `vw_ordem_servico_detalhada` (O.S. com cliente, veículo, serviço, prestador e guincho) |
+| [sql/dados/01_carga.sql](sql/dados/01_carga.sql) | Massa de dados |
+| [sql/consultas/](sql/consultas/) | Consultas simples, com JOIN, gerenciais, UPDATE e DELETE |
+| [sql/auditoria/](sql/auditoria/) | Consultas de auditoria e testes de integridade |
+
+A ordem de execução é: `ddl/01`, `ddl/02`, `ddl/03`, `dados/01_carga.sql`, `consultas/01` a `05`, `auditoria/01` e `auditoria/02`. O `01_tabelas.sql` apaga e recria o banco, então para voltar ao começo basta rodar tudo de novo.
+
+Como os tipos do modelo lógico foram passados para o MariaDB:
+
+| Modelo lógico | No banco |
+|---|---|
+| INTEGER (chave gerada) | `INT UNSIGNED AUTO_INCREMENT` |
+| Chave natural (cpf, cep) | `CHAR` com CHECK de dígitos |
+| TIMESTAMP | `DATETIME` |
+| BOOLEAN | `TINYINT(1)` com CHECK (0,1) |
+| Atributo derivado | `GENERATED ALWAYS AS (...) STORED` |
+| Índice único parcial (R6) | Coluna gerada `aceite_unico` com UNIQUE |
+| Regras entre tabelas | Gatilhos |
+| Exclusão | ON DELETE RESTRICT, com CASCADE só em `pessoa_telefone` |
+
+Os scripts [04_update.sql](sql/consultas/04_update.sql) e [05_delete.sql](sql/consultas/05_delete.sql) simulam o dia a dia da empresa: aceite de solicitação e abertura de O.S., finalização de O.S., reajuste de tarifa, aprovação de prestador, expiração de notificações e algumas exclusões permitidas, como um telefone desativado e uma tarifa que nunca foi usada.
+
+---
+
+## 11. Massa de Dados
+
+Arquivo: [sql/dados/01_carga.sql](sql/dados/01_carga.sql). Os dados simulam os meses de setembro e outubro de 2026, com os feriados de 07/09 e 12/10. Como a carga passa pelos gatilhos, ela também serve para mostrar que as regras funcionam.
+
+| Tabela | Registros | Tabela | Registros |
+|---|---:|---|---:|
+| pessoa | 28 | tarifa | 13 |
+| pessoa_telefone | 33 | solicitacao | 23 |
+| cliente | 12 | notificacao_prestador | 32 |
+| funcionario | 7 | ordem_servico | 20 |
+| empresa | 3 | historico_status | 93 |
+| prestador_servico | 10 | cancelamento | 3 |
+| cidade | 10 | forma_pagamento | 5 |
+| cep | 29 | pagamento | 18 |
+| modelo_veiculo | 22 | avaliacao | 13 |
+| tipo_veiculo | 6 | prestador_veiculo_reboque | 11 |
+| veiculo | 16 | guincho_tipo_veiculo | 11 |
+| tipo_guincho | 5 | servico_reboque | 6 |
+| veiculo_reboque | 7 | Total | 436 |
+
+Esses números são logo depois da carga. Os scripts de UPDATE e DELETE mudam alguns deles, e a contagem final aparece na última consulta de [01_consultas_auditoria.sql](sql/auditoria/01_consultas_auditoria.sql).
+
+Colocamos na carga alguns casos de propósito:
+
+- Paulo Sérgio Ramos é prestador e cliente ao mesmo tempo, com um único cadastro em `pessoa`.
+- O Fiat Strada aparece como veículo de cliente e como guincho, usando o mesmo registro de modelo.
+- Juquitiba e Pirapora do Bom Jesus têm CEP genérico, então o logradouro e o bairro são digitados.
+- Thiago e Gustavo atuam como pessoa jurídica, com CNPJ preenchido.
+- Há cliente sem veículo, O.S. finalizada sem avaliação e solicitação que não virou O.S.
+- Há adicionais de madrugada, domingo, feriado e rodovia, descontos, um pagamento recusado e refeito, um pagamento dividido entre Pix e cartão e cancelamentos feitos pelo cliente, pelo prestador e pela central.
+- Também deixamos alguns erros para a auditoria encontrar: a O.S. 11 sem pagamento aprovado, a O.S. 13 paga a menos, o cancelamento 3 sem funcionário e O.S. que terminaram depois do horário previsto.
+
+---
+
+## 12. Consultas Gerenciais
+
+Arquivo: [sql/consultas/03_gerenciais.sql](sql/consultas/03_gerenciais.sql). São os relatórios que a equipe da Feliguinchos usa para acompanhar a plataforma.
+
+| # | Consulta | O que responde |
+|---|---|---|
+| C1 | Faturamento mensal | Quanto entrou por mês e o ticket médio |
+| C2 | Faturamento por forma de pagamento | Quanto veio de cada forma e o percentual |
+| C3 | Ranking de prestadores | Faturamento, O.S. finalizadas e canceladas e nota média de cada prestador |
+| C4 | Desempenho por empresa parceira | Quanto cada parceira e os autônomos faturaram |
+| C5 | Serviços mais pedidos | Quantidade de pedidos e ticket médio por serviço |
+| C6 | Tempo médio de atendimento | Minutos do pedido até a finalização, por serviço |
+| C7 | Cancelamentos | Percentual de O.S. canceladas e quem mais cancela |
+| C8 | Top 5 clientes | Clientes que mais pagaram |
+| C9 | Uso da frota | O.S., km rodados e receita de cada guincho |
+| C10 | Canal de abertura | Pedidos pelo aplicativo e por cada atendente |
+| C11 | Taxa de aceite | Quanto cada prestador aceita e quanto tempo leva para responder |
+| C12 | Demanda por dia e horário | Dias da semana e horários com mais chamados |
+| C13 | Satisfação | Distribuição das notas, média e NPS simplificado |
+| C14 | Funil das solicitações | Quantas viraram O.S., ficaram sem prestador ou foram canceladas |
+| C15 | Demanda por cidade | Cidades com mais chamados e o valor gerado |
+| C16 | Clientes por cidade | Onde os clientes moram |
+
+Também tem consultas mais simples em [01_select.sql](sql/consultas/01_select.sql), como tarifas vigentes e simulação de orçamento, e consultas com JOIN em [02_join.sql](sql/consultas/02_join.sql), como a O.S. completa (JOIN em 12 tabelas), a linha do tempo de uma O.S. e os prestadores que podem atender uma solicitação.
+
+---
+
+## 13. Consultas de Auditoria
+
+Arquivo: [sql/auditoria/01_consultas_auditoria.sql](sql/auditoria/01_consultas_auditoria.sql). Cada consulta tem o resultado esperado escrito no comentário.
+
+| # | O que verifica | Resultado esperado |
+|---|---|---|
+| D1 | Todas as mudanças de status e quem fez | Lista completa |
+| D2 | `status_atual` diferente do último histórico | Nenhuma linha |
+| D3 | O.S. sem histórico | Nenhuma linha |
+| D4 | O.S. finalizada sem pagamento aprovado | O.S. 11 |
+| D5 | Valor devido diferente do valor pago | O.S. 11 (0,00 de 185,00) e O.S. 13 (900,00 de 980,00) |
+| D6 | Pagamentos recusados | Pagamento 9 |
+| D7 | Cancelamento sem funcionário que autorizou | Cancelamento 3 |
+| D8 | O.S. com prestador, guincho ou tarifa errados | Nenhuma linha |
+| D9 | O.S. finalizadas depois da previsão | O.S. 2, 5 e 13 |
+| D10 | Data de fim que não bate com o status | Nenhuma linha |
+| D11 | Status da solicitação que não bate com a O.S. | Nenhuma linha |
+| D12 | Valor base da O.S. diferente do valor estimado | Nenhuma linha |
+| D13 | Descontos concedidos | Lista com o percentual |
+| D14 | Mínimos (1,N) do DER | Nenhuma linha |
+| D15 | Solicitação com mais de um aceite | Nenhuma linha |
+| D16 | Registros feitos por funcionário que hoje está inativo | Nenhuma linha |
+| D17 | Endereço que não bate com o tipo de CEP | Nenhuma linha |
+| D18 | Prestador atendendo o próprio veículo | Nenhuma linha |
+| D19 | Pessoa cadastrada sem nenhum papel | Nenhuma linha |
+
+Além das consultas, o arquivo [sql/auditoria/02_testes_integridade.sql](sql/auditoria/02_testes_integridade.sql) roda 152 testes automáticos. Cada teste roda dentro de uma transação que é desfeita no final, então o banco não é alterado. Os resultados ficam na tabela `feliguinchos_testes.resultado_teste`, e o esperado é 152 aprovados.
+
+| Parte | O que testa |
+|---|---|
+| A | Estrutura: as 25 tabelas, chaves e restrições |
+| B | Comandos errados que o banco tem que recusar |
+| C | Comandos certos que o banco tem que aceitar |
+| D | Gatilhos (endereço e R7 a R16) e exclusões |
+| E | Cardinalidades, consistência e coluna calculada |
+
+---
+
+## 14. Potencial para BI e IA
+
+Como quase todo evento do atendimento tem data e hora registradas (pedido, notificação, cada status, pagamento e avaliação), os dados podem ser usados para análise sem muita adaptação.
+
+Para BI, `ordem_servico`, `pagamento` e `historico_status` podem ser usadas como tabelas fato, e cliente, prestador, guincho, serviço, tipo de veículo, cidade e data como dimensões. A view `vw_ordem_servico_detalhada` já traz a O.S. com tudo junto e pode ser ligada direto no Power BI. Com isso dá para montar painéis de faturamento, cancelamentos, tempo de atendimento, atrasos, aceite dos prestadores e satisfação. Como o endereço usa CEP e cidade, também dá para ver no mapa onde acontecem os chamados e onde faltam guincheiros. E como as tarifas têm vigência, dá para comparar o volume de pedidos antes e depois de um reajuste.
+
+Para IA, algumas ideias:
+
+- Prever a demanda por dia, horário e cidade, para saber quantos prestadores deixar disponíveis.
+- Usar o histórico de notificações, avaliações e atrasos para sugerir primeiro os prestadores que costumam aceitar rápido e chegar no horário.
+- Usar distância, serviço, tipo de veículo e adicionais para prever o valor final do atendimento.
+- Analisar os comentários das avaliações para encontrar reclamações que se repetem.
+- Transformar as consultas de auditoria em alertas automáticos para o financeiro.
+
+Para algumas dessas análises ainda faltam dados que ficaram como pendência no modelo lógico, como a disponibilidade dos prestadores e a localização exata (latitude e longitude).
+
+---
+
+## 15. Histórico/evolução do projeto
+
+| Etapa | Data | O que foi feito |
+|---|---|---|
+| Criação do repositório | 29/09/2026 | Primeira versão do README |
+| 1ª entrega: modelo conceitual | 30/09/2026 | Empresa, problemas, processos, requisitos, regras de negócio, fluxogramas, entidades, atributos, relacionamentos, cardinalidades, dicionário conceitual e DER com 17 entidades e 23 relacionamentos |
+| Revisão dos requisitos | outubro/2026 | Versão consolidada dos RF e RNF |
+| Modelo lógico | outubro/2026 | 21 tabelas e 27 chaves estrangeiras, regras R1 a R16, correções C1 a C17, pendências P1 a P14 e teste em SQLite |
+| Normalização | outubro/2026 | Revisão da 1FN, 2FN e 3FN, chegando a 25 tabelas |
+| Modelo físico e SQL | 29 e 30/10/2026 | Tabelas, gatilhos, procedures, views, massa de dados, consultas, auditoria e 152 testes para MariaDB/MySQL |
+| Reorganização | 30/10/2026 | Arquivos separados nas pastas `docs/` e `sql/` |
+| DER atualizado e README geral | 31/10/2026 | DER refeito a partir do modelo normalizado, remoção dos scripts da versão antiga e README reescrito neste formato |
+
+---
+
+## 16. Conclusão
+
+O problema que o projeto resolve é a falta de organização no serviço de guincho: o cliente não sabe quem chamar nem quanto vai pagar, o guincheiro depende de indicação e quase nada do atendimento fica registrado. O aplicativo Feliguinchos liga o cliente ao prestador e guarda cada etapa do atendimento em um só lugar.
+
+Seguimos as etapas da modelagem na ordem. Primeiro definimos como o aplicativo funciona, os processos, os requisitos e as regras. Depois fizemos o modelo conceitual, passamos para o modelo lógico, normalizamos até a 3FN e implementamos o banco no MariaDB. Assim, cada tabela, chave e gatilho tem uma regra de negócio por trás.
+
+O banco final tem 25 tabelas e cobre o atendimento desde o pedido do cliente até a avaliação do serviço, com cliente, prestador e equipe da Feliguinchos usando a mesma base. As regras principais são garantidas pelo próprio banco, com CHECKs, chaves e gatilhos, e foram conferidas com a massa de dados, as 19 consultas de auditoria e os 152 testes. Para as próximas versões ficam as pendências do modelo lógico, principalmente os documentos e a disponibilidade dos prestadores, o repasse financeiro e a nota fiscal.
