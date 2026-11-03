@@ -469,6 +469,308 @@ Mantivemos de propósito três dados que poderiam ser calculados: o `status_atua
 
 ## 9. Dicionário de Dados
 
+### 9.1 Pessoa
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| cpf | CPF da pessoa. Identifica a pessoa em todo o sistema. | CHAR | 11 | PK, UK, NOT NULL | — | Somente dígitos. |
+| nome | Nome completo da pessoa. | VARCHAR | 100 | NOT NULL | — | Obrigatório (RN01). |
+| email | E-mail de contato e acesso. | VARCHAR | 120 | UK, NOT NULL | — | Não pode repetir (RN01). |
+| senha | Senha de acesso, guardada de forma criptografada. | VARCHAR | 255 | NOT NULL | — | Guardar o hash, nunca a senha em texto (RN01, RNF01). |
+| cnpj | CNPJ da pessoa quando ela atua como pessoa jurídica. | CHAR | 14 | UK, NULL | — | Somente dígitos. Opcional: preenchido só quando a pessoa atua como pessoa jurídica. |
+| data_cadastro | Data em que a pessoa foi cadastrada. | DATE | — | NOT NULL | CURRENT_DATE | Padrão: data do cadastro. |
+| cep | CEP do endereço da pessoa. | CHAR | 8 | FK, NULL | — | FK → CEP.cep. Opcional (P14). |
+| numero | Número do endereço. | VARCHAR | 10 | NULL | — | Opcional. |
+| complemento | Complemento do endereço. | VARCHAR | 60 | NULL | — | Opcional. |
+| logradouro_informado | Rua informada pela pessoa quando o CEP não tem logradouro próprio. | VARCHAR | 120 | NULL | — | Obrigatório se o CEP for genérico; senão, nulo. |
+| bairro_informado | Bairro informado pela pessoa quando o CEP não tem bairro próprio. | VARCHAR | 60 | NULL | — | Obrigatório se o CEP for genérico; opcional nos demais. |
+
+
+### 9.2 Pessoa_Telefone
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| cpf | Pessoa dona do telefone. | CHAR | 11 | PK, FK, NOT NULL | — | PK e FK → Pessoa.cpf. Uma pessoa pode ter vários telefones. |
+| telefone | Telefone de contato. | VARCHAR | 15 | PK, NOT NULL | — | PK (junto com cpf). DDD + número, só dígitos. O cadastro exige telefone (RN01). |
+
+
+### 9.3 Cliente
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| cliente_id | Identificador do cliente. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| cpf | Pessoa que é o cliente. | CHAR | 11 | FK, UK, NOT NULL | — | FK → Pessoa.cpf. UK: uma pessoa é no máximo um cliente. |
+| status | Situação do cliente na plataforma. | VARCHAR | 10 | NOT NULL | — | Valores: ATIVO, PENDENTE ou BLOQUEADO (RN16). |
+
+
+### 9.4 Funcionario
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| funcionario_id | Identificador do funcionário. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| cpf | Pessoa que é o funcionário. | CHAR | 11 | FK, UK, NOT NULL | — | FK → Pessoa.cpf. UK: uma pessoa é no máximo um funcionário. |
+| cargo | Cargo do funcionário. | VARCHAR | 50 | NOT NULL | — |  |
+| perfil_acesso | Perfil de acesso ao sistema. | VARCHAR | 10 | NOT NULL | — | Valores: ATENDENTE, FINANCEIRO ou GERENTE (RNF02, RNF13). |
+| status | Situação do funcionário. | VARCHAR | 10 | NOT NULL | — | Valores: ATIVO ou INATIVO. |
+
+
+### 9.5 Empresa
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| empresa_id | Identificador da empresa. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| razao_social | Razão social da empresa. | VARCHAR | 150 | NOT NULL | — |  |
+| cnpj | CNPJ da empresa. | CHAR | 14 | UK, NOT NULL | — | Somente dígitos. Não pode repetir. |
+| telefone | Telefone da empresa. | VARCHAR | 15 | NULL | — | Opcional (P5). |
+| email | E-mail da empresa. | VARCHAR | 120 | NULL | — | Opcional (P5). |
+
+
+### 9.6 Prestador_Servico
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| prestador_id | Identificador do prestador. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| cpf | Pessoa que é o prestador. | CHAR | 11 | FK, UK, NOT NULL | — | FK → Pessoa.cpf. UK: uma pessoa é no máximo um prestador. |
+| empresa_id | Empresa à qual o prestador é vinculado. | INTEGER | — | FK, NULL | — | FK → Empresa.empresa_id. Opcional. |
+| cnh | Número da CNH do motorista. | VARCHAR | 11 | UK, NULL | — | Obrigatória para status ATIVO (RN22). Não pode repetir. |
+| status | Situação do cadastro do prestador. | VARCHAR | 10 | NOT NULL | 'EM_ANALISE' | Valores: EM_ANALISE, ATIVO, RECUSADO ou BLOQUEADO. Só o administrador aprova (RN22). |
+
+
+### 9.7 Cidade
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| cidade_id | Identificador da cidade. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado automaticamente. |
+| nome | Nome da cidade. | VARCHAR | 60 | UK, NOT NULL | — | UK composta (nome, uf). |
+| uf | Sigla do estado. | CHAR | 2 | UK, NOT NULL | — | UK composta (nome, uf). |
+
+
+### 9.8 CEP
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| cep | Código de endereçamento postal. | CHAR | 8 | PK, UK, NOT NULL | — | Somente dígitos. |
+| cidade_id | Cidade do CEP. | INTEGER | — | FK, NOT NULL | — | FK → Cidade.cidade_id. |
+| logradouro | Rua do CEP. | VARCHAR | 120 | NULL | — | Nulo quando o CEP é genérico; obrigatório nos demais. |
+| bairro | Bairro do CEP. | VARCHAR | 60 | NULL | — | Nulo quando o CEP é genérico. |
+| cep_generico | Indica se o CEP é único da cidade, sem logradouro próprio. | BOOLEAN | — | NOT NULL | FALSE | Padrão FALSO. Verdadeiro: CEP único da cidade, sem logradouro próprio. |
+
+
+### 9.9 Modelo_Veiculo
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| modelo_id | Identificador do modelo. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado automaticamente. |
+| marca | Marca do veículo. | VARCHAR | 50 | UK, NOT NULL | — | UK composta (marca, nome). |
+| nome | Nome do modelo. | VARCHAR | 60 | UK, NOT NULL | — | UK composta (marca, nome). |
+
+
+### 9.10 Tipo_Veiculo
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| tipo_veiculo_id | Identificador do tipo de veículo. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| descricao | Nome do tipo. | VARCHAR | 50 | UK, NOT NULL | — | Não pode repetir. Ex.: moto, carro, SUV, caminhão. |
+| categoria | Categoria do veículo. | VARCHAR | 50 | NULL | — | Opcional (RN03; valores não definidos, P11). |
+| peso_max_kg | Peso máximo do tipo, em kg. | DECIMAL | 8,2 | NULL | — | Opcional. |
+
+
+### 9.11 Veiculo
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| veiculo_id | Identificador do veículo. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| cliente_id | Cliente dono do veículo. | INTEGER | — | FK, NOT NULL | — | FK → Cliente.cliente_id. Um veículo pertence a um único cliente (RN03). |
+| tipo_veiculo_id | Tipo do veículo. | INTEGER | — | FK, NOT NULL | — | FK → Tipo_Veiculo.tipo_veiculo_id. |
+| modelo_id | Modelo do veículo. | INTEGER | — | FK, NOT NULL | — | FK → Modelo_Veiculo.modelo_id. (RN03). |
+| placa | Placa do veículo. | VARCHAR | 8 | UK, NOT NULL | — | Não pode repetir (RN03). O banco não valida o formato. |
+| ano | Ano do veículo. | SMALLINT | — | NOT NULL | — | Maior ou igual a 1900 (RN03). |
+| cor | Cor do veículo. | VARCHAR | 30 | NULL | — | Opcional. Ajuda o prestador a achar o veículo no local. |
+| blindado | Indica se o veículo é blindado. | BOOLEAN | — | NOT NULL | FALSE | Padrão FALSO (RN03). |
+
+
+### 9.12 Tipo_Guincho
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| tipo_guincho_id | Identificador do tipo de guincho. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| descricao | Nome do tipo de guincho. | VARCHAR | 50 | UK, NOT NULL | — | Não pode repetir. Ex.: plataforma (prancha), asa delta, lança. |
+| capacidade_max_kg | Capacidade máxima do tipo, em kg. | DECIMAL | 8,2 | NULL | — | Opcional. Maior que 0. |
+
+
+### 9.13 Veiculo_Reboque
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| veiculo_reboque_id | Identificador do guincho. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| tipo_guincho_id | Tipo do guincho. | INTEGER | — | FK, NOT NULL | — | FK → Tipo_Guincho.tipo_guincho_id. |
+| modelo_id | Modelo do guincho. | INTEGER | — | FK, NOT NULL | — | FK → Modelo_Veiculo.modelo_id. |
+| placa | Placa do guincho. | VARCHAR | 8 | UK, NOT NULL | — | Não pode repetir. O banco não valida o formato. |
+| ano | Ano do guincho. | SMALLINT | — | NOT NULL | — | Maior ou igual a 1900. |
+| capacidade_kg | Capacidade do guincho, em kg. | DECIMAL | 8,2 | NULL | — | Opcional. Não passa de capacidade_max_kg do tipo (R12). |
+| status | Situação do guincho. | VARCHAR | 20 | NOT NULL | — | Valores não definidos (P11). |
+
+
+### 9.14 Servico_Reboque
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| servico_id | Identificador do serviço. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| descricao | Nome do serviço. | VARCHAR | 80 | UK, NOT NULL | — | Não pode repetir. Ex.: reboque simples, pane seca, bateria, troca de pneu. |
+| tipo_servico | Tipo do serviço. | VARCHAR | 50 | NOT NULL | — | Valores não definidos (P11). |
+| status | Situação do serviço. | VARCHAR | 10 | NOT NULL | — | Valores: ATIVO ou INATIVO. Serviço inativo não aparece para novos pedidos. |
+
+
+### 9.15 Tarifa
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| tarifa_id | Identificador da tarifa. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| tipo_veiculo_id | Tipo de veículo da tarifa. | INTEGER | — | FK, UK, NOT NULL | — | FK → Tipo_Veiculo.tipo_veiculo_id. Parte da UK (tipo_veiculo_id, servico_id, vigencia_inicio). |
+| servico_id | Serviço da tarifa. | INTEGER | — | FK, UK, NOT NULL | — | FK → Servico_Reboque.servico_id. Parte da UK (tipo_veiculo_id, servico_id, vigencia_inicio). |
+| valor_base | Valor de saída do serviço. | DECIMAL | 10,2 | NOT NULL | — | Maior ou igual a 0 (RN05). |
+| valor_por_km | Valor por quilômetro excedente. | DECIMAL | 10,2 | NOT NULL | — | Maior ou igual a 0 (RN05). |
+| adicional_madrugada | Adicional da madrugada (22h às 06h). | DECIMAL | 10,2 | NOT NULL | 0 | Padrão 0 (RN05). |
+| adicional_domingo | Adicional de domingo. | DECIMAL | 10,2 | NOT NULL | 0 | Padrão 0 (RN05). |
+| adicional_feriado | Adicional de feriado. | DECIMAL | 10,2 | NOT NULL | 0 | Padrão 0 (RN05). |
+| adicional_rodovia | Adicional de atendimento em rodovia. | DECIMAL | 10,2 | NOT NULL | 0 | Padrão 0 (RN05). |
+| vigencia_inicio | Data em que a tarifa passa a valer. | DATE | — | UK, NOT NULL | — | Parte da UK (tipo_veiculo_id, servico_id, vigencia_inicio). |
+| vigencia_fim | Data em que a tarifa deixa de valer. | DATE | — | NULL | — | Nulo enquanto a tarifa estiver valendo. Maior ou igual a vigencia_inicio (R3). Sem sobreposição para o mesmo tipo de veículo e serviço (R11). |
+
+
+### 9.16 Solicitacao
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| solicitacao_id | Identificador da solicitação. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| veiculo_id | Veículo a ser atendido. | INTEGER | — | FK, NOT NULL | — | FK → Veiculo.veiculo_id. O cliente é obtido por Veiculo (RN03, RN04). Só aceita cliente ATIVO (R16). |
+| servico_id | Serviço solicitado. | INTEGER | — | FK, NOT NULL | — | FK → Servico_Reboque.servico_id. Só aceita serviço ATIVO. |
+| funcionario_id | Funcionário que abriu o pedido pela central. | INTEGER | — | FK, NULL | — | FK → Funcionario.funcionario_id. Nulo quando aberta pelo cliente no aplicativo. |
+| data_hora_solicitacao | Data e hora em que o pedido foi feito. | DATETIME | — | NOT NULL | CURRENT_TIMESTAMP | RN04. |
+| origem_cep | CEP do local onde o veículo está. | CHAR | 8 | FK, NOT NULL | — | FK → CEP.cep. |
+| origem_numero | Número do local de origem. | VARCHAR | 10 | NOT NULL | — |  |
+| origem_complemento | Complemento do local de origem. | VARCHAR | 60 | NULL | — | Opcional. |
+| origem_logradouro_informado | Rua de origem informada quando o CEP é genérico. | VARCHAR | 120 | NULL | — | Obrigatório se o CEP for genérico; senão, nulo. |
+| origem_bairro_informado | Bairro de origem informado quando o CEP é genérico. | VARCHAR | 60 | NULL | — | Obrigatório se o CEP for genérico; opcional nos demais. |
+| destino_cep | CEP do local para onde o veículo vai. | CHAR | 8 | FK, NOT NULL | — | FK → CEP.cep (P13). |
+| destino_numero | Número do local de destino. | VARCHAR | 10 | NOT NULL | — |  |
+| destino_complemento | Complemento do local de destino. | VARCHAR | 60 | NULL | — | Opcional. |
+| destino_logradouro_informado | Rua de destino informada quando o CEP é genérico. | VARCHAR | 120 | NULL | — | Obrigatório se o CEP for genérico; senão, nulo. |
+| destino_bairro_informado | Bairro de destino informado quando o CEP é genérico. | VARCHAR | 60 | NULL | — | Obrigatório se o CEP for genérico; opcional nos demais. |
+| distancia_km | Distância da origem ao destino, em km. | DECIMAL | 8,2 | NOT NULL | — | Estimativa gravada na solicitação. Maior ou igual a 0 (R2). |
+| observacao | Problema apresentado ou informações adicionais. | VARCHAR | 500 | NULL | — | Opcional. |
+| valor_estimado | Valor calculado antes da confirmação. | DECIMAL | 10,2 | NOT NULL | — | Calculado antes da confirmação (RN05). Gravado na solicitação. Maior ou igual a 0 (R2). |
+| status | Situação da solicitação. | VARCHAR | 15 | NOT NULL | 'SOLICITADA' | Valores: SOLICITADA, EM_ANALISE, ACEITA, SEM_PRESTADOR ou CANCELADA. |
+
+
+### 9.17 Ordem_Servico
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| ordem_id | Identificador da O.S. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| solicitacao_id | Solicitação que originou a O.S. | INTEGER | — | FK, UK, NOT NULL | — | FK → Solicitacao.solicitacao_id. UK: garante o 1:1 (RN08). |
+| tarifa_id | Tarifa usada no cálculo. | INTEGER | — | FK, NOT NULL | — | FK → Tarifa.tarifa_id. Mesmo tipo de veículo e serviço da solicitação, vigente na data (R10). |
+| prestador_id | Prestador responsável pelo atendimento. | INTEGER | — | FK, NOT NULL | — | FK → Prestador_Servico.prestador_id. Deve ser o prestador que aceitou a solicitação (R7) e estar ATIVO (R8). |
+| veiculo_reboque_id | Guincho usado no atendimento. | INTEGER | — | FK, NOT NULL | — | FK → Veiculo_Reboque.veiculo_reboque_id. Precisa de vínculo vigente com o prestador e de tipo compatível com o veículo atendido (R9). |
+| data_hora_inicio | Data e hora de início do atendimento. | DATETIME | — | NULL | — | Nulo até o início. |
+| data_previsao | Previsão de chegada ou conclusão. | DATETIME | — | NULL | — | Opcional. |
+| data_hora_fim | Data e hora de conclusão do atendimento. | DATETIME | — | NULL | — | Nulo até a finalização. Maior ou igual a data_hora_inicio (R3). |
+| status_atual | Situação atual da O.S. | VARCHAR | 15 | NOT NULL | 'ACEITA' | Valores: ACEITA, A_CAMINHO, NO_LOCAL, EM_ATENDIMENTO, FINALIZADA ou CANCELADA (RN09, RN10). Nasce ACEITA e repete o último Historico_Status (R14, R15). |
+| observacao | Observações do atendimento. | VARCHAR | 500 | NULL | — | Opcional. |
+| valor_base | Valor base do serviço. | DECIMAL | 10,2 | NOT NULL | — | Maior ou igual a 0. |
+| valor_adicionais | Soma dos adicionais aplicados. | DECIMAL | 10,2 | NOT NULL | 0 | Padrão 0. |
+| desconto | Desconto concedido. | DECIMAL | 10,2 | NOT NULL | 0 | Padrão 0. Não passa de valor_base + valor_adicionais. |
+| valor_total | Valor final do serviço. | DECIMAL | 10,2 | NOT NULL | — | Coluna calculada (GENERATED ALWAYS, STORED): valor_base + valor_adicionais − desconto. Não pode ser informada. |
+
+
+### 9.18 Historico_Status
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| historico_id | Identificador do registro. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| ordem_id | O.S. cujo status mudou. | INTEGER | — | FK, NOT NULL | — | FK → Ordem_Servico.ordem_id. |
+| funcionario_id | Funcionário que fez a mudança. | INTEGER | — | FK, NULL | — | FK → Funcionario.funcionario_id. Nulo quando a mudança é do prestador ou do sistema (P12). |
+| status | Status registrado. | VARCHAR | 15 | NOT NULL | — | Mesmo domínio de Ordem_Servico.status_atual. Sequência sem voltar etapa; nada após FINALIZADA ou CANCELADA (R15). |
+| data_hora_alteracao | Data e hora da mudança. | DATETIME | — | NOT NULL | CURRENT_TIMESTAMP | RN10. |
+| observacao | Observação sobre a mudança. | VARCHAR | 500 | NULL | — | Opcional. |
+
+
+### 9.19 Notificacao_prestador
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| solicitacao_id | Solicitação enviada. | INTEGER | — | PK, FK, NOT NULL | — | PK e FK → Solicitacao.solicitacao_id. |
+| prestador_id | Prestador que recebeu a solicitação. | INTEGER | — | PK, FK, NOT NULL | — | PK e FK → Prestador_Servico.prestador_id. Só prestador ATIVO recebe notificação (R8). |
+| data_hora_envio | Data e hora do envio ao prestador. | DATETIME | — | NOT NULL | CURRENT_TIMESTAMP |  |
+| data_hora_resposta | Data e hora da resposta do prestador. | DATETIME | — | NULL | — | Nulo até o prestador responder. Maior ou igual a data_hora_envio (R3). |
+| resposta | Resposta do prestador. | VARCHAR | 10 | NULL | — | Valores: ACEITA, RECUSADA ou EXPIRADA. Nulo até responder. No máximo uma ACEITA por solicitação (R6). |
+| aceite_unico | Apoio técnico ao R6: guarda o solicitacao_id só quando a resposta é ACEITA. | INTEGER | — | UK, NULL | — | Coluna calculada (GENERATED ALWAYS, STORED). Nula quando a resposta não é ACEITA. UK: garante no máximo um aceite por solicitação (R6). |
+
+
+### 9.20 Cancelamento
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| cancelamento_id | Identificador do cancelamento. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| ordem_id | O.S. cancelada. | INTEGER | — | FK, UK, NOT NULL | — | FK → Ordem_Servico.ordem_id. UK: garante o 1:1. Só para O.S. CANCELADA (R16). |
+| funcionario_id | Funcionário da central que autorizou. | INTEGER | — | FK, NULL | — | FK → Funcionario.funcionario_id. Nulo quando não houve autorização da central. |
+| responsavel | Quem cancelou. | VARCHAR | 10 | NOT NULL | — | Valores: CLIENTE, PRESTADOR ou CENTRAL (RN13). |
+| motivo | Motivo do cancelamento. | VARCHAR | 255 | NOT NULL | — | RN13. |
+| data_hora | Data e hora do cancelamento. | DATETIME | — | NOT NULL | CURRENT_TIMESTAMP | RN13. |
+| valor_multa | Multa cobrada no cancelamento. | DECIMAL | 10,2 | NOT NULL | 0 | Padrão 0. Valor efetivo gravado no cancelamento. Maior ou igual a 0 (R2). |
+
+
+### 9.21 Avaliacao
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| avaliacao_id | Identificador da avaliação. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| ordem_id | O.S. avaliada. | INTEGER | — | FK, UK, NOT NULL | — | FK → Ordem_Servico.ordem_id. UK: garante o 1:1 (RN14). Só para O.S. FINALIZADA (R16). |
+| nota | Nota em estrelas. | SMALLINT | — | NOT NULL | — | De 1 a 5 (RN14). |
+| comentario | Comentário sobre o atendimento. | VARCHAR | 500 | NULL | — | Opcional. |
+| data_avaliacao | Data e hora da avaliação. | DATETIME | — | NOT NULL | CURRENT_TIMESTAMP |  |
+
+
+### 9.22 Forma_Pagamento
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| forma_pagamento_id | Identificador da forma de pagamento. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| descricao | Nome da forma de pagamento. | VARCHAR | 50 | UK, NOT NULL | — | Não pode repetir. Ex.: PIX, cartão de crédito, cartão de débito. |
+| tipo | Tipo da forma de pagamento. | VARCHAR | 30 | NULL | — | Opcional (P11). |
+
+
+### 9.23 Pagamento
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| pagamento_id | Identificador do pagamento. | INTEGER | — | PK, UK, NOT NULL | Auto incremento | Gerado pelo sistema. |
+| ordem_id | O.S. paga. | INTEGER | — | FK, NOT NULL | — | FK → Ordem_Servico.ordem_id. |
+| forma_pagamento_id | Forma usada no pagamento. | INTEGER | — | FK, NOT NULL | — | FK → Forma_Pagamento.forma_pagamento_id. |
+| valor_pago | Valor pago. | DECIMAL | 10,2 | NOT NULL | — | Maior que 0 (RF17). |
+| data_hora_pagamento | Data e hora do pagamento. | DATETIME | — | NOT NULL | CURRENT_TIMESTAMP |  |
+| status | Situação do pagamento. | VARCHAR | 10 | NOT NULL | 'PENDENTE' | Valores: PENDENTE, APROVADO ou RECUSADO. |
+| comprovante | Referência ao arquivo do comprovante. | VARCHAR | 255 | NULL | — | Opcional. |
+
+
+### 9.24 Prestador_Veiculo_Reboque
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| prestador_id | Prestador do vínculo. | INTEGER | — | PK, FK, NOT NULL | — | PK e FK → Prestador_Servico.prestador_id. |
+| veiculo_reboque_id | Guincho do vínculo. | INTEGER | — | PK, FK, NOT NULL | — | PK e FK → Veiculo_Reboque.veiculo_reboque_id. |
+| data_inicio | Data em que o vínculo começou. | DATE | — | PK, NOT NULL | — | PK. Permite o mesmo prestador usar o mesmo guincho em períodos diferentes. |
+| data_fim | Data em que o vínculo terminou. | DATE | — | NULL | — | Nulo enquanto o vínculo estiver vigente. Maior ou igual a data_inicio (R3). |
+| status | Situação do vínculo. | VARCHAR | 20 | NOT NULL | — | Valores não definidos (P11). |
+
+
+### 9.25 Guincho_Tipo_Veiculo
+
+| Atributo | Descrição | Tipo | Tam. | Restrição | DEFAULT | Regra |
+| --- | --- | --- | --- | --- | --- | --- |
+| tipo_guincho_id | Tipo de guincho. | INTEGER | — | PK, FK, NOT NULL | — | PK e FK → Tipo_Guincho.tipo_guincho_id. |
+| tipo_veiculo_id | Tipo de veículo. | INTEGER | — | PK, FK, NOT NULL | — | PK e FK → Tipo_Veiculo.tipo_veiculo_id. |
+| observacao | Observação sobre a compatibilidade. | VARCHAR | 255 | NULL | — | Ex.: prancha obrigatória para elétricos, rebaixados e blindados. Base da escolha de prestadores compatíveis (RN06). |
 
 ---
 
